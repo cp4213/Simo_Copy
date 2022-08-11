@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ContactActivity">
+
+    <include layout="@layout/layout_app_bar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <ImageView
+                android:id="@+id/imageAfferJobs"
+                android:layout_width="@dimen/size_icon_screen"
+                android:layout_height="@dimen/size_icon_screen"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/image_contact_envelopes"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_sharp_contact_phone_24px"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textLabelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/comision_nacional_servicio"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageAfferJobs" />
+
+            <ImageView
+                android:id="@+id/imageViewLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_image_logo"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/image_logo_cnsc"
+                android:onClick="onWSCNSC"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewHorary"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/transparencia" />
+
+            <TextView
+                android:id="@+id/textViewAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:clickable="true"
+                android:drawableLeft="@drawable/ic_location_on_24dp"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/yellow"
+                android:onClick="onAddress"
+                android:text="@string/address_simo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textLabelName" />
+
+            <TextView
+                android:id="@+id/textViewTelephone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:clickable="true"
+                android:drawableLeft="@drawable/ic_twotone_phone_24px"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/yellow"
+                android:text="@string/telephone_simo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAddress" />
+
+            <TextView
+                android:id="@+id/textViewFax"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:drawableLeft="@drawable/ic_twotone_local_printshop_24px"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/yellow"
+                android:text="@string/fax_simo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTelephone" />
+
+            <TextView
+                android:id="@+id/textViewPbx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:drawableLeft="@drawable/ic_twotone_phone_forwarded_24px"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/yellow"
+                android:onClick="onPbx"
+                android:text="@string/pbx_simo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewFax" />
+
+            <TextView
+                android:id="@+id/textViewEmailNotifications"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:drawableLeft="@drawable/ic_twotone_mail_24px"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/yellow"
+                android:text="@string/subtitulo_email_atencion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPbx" />
+
+            <TextView
+                android:id="@+id/textViewChat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:drawableLeft="@drawable/ic_chat_24px"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/yellow"
+                android:text="@string/subtitulo_chat"
+                android:onClick="onChatCNSC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewEmailNotifications" />
+
+            <TextView
+                android:id="@+id/textViewHorary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:gravity="center"
+                android:text="@string/business_hours"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewChat" />
+
+            <LinearLayout
+                android:id="@+id/linearhorSN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/imageViewLogo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewHorary">
+
+                <ImageButton
+                    android:id="@+id/imageButtonFB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/facebook_img_link"
+                    android:onClick="onFB"
+                    app:srcCompat="@drawable/ic_facebook"
+                    tools:layout_editor_absoluteX="177dp"
+                    tools:layout_editor_absoluteY="526dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonYT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/youtube_img_link"
+                    android:onClick="onYT"
+                    app:srcCompat="@drawable/ic_youtube"
+                    tools:layout_editor_absoluteX="177dp"
+                    tools:layout_editor_absoluteY="526dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonTW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/twitter_img_link"
+                    android:onClick="onTW"
+                    app:srcCompat="@drawable/ic_twitter"
+                    tools:layout_editor_absoluteX="177dp"
+                    tools:layout_editor_absoluteY="526dp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

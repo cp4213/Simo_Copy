@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    app:layout_collapseMode="parallax"
+    app:layout_collapseParallaxMultiplier="0.8"
+    tools:background="@color/blue">
+
+    <TextView
+        android:id="@+id/labelWorkOffer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/charge_"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textWorkOfferCharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelWorkOffer"
+        tools:text="Administrador de Empresas" />
+
+    <TextView
+        android:id="@+id/labelConvocatory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/convocatory_"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textWorkOfferCharge" />
+
+    <TextView
+        android:id="@+id/textConvocatory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelConvocatory"
+        tools:text="CONVOCATORIA CUNDINAMARCA" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <LinearLayout
+
+        android:id="@+id/linearOPEC"
+        style="@style/DetailWorkLabelValueLinearLayout"
+        android:layout_marginTop="8dp"
+        android:gravity="left"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textConvocatory">
+
+        <TextView
+            style="@style/DetailWorkLabelValueLabel"
+            android:text="@string/number_opec" />
+
+        <TextView
+            android:id="@+id/textOpec"
+            style="@style/DetailWorkLabelValueValue" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/linearLevel"
+        style="@style/DetailWorkLabelValueLinearLayout"
+        android:layout_marginTop="8dp"
+        android:gravity="right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textConvocatory">
+
+        <TextView
+            style="@style/DetailWorkLabelValueLabel"
+            android:text="@string/level" />
+
+        <TextView
+            android:id="@+id/textLevel"
+            style="@style/DetailWorkLabelValueValue" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/linearGrade"
+        style="@style/DetailWorkLabelValueLinearLayout"
+        android:layout_marginTop="8dp"
+        android:gravity="left"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearOPEC">
+
+        <TextView
+            style="@style/DetailWorkLabelValueLabel"
+            android:text="@string/grade" />
+
+        <TextView
+            android:id="@+id/textGrade"
+            style="@style/DetailWorkLabelValueValue" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/linearVancancies"
+        style="@style/DetailWorkLabelValueLinearLayout"
+        android:layout_marginTop="8dp"
+        android:gravity="right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/linearLevel">
+
+        <TextView
+            style="@style/DetailWorkLabelValueLabel"
+            android:text="@string/vacancies" />
+
+        <TextView
+            android:id="@+id/textVacancies"
+            style="@style/DetailWorkLabelValueValue" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/linearSalarial"
+        style="@style/DetailWorkLabelValueLinearLayout"
+        android:layout_marginTop="8dp"
+        android:gravity="left"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearGrade">
+
+        <TextView
+            style="@style/DetailWorkLabelValueLabel"
+            android:text="@string/asignation_salarial" />
+
+        <TextView
+            android:id="@+id/textSalary"
+            style="@style/DetailWorkLabelValueValue" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/linearInscriptions"
+        style="@style/DetailWorkLabelValueLinearLayout"
+        android:layout_marginTop="8dp"
+        android:gravity="right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/linearVancancies">
+
+        <TextView
+            style="@style/DetailWorkLabelValueLabel"
+            android:text="@string/close_of_inscriptions" />
+
+        <TextView
+            android:id="@+id/textCloseInscriptions"
+            style="@style/DetailWorkLabelValueValue" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearHeaderActionsButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearInscriptions">
+
+        <LinearLayout
+            android:id="@+id/linearOptions"
+            style="@style/DetailWorkLinearButtonOption">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewLeft"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/baseline_event_note_white_24"
+                android:visibility="gone" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/buttonLeft"
+                style="@style/DetailWorkButtonOption"
+                app:srcCompat="@drawable/ic_favorite_border_24dp" />
+
+            <TextView
+                android:id="@+id/labelButtonLeft"
+                style="@style/DetailWorkButtonDescription"
+                android:gravity="center"
+                android:text="@string/add_favorites" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearOptions3"
+            style="@style/DetailWorkLinearButtonOption">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewCenter"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/baseline_insert_invitation_white_18"
+                android:visibility="gone" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/buttonCenter"
+                style="@style/DetailWorkButtonOption"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_cached_white_18dp" />
+
+            <TextView
+                android:id="@+id/labelButtonCenter"
+                style="@style/DetailWorkButtonDescription"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="@string/change_employment_after_payment" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearOptions2"
+            style="@style/DetailWorkLinearButtonOption">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewRight"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/baseline_insert_invitation_white_18"
+                android:visibility="gone" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/buttonRight"
+                style="@style/DetailWorkButtonOption"
+                android:visibility="gone"
+                app:srcCompat="@drawable/baseline_calendar_today_white_18" />
+
+            <TextView
+                android:id="@+id/labelButtonRight"
+                style="@style/DetailWorkButtonDescription"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="@string/confirm_employment_ask" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearHeaderActionsButtons" />
+</androidx.constraintlayout.widget.ConstraintLayout>

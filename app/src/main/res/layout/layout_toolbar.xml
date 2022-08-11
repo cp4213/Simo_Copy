@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/SIMOToolbar">
+
+    <ImageView
+        android:id="@+id/imageLeft"
+        android:layout_width="@dimen/size_icon_left_toolbar"
+        android:layout_height="@dimen/size_icon_left_toolbar"
+        android:layout_gravity="left"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        app:actualImageResource="@drawable/account_user"
+        app:roundAsCircle="true"
+        app:roundingBorderColor="@color/yellow"
+        app:roundingBorderWidth="1dp"
+        tools:ignore="MissingPrefix" />
+
+    <TextView style="@style/SIMOTextViewToolbar" />
+</androidx.appcompat.widget.Toolbar>

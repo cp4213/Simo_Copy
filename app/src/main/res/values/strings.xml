@@ -1,0 +1,682 @@
+<resources>
+    <string name="app_name">SIMO</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="download_notification_channel_id" translatable="false">download_channel</string>
+    <string name="empty"> </string>
+    <string name="address_simo" formatted="true">Dirección: <u>%s</u></string>
+    <string name="pbx_simo" formatted="true">Pbx: <u>%s</u></string>
+    <string name="fax_simo" formatted="true">Fax: <u>%s</u></string>
+    <string name="telephone_simo" formatted="true">Línea Nacional: <u>%s</u></string>
+    <string name="email_simo" formatted="true"><u>%s</u></string>
+    <string name="email_simo_juditial" formatted="true">Notificaciones Judiciales: <u>%s</u></string>
+    <string name="subtitulo_email_atencion" formatted="true">Correo: <u>%s</u></string>
+    <string name="subtitulo_chat" formatted="true">Chat</string>
+    <string name="business_hours"><u>Horario de Atención al Ciudadano:\nLunes a viernes de 8:00 a.m. a 5:30 p.m.</u></string>
+    <string name="facebook_img_link">Link con imagen para acceder a la CNSC en facebook</string>
+    <string name="twitter_img_link">Link con imagen para acceder a la CNSC en twitter</string>
+    <string name="youtube_img_link">Link con imagen para acceder a la CNSC en Youtube</string>
+
+
+    <string name="audience_name_f" formatted="true">Nombre de la audiencia: <u>%s</u></string>
+    <string name="S_P_Name" formatted="true">Nombre del Proceso de Selección: <u>%s</u></string>
+    <string name="initial_date_f" formatted="true">Fecha de Inicio: <u>%s</u></string>
+    <string name="final_date_f" formatted="true">Fecha de Terminación: <u>%s</u></string>
+
+
+    <string name="title_start_activity">Sistema de Apoyo para la Igualdad, el Mérito y la Oportunidad</string>
+    <string name="enter_as_invited"><u>Entrar como Invitado</u></string>
+    <string name="title_main">SIMO Mobile</string>
+    <string name="search_the_job_of_carrer" formatted="true">Busque el <b>Empleo de Carrera</b> que se ajuste a sus necesidades:</string>
+    <string name="register">Registrarse</string>
+    <string name="cedula_in_alert_dialog">Número de Cédula:</string>
+    <string name="validate_document_id_user">Verificar mi Identidad</string>
+    <string name="register_yourself">Regístrese</string>
+    <string name="registered">¡Registro exitoso!</string>
+    <string name="login">Ingresar</string>
+    <string name="title_activity_login">Ingresar SIMO</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="email">Correo electrónico:</string>
+    <string name="title_activity_login2">Sign in</string>
+    <string name="password">Contraseña</string>
+    <string name="err_email">Correo electrónico no válido</string>
+    <string name="empty_field">Campo vacío</string>
+    <string name="empty_multi">Diligencie el campo / No use la tecla ENTER</string>
+    <string name="register_simo">Registro SIMO</string>
+    <string name="my_alerts">Alertas / Citaciones</string>
+    <string name="my_convocatories">Procesos de Selección Vigentes</string>
+    <string name="my_payments">Pagos Realizados</string>
+    <string name="my_jobs">Mis Trabajos</string>
+    <string name="place">Lugar</string>
+    <string name="list_opec">Listado OPEC</string>
+
+    <string name="legal_advice">Términos del Servicio</string>
+    <string name="pse_process_title">Proceso de Pago PSE</string>
+    <string name="change_password">Cambiar Contraseña</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="are_you_sure_exit">¿Está seguro que desea salir?</string>
+
+    <string name="home_menu_title"><u>Inicio</u></string>
+    <string name="convocatory_menu_title"><u>Procesos de Selección</u></string>
+    <string name="my_employments_menu_title"><u>Mis Empleos</u></string>
+    <string name="my_Audiencias_menu_title"><u>Audiencias</u></string>
+    <string name="alerts_menu_title"><u>Alertas</u></string>
+    <string name="my_payments_menu_title"><u>Pagos Realizados</u></string>
+
+    <string name="an_error_has_ocurred">Un error ha ocurrido</string>
+    <string name="number_vacancy">Vacantes: %d</string>
+    <string name="close_inscription">Cierre de Inscripciones: %s</string>
+    <string name="convocatory_underline"><u>%s</u></string>
+    <string name="employ_detail">Detalle del Empleo</string>
+    <string name="number_offers_founded">Procesos de selección encontrados: %d</string>
+    <string name="detail_convocatory">Detalle del Proceso de Selección</string>
+    <string name="en_the_cnsc_we_are_interested">¡En la CNSC nos interesa\nescucharle!</string>
+    <string name="select_the_option">Seleccione la opción adecuada:</string>
+    <string name="found_error_in_app">Encontré un error en la app</string>
+    <string name="i_would_like_app">Me gustaría que en la app...</string>
+    <string name="other">Otro</string>
+    <string name="comision_nacional_servicio">Comisión Nacional del Servicio Civil - CNSC</string>
+    <string name="charge_1">Cargo_1</string>
+    <string name="number_opec">Número OPEC:</string>
+    <string name="level_hint">Tipo de Formación:</string>
+    <string name="level_hint2">Nivel:</string>
+    <string name="level">Tipo de Formación:</string>
+    <string name="grade">Grado:</string>
+    <string name="asignation_salarial">Asignación Salarial:</string>
+    <string name="purpose">Propósito</string>
+    <string name="functons">Funciones</string>
+    <string name="requirements">Requisitos</string>
+    <string name="study">Estudio:</string>
+    <string name="vacancy">Total Vacantes:</string>
+    <string name="experience">Experiencia:</string>
+    <string name="vacancies">Total Vacantes:</string>
+    <string name="total_vacancies_city_s">Total vacantes:</string>
+    <string name="total_vacancies_s">Total de vacantes de éste empleo:</string>
+
+    <string name="prov_prep_s">Vacantes provistas por prepensionados:</string>
+    <string name="prov_prep_de_s">de:</string>
+
+
+    <string name="liberation_date_s">Fechas de liberación</string>
+    <string name="total_prep1_s">de las cuales </string>
+    <string name="total_prep2_s">están ocupadas por prepensionados</string>
+    <string name="close_of_inscriptions">Cierre de Inscripciones:</string>
+    <string name="advanced_search">Búsqueda Avanzada</string>
+    <string name="adress_actualization">Actualice su dirección de residencia</string>
+    <string name="convocatory_">Proceso de Selección:</string>
+    <string name="entity_">Entidad:</string>
+    <string name="key_word">Palabra Clave:</string>
+    <string name="loremp_ipsum_short">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</string>
+    <string name="enitity">Entidad:</string>
+    <string name="department">Departamento:</string>
+    <string name="city">Municipio:</string>
+    <string name="convocatory">Proceso de Selección:</string>
+    <string name="salarial_range">Rango Salarial</string>
+    <string name="lower_limit_s">Vr. Mínimo del Rango Salarial:</string>
+    <string name="upper_limit_s">Vr. Máximo del Rango Salarial:</string>
+    <string name="number_job_opec">Número Empleo (OPEC):</string>
+    <string name="search_job">Buscar Empleo</string>
+    <string name="search_job___">Buscar Empleo...</string>
+    <string name="user">Usuario:</string>
+    <string name="c_dula">Número de Identificación:</string>
+    <string name="i_wish_to_give_notifications">Deseo recibir notificaciones de la CNSC</string>
+    <string name="continuee">Continuar</string>
+    <string name="at_continue_acept_terms" formatted="true">Al continuar, acepto los <u>Términos del servicio</u></string>
+    <string name="y_la_u_pol_tica_de_privacidad_u_de_la_cnsc" formatted="true">y la <u>Política de privacidad</u> de la CNSC</string>
+    <string name="enter_the_next_data">Ingrese los siguientes datos:</string>
+    <string name="names">Nombres:</string>
+    <string name="surnames">Apellidos:</string>
+    <string name="and_email_has_been_sent">¡Un código de seguridad ha sido enviado al e-mail registrado! Cópielo y péguelo en el siguiente campo:</string>
+    <string name="enter_the_code_here">Ingrese el código aquí</string>
+    <string name="verify">Verificar</string>
+    <string name="did_not_you_received_the_code">¿No recibió el código?</string>
+    <string name="resend_code">Reenviar código</string>
+    <string name="verify_code">Verificar código</string>
+    <string name="your_account_en_simo">Su cuenta ha sido creada\nA continuación ingrese la contraseña que ha registrado para ingresar...</string>
+    <string name="ok">OK</string>
+    <string name="did_you_forget_your_password">¿Olvidó su contraseña?</string>
+    <string name="here_we_help_you_to_recovery">Por favor seleccione una de las siguientes opciones para recuperar su contraseña: \n Le enviaremos un código de seguridad a su correo que le permitirá crear una nueva contraseña para acceder a SIMO.</string>
+    <string name="remmember">Recordar</string>
+    <string name="did_you_forget_your_password_underline" formatted="true"><u>¿Olvidó su contraseña?</u></string>
+    <string name="change">Cambiar</string>
+    <string name="enter_your_new_password">¡Ingrese su nueva contraseña!</string>
+    <string name="new_password">Nueva clave</string>
+    <string name="your_key_change_has_been_success">¡Su cambio de clave ha sido exitoso!</string>
+    <string name="error_to_share">Error al compartir</string>
+    <string name="share">Compatir</string>
+    <string name="please_select_option">Seleccione una de las dos opciones...</string>
+    <string name="send_email">Enviar email</string>
+    <string name="btn_send_contact_form">Enviar</string>
+    <string name="tell_us">Registre aquí lo que quiere contarnos</string>
+    <string name="contact_us_disclaimer">Tenga presente que por éste canal recibiremos los comentarios y/o sugerencias relacionados exclusivamente con temas del uso de la aplicación móvil (errores o puntos de mejora).</string>
+    <string name="stages_two">Etapas:</string>
+    <string name="norm_number">Número de la Norma:</string>
+    <string name="date_two">Fecha:</string>
+    <string name="description_two">Descripción:</string>
+    <string name="see_attachment_two">Ver Adjunto</string>
+    <string name="see_norm_attachment">Descargar detalle de la Norma</string>
+    <string name="see_functions_attachment">Descargar Manual de Funciones</string>
+    <string name="normativity_two">Normatividad:</string>
+    <string name="general_error">¡Algo salió mal!\nInténtelo más tarde</string>
+    <string name="dependency_two">Dependencia:</string>
+    <string name="town_two">Municipio:</string>
+    <string name="town">Seleccione municipio...</string>
+    <string name="mi_cv">Mi Hoja de Vida</string>
+    <string name="my_employs">Mis Empleos</string>
+    <string name="my_prod_intelect">Mi Prod. Intelec</string>
+    <string name="password_modified">Clave modificada</string>
+    <string name="your_password_change_was_success">¡Su cambio de clave ha sido exitoso!</string>
+    <string name="current_key">Contraseña anterior</string>
+    <string name="new_key">Nueva contraseña</string>
+    <string name="new_key_confirm">Verificar contraseña </string>
+    <string name="new_key_confirm_error">No coinciden las contraseñas </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favorites_title">FAVORITOS</string>
+    <string name="preincritos_title">CONFIRMADOS</string>
+    <string name="inscritos_title">INSCRITOS</string>
+    <string name="document_type">Documento:</string>
+    <string name="not_avaible">No disponible</string>
+    <string name="document_number">Número de identificación:</string>
+    <string name="date_expedition">Fecha de Expedición:</string>
+    <string name="birth_place">Ciudad de Nacimiento:</string>
+    <string name="res_place">Ciudad de Residencia:</string>
+    <string name="date_birth">Fecha de Nacimiento:</string>
+    <string name="identifier_document">Adjuntar Documento de Identidad...</string>
+    <string name="update">Guardar</string>
+    <string name="editAdress">Editar Dirección</string>
+    <string name="we_have_number_job_offers" formatted="true">¡Tenemos %d procesos de selección!</string>
+    <string name="number_professional_jobs" formatted="true">%d Empleos Profesionales</string>
+    <string name="number_assistencial_jobs" formatted="true">%d Empleos Asistenciales</string>
+    <string name="number_tecnical_jobs" formatted="true">%d Empleos Técnicos</string>
+    <string name="name_of_user">Nombre de Usuario</string>
+    <string name="there_is_not_elements_to_show">No hay información relacionada</string>
+    <string name="there_is_a_conection_problem">Hay inconvenientes con la carga de la información</string>
+    <string name="educational_Type">Tipo de Formación:</string>
+    <string name="educational_level_">Nivel educativo:</string>
+    <string name="date_entry">Fecha de Ingreso:</string>
+    <string name="date_exit">Fecha de Salida:</string>
+    <string name="identifier_number">Número Identificador:</string>
+    <string name="identifier_number_">Número identificador:</string>
+    <string name="are_not_you_simo_user_yet">¿Aún no es usuario de SIMO?</string>
+    <string name="are_you_already_registered">¿Ya está registrado en SIMO?</string>
+    <string name="data_consume">Consumo de datos</string>
+    <string name="data_consume_warning_message">"Cargar o descargar documentos en SIMO puede incrementar el consumo de datos de su plan.\n¿Desea continuar?"</string>
+    <string name="error_conection">Problemas técnicos</string>
+    <string name="error_conection_message">"No es posible conectarse con SIMO\n¿Desea reintentar?"</string>
+    <string name="retry">Reintentar</string>
+
+    <string name="tutorial_advice_1">¡Comience a explorar las procesos de\nselección que sean de su interés!\n</string>
+    <string name="tutorial_advice_2">Promovemos el mérito y la igualdad\nen el ingreso y desarrollo de los\nempleos publicos de Colombia\n</string>
+    <string name="tutorial_advice_3">Buscamos servidores de carrera\ncompetentes y comprometidos con el\nlogro de los fines del Estado colombiano\n</string>
+    <string name="tutorial_advice_4">Haga parte de la red de servidores\npúblicos que contribuyen\na la productividad y eficiencia de nuestro\npaís\n</string>
+    <string name="login_SIMO">Ingreso SIMO</string>
+    <string name="start">Inicio</string>
+    <string name="new_in_simo">¿Nuevo en SIMO?</string>
+    <string name="already_have_account">¿Ya tiene una cuenta?</string>
+    <string name="message_to_share" formatted="true">Consulte el siguiente proceso de seleción:\n\n<b>- Cargo:</b> %s\n<b>- Proceso de Selección: </b>%s\n<b>- Número OPEC:</b> %s\n<b>- Tipo de Formación:</b> %s\n<b>- Total Vacantes:</b> %d\n<b>- Salario:</b> %s\n<b>- Fecha de Cierre:</b> %s\n\nVea el detalle del proceso de selección buscándola por el Número OPEC:\n\n1. Desde su computador, en https://simo.cnsc.gov.co/ o\n2. Desde su teléfono - con sistema operativo Android -, descargando la app en https://play.google.com/store/apps/details?id=co.gov.cnsc.mobile.simo&amp;hl=es</string>
+    <string name="contact_simo_mobile">Contacto SIMO Móvil</string>
+    <string name="advanced_search_text">Diligencie los campos que considere para\nfiltrar su búsqueda</string>
+    <string name="total_inscriptions_">Ciudadanos inscritos en éste empleo:</string>
+    <string name="query_results_">Consultar resultados</string>
+    <string name="download_insription_ticket_">Descargar Constancia de Inscripción</string>
+    <string name="go_you_wish_preapply">¿Desea Preinscribirse?</string>
+    <string name="go_you_wish_apply">¿Desea Inscribirse?</string>
+    <string name="successfully_validated_employment">¡Empleo verificado exitosamente!</string>
+    <string name="pse_button">Botón PSE Pago electrónico por débito a cuenta</string>
+    <string name="cancel_button">Botón Cancelar</string>
+
+    <string name="lower_date">¡La fecha de expedición del documento debe ser mayor a la fecha de nacimiento!</string>
+    <string name="lower_date_xp">¡La fecha de salida debe ser mayor a la fecha de ingreso!</string>
+    <string name="lower_date_entry">¡La fecha de ingreso debe ser menor que la fecha de expedición!</string>
+    <string name="exit_date_lower_than_expedition_date">¡La fecha de expedición debe ser mayor a la fecha de salida!</string>
+    <string name="entry_date_lower_than_expedition_date">¡La fecha de expedición debe ser mayor a la fecha de ingreso!</string>
+
+    <string name="select_origin_image">Seleccione Orígen:</string>
+    <string name="error_to_compress_image_to_send">Error al comprimir la imagen para enviar</string>
+    <string name="country_born">Pais de Nacimiento:</string>
+    <string name="born_abroad">Nacido en el Extranjero</string>
+    <string name="resident_abroad">Residente en el Extranjero</string>
+    <string name="postal_code_birth_place">Código Postal del Lugar de Nacimiento:</string>
+    <string name="resident_country">País de Residencia:</string>
+    <string name="postal_code_place_resient">Código Postal Lugar de Residencia:</string>
+    <string name="postal_code_requirements">El código postal puede contener letras, números, espacios o guion medio (-). Debe tener un mínimo de 6 caracteres y un máximo de 25.</string>
+    <string name="residential_address_requirements">La dirección puede contener letras, números, espacios, puntos, numeral (#) o guion medio (-). Debe tener un mínimo de 10 caracteres y un máximo de 60.</string>
+    <string name="phone_number_requirements">El teléfono debe tener un mínimo de 7 números y un máximo de 15.</string>
+    <string name="birth_department">Departamento de Nacimiento:</string>
+    <string name="resident_department">Departamento de Residencia:</string>
+    <string name="gender">Género:</string>
+    <string name="not_valid_field">Campo no válido</string>
+    <string name="address">Dirección:</string>
+    <string name="addressReg">Dirección Registrada:</string>
+    <string name="phone">Teléfono:</string>
+    <string name="updated_data">¡Datos Actualizados!</string>
+    <string name="foreign_title">Titulo Extranjero</string>
+    <string name="mark_if_is_gratuated">¿Es Graduado?</string>
+    <string name="periodicity">Periodicidad:</string>
+    <string name="periodicity_">Periodicidad:</string>
+    <string name="reached_level">N° Periodos cursados: *</string>
+    <string name="reached_level_">Nivel Alcanzado:</string>
+    <string name="reached_level_requirements">El nivel debe tener máximo dos cifras.</string>
+    <string name="institution">Institución:</string>
+    <string name="institution_">Institución:</string>
+    <string name="select_value_required">Seleccione un valor:</string>
+    <string name="equivalent_title_required"> Título equivalente en Colombia: este valor es requerido</string>
+    <string name="equivalent_title_date_required"> Fecha de la resolución: este valor es requerido</string>
+    <string name="upload_document_required">Cargue el documento (flecha arriba)</string>
+    <string name="program_">Programa:</string>
+    <string name="expedition_country">País de Expedición:</string>
+    <string name="attach_title_or_certification">Adjuntar Certificación / Título...</string>
+    <string name="attach_certification">Adjuntar Certificado...</string>
+    <string name="attach_support">Adjuntar Soporte...</string>
+    <string name="edit_formation">Editar Formación</string>
+    <string name="edit_experience">Editar Experiencia</string>
+    <string name="edit_prod_intelectual">Editar Producto Intelectual</string>
+    <string name="edit_other_document">Editar Otro Documento</string>
+    <string name="add_formation">Agregar Formación</string>
+    <string name="add_experience">Agregar Experiencia</string>
+    <string name="add_prod_intelectual">Agregar Producto Intelectual</string>
+    <string name="add_other_document">Agregar Otro Documento</string>
+    <string name="add">Agregar</string>
+    <string name="date_grade">Fecha de Grado:</string>
+    <string name="this_field_must_contain__number_chars_at_least" formatted="true">Esta campo debe contener mínimo %d caracteres</string>
+    <string name="program_institution_requirements">Este campo debe contener entre 6 y 150 caracteres</string>
+    <string name="convalidate_number_requirements">Número de resolución: este valor es requerido</string>
+    <string name="experiencia_docente_de_c_tedra">¿Experiencia de Docente de Cátedra?</string>
+    <string name="company">Empresa o Entidad:</string>
+    <string name="company_">Empresa o Entidad:</string>
+    <string name="charge">Cargo:</string>
+    <string name="charge_">Cargo:</string>
+    <string name="current_employ">Empleo Actual</string>
+    <string name="RuralZone">Zona rural</string>
+    <string name="Sufix">Sufijo (BIS):</string>
+    <string name="UrbanZone">Zona urbana</string>
+    <string name="StreetType">Tipo de vía: *</string>
+    <string name="RuralStreetType">Tipo: *</string>
+    <string name="StreetName">Nombre de la vía:</string>
+    <string name="RuralStreetName">Principal: *</string>
+    <string name="Number">Número:</string>
+    <string name="MainStreetLeter">Letra principal:</string>
+    <string name="SecondaryStreetLeter">Letra asociada a la Vía Secundaria:</string>
+    <string name="SufixLeter">Letra Sufijo:</string>
+    <string name="Cuadrante">Cuadrante:</string>
+    <string name="RuralSecondary">Secundaria:</string>
+    <string name="ComplementaryAdress">Complemento de dirección:</string>
+    <string name="MainStreet">Vía Principal:</string>
+    <string name="GeneratedAdress">Dirección Generada:</string>
+    <string name="SecondaryStreet">Vía Secundaria:</string>
+    <string name="full_time">¿Es Jornada Completa?</string>
+    <string name="daily_hours_average">Promedio Horas Diarias:</string>
+    <string name="hourly_Intensity">Intensidad Horaria: *</string>
+    <string name="date_enter">Fecha de Ingreso:</string>
+    <string name="time_worked">Tiempo laborado (total de horas)</string>
+    <string name="date_certification_expedition">Fecha Expedición Certificación:</string>
+    <string name="formation_created_successfully">¡Formación creada exitosamente!</string>
+    <string name="formation_updated_successfully">¡Formación editada exitosamente!</string>
+    <string name="document_created_successfully">¡Documento creado exitosamente!</string>
+    <string name="document_updated_successfully">¡Documento editado exitosamente!</string>
+    <string name="experience_updated_successfully">¡Experiencia editada exitosamente!</string>
+    <string name="experience_created_successfully">¡Experiencia creada exitosamente!</string>
+    <string name="ip_updated_successfully">¡Producto Intelectual editado exitosamente!</string>
+    <string name="ip_created_successfully">¡Producto Intelectual creado exitosamente!</string>
+    <string name="type_product">Tipo de Producto:</string>
+    <string name="type_product_">Tipo de Producto:</string>
+    <string name="bibliographic_citation">Cita Bibliográfica:</string>
+    <string name="bibliographic_citation_">Cita Bibliográfica:</string>
+    <string name="type_document">Tipo de Documento:</string>
+    <string name="attach_document">Adjuntar Documento</string>
+    <string name="a_type_document_is_necessary">Se necesita un tipo de documento</string>
+    <string name="delete_formation">Eliminar Formación</string>
+    <string name="delete_experience">Eliminar Experiencia</string>
+    <string name="delete_prod_intelectual">Eliminar Producción Intelectual</string>
+    <string name="delete_other_document">Eliminar Documento</string>
+    <string name="are_you_sure_delete_item_cv">¿Está seguro que desea eliminar este elemento de su Hoja de Vida?</string>
+    <string name="formation_deleted">¡Formación eliminada exitosamente!</string>
+    <string name="experience_deleted">¡Experiencia eliminada exitosamente!</string>
+    <string name="prod_intelectual_deleted">¡Producto Intelectual eliminado exitosamente!</string>
+    <string name="other_document_deleted">¡Documento eliminado exitosamente!</string>
+    <string name="download_completed">Descarga Finalizada</string>
+    <string name="file">Archivo</string>
+    <string name="file_size">Tamaño del Archivo</string>
+    <string name="no_data_file_message">No se encontraron datos en este tipo de archivo</string>
+    <string name="file_size_message" formatted="true">El archivo seleccionado excede el máximo tamaño permitido. El archivo no debe pesar mas de %d Kb</string>
+    <string name="employ_">Empleo:</string>
+    <string name="value_">Valor:</string>
+    <string name="transaction_status_">Estado de la Transacción:</string>
+    <string name="date_payment_">Fecha de Pago:</string>
+    <string name="type_payment_">Medio de Pago:</string>
+    <string name="bank_">Banco:</string>
+    <string name="payment_reference_">Referencia de Pago:</string>
+    <string name="track_code_">Código de Trazabilidad:</string>
+    <string name="payments_done">Pagos Realizados</string>
+    <string name="done">Listo</string>
+
+    <string name="study_alternative_">Alternativa de estudio:</string>
+    <string name="experience_alternative_">Alternativa de experiencia:</string>
+
+    <string name="study_equivalence_">Equivalencia de estudio:</string>
+    <string name="experience_equivalence_">Equivalencia de experiencia:</string>
+
+
+    <string name="add_favorites">Agregar a Favoritos</string>
+    <string name="add_favorites_ask">¿Agregar a Favoritos?</string>
+    <string name="employment_added_to_favorites">¡Empleo agregado a Favoritos!</string>
+    <string name="employment_deleted_from_favorites">¡Empleo eliminado de Favoritos!</string>
+    <string name="remove_favorites">Quitar Empleo de Favoritos</string>
+    <string name="remove_favorites_ask">¿Quitar de Favoritos?</string>
+    <string name="confirm_employment_ask">Confirmar empleo</string>
+    <string name="change_employment_after_payment">Transferir Pago a otro Empleo</string>
+    <string name="confirmed_employment">Empleo Confirmado</string>
+    <string name="employment_payment_ask">¿Pagar?</string>
+    <string name="employment_processing_payment">Procesando pago</string>
+    <string name="employment_payed">Empleo pagado</string>
+    <string name="employment_locked_action">Operación no disponible</string>
+    <string name="employment_paid">¡Su pago casi ha sido debitado de su cuenta! ;)</string>
+    <string name="registered_employment_ask">¿Inscribir Empleo?</string>
+
+    <string name="transaction_summary">Resúmen de la Transacción</string>
+    <string name="status_return_page_transaction">Transacción Aprobada</string>
+    <string name="participation_payment">Pago de Derechos de Participación</string>
+    <string name="transaction_data">Datos de la Transacción</string>
+    <string name="enroll_employment_intention">Empleo a Inscribir:</string>
+    <string name="payment_value_debited">Valor del Pago:</string>
+    <string name="reference_payment_number">Número de Referencia:</string>
+    <string name="enroll_employment_button_title">Inscribir Empleo</string>
+    <string name="enroll_employment_button_description">Botón Inscribir Empleo</string>
+    <string name="enroll_employment_ready">Empleo inscrito</string>
+    <string name="enroll_employment_details">Datos de inscripción</string>
+    <string name="paymen_resume_title">Resumen del empleo</string>
+    <string name="inscription_data_title">DATOS DE INSCRIPCIÓN</string>
+    <string name="inscription_support_cv_title">SOPORTES DE HOJA DE VIDA</string>
+    <string name="download_preview_inscription_certificate">Descargar Constancia Borrador</string>
+    <string name="category">Categoría</string>
+    <string name="items_quantity">Cantidad de ítems</string>
+    <string name="formation_subtitle">Formación</string>
+    <string name="experience_subtitle">Experiencia</string>
+    <string name="intelectual_production_subtitle">Producción Intelectual</string>
+    <string name="other_documents_subtitle">Otros Documentos</string>
+    <string name="zero_value">0</string>
+    <string name="participation_payment_title">PAGO DE DERECHOS DE PARTICIPACIÓN</string>
+    <string name="pse_payment_button">PAGAR POR PSE</string>
+    <string name="payment_pin_value">Valor a pagar:</string>
+
+    <string name="waiting_for_bank_response">Estamos a la espera de la confirmación de su pago por parte del banco. Vuelva mas tarde.</string>
+    <string name="convocatory_date_ended_message">El proceso de inscripciones ha finalizado.\n¡Consulte en qué etapa va el proceso de selección!</string>
+    <string name="convocatory_date_almost_opened_message">El proceso de inscripciones ya casi comienza.\n¡Esté muy pendiente!</string>
+    <string name="convocatory_date_undefined">El proceso de apertura para inscripciones aún no se ha definido\n¡Esté muy pendiente!</string>
+    <string name="no_activity_session">No ha habido actividad por un tiempo prolongado. Cierre sesión e ingrese nuevamente (SIMO).</string>
+
+    <string name="test_place_selection">Selección del lugar de pruebas</string>
+    <string name="registered_employment">Empleo Inscrito</string>
+    <string name="update_documents">¿Actualizar Documentos?</string>
+    <string name="updated_documents">Los documentos se han actualizado y vinculado satisfactoriamente al empleo inscrito</string>
+    <string name="success_op_dialog">¡Operación Exitosa!</string>
+    <string name="the_employment_has_been_confirmed_dialog">Se han confirmado los datos de pre-inscripción al empleo. No olvide mantener actualizados los datos de su hoja de vida y soportes</string>
+    <string name="the_documents_have_been_updated_dialog">Se han confirmado los datos de pre-inscripción al empleo. ¡No olvide mantener actualizados los datos de su hoja de vida y soportes!</string>
+    <string name="update_cv_button_dialog">Actualizar H.V.</string>
+    <string name="update_cv_button_description">Botón Actualizar H.V.</string>
+    <string name="continue_button_dialog">Continuar</string>
+    <string name="cancel_button_dialog">Cancelar</string>
+    <string name="accept_button_dialog">Aceptar</string>
+    <string name="test_places_title">Pruebas y Lugar de Presentación</string>
+    <string name="department_for_tests">Seleccione el Departamento</string>
+    <string name="city_for_tests">Seleccione la Ciudad</string>
+    <string name="test_name">NOMBRE DE LA PRUEBA</string>
+    <string name="select_city_for_test_dialog">¡Aviso Importante!</string>
+    <string name="before_pay_select_city_for_test_dialog">Antes de seguir con el proceso debe seleccionar el lugar de presentación de todas las pruebas.</string>
+    <string name="before_pay_test_confirmation_place_dialog">Se ha registrado exitosamente el lugar de presentación de la prueba.</string>
+    <string name="confirm_payment_button">Confirmar Pago</string>
+    <string name="resume_payment_text_info">El pago de derechos de participación estará vinculado con el empleo en el que va a concursar; si su transacción es APROBADA pero Usted decide cambiar el empleo, tendrá que efectuar un nuevo pago.\n\nNOTA: Tan pronto se confirme el pago como APROBADO regrese a la app, busque el empleo seleccionado, dirigiéndose al menú > Mis Empleos > CONFIRMADOS >, y formalice la INSCRIPCIÓN haciendo tap en el botón Inscribir Empleo. Recuerde: Sólo podrá inscribirse a un (1) empleo por proceso de selección.</string>
+    <string name="enroll_employment_text_info">IMPORTANTE:\n\nAntes de hacer tap en el botón Inscribir Empleo verifique que la cantidad de items presentes en Soportes de Hoja de Vida corresponda a la que tiene registrada actualmente en SIMO. Así mismo valide que la Constancia de Inscripción Borrador contenga la información con la que va a concursar en el empleo. \nRecuerde que dichos datos no podrán ser modificados posteriormente. Si Usted detecta algún faltante haga tap en el botón Actualizar H.V. y proceda a incluir la información necesaria.\n\nNota: Tenga en cuenta que sólo puede inscribirse a un (1) empleo por proceso de selección.</string>
+    <string name="other_payment_exists_warning">Usted ya realizó un pago para concursar en un empleo perteneciente a éste mismo proceso de selección.\nEs su responabilidad continuar con éste pago. No habrán devoluciones.\nRecuerde que solo podrá inscribir un (1) empleo por proceso de selección.</string>
+
+
+    <string name="total_score_">Puntaje Total:</string>
+
+    <string name="inscription_id_s">Id de la Inscripción:</string>
+    <string name="score_competitor_s">Puntaje del participante:</string>
+
+
+    <string name="test_">Prueba:</string>
+    <string name="result_">Resultado parcial:</string>
+    <string name="score_aproval_">Puntaje aprobatorio:</string>
+    <string name="ponderation_">Ponderación:</string>
+    <string name="date_last_update">Fecha última actualización:</string>
+    <string name="results">Resultados</string>
+    <string name="results_of_test_ad_complaints">Reclamaciones presentadas</string>
+    <string name="summation_scores">Sumatoria de Puntajes Obtenidos</string>
+    <string name="scores_list_s">Listado de Puntajes de Aspirantes al Empleo que Continúan en Concurso</string>
+
+    <string name="complaints_tutelage_exclusions">Reclamaciones</string>
+    <string name="number_complaint_">Número de Reclamación:</string>
+    <string name="date_register_">Fecha de Registro:</string>
+    <string name="type_complaint_s">Tipo:</string>
+    <string name="subject_">Asunto:</string>
+    <string name="detail_complaint_s">Detalle:</string>
+    <string name="date_reception_">Fecha de Recepción:</string>
+
+    <string name="status_">Estado:</string>
+    <string name="see_response_s">Consultar Respuesta:</string>
+
+    <string name="see_scores_s">Ver puntajes que continúan en concurso</string>
+
+    <string name="see_complaints">Ver reclamaciones</string>
+    <string name="date_notification_">Fecha de Recepción:</string>
+    <string name="see_details">Ver Detalle</string>
+    <string name="security_code">Código de seguridad</string>
+    <string name="security_has_been_resent">¡El código ha sido reenviado nuevamente a su correo electrónico! Revise su bandeja de entrada</string>
+    <string name="step_2_2">Paso 2 de 2</string>
+    <string name="downloading_file">Descargando archivo …</string>
+    <string name="CV">Datos Básicos</string>
+    <string name="my_formation">Formación</string>
+    <string name="my_experience">Experiencia</string>
+    <string name="my_intelectual_products">Producción Intelectual</string>
+    <string name="my_other_documents">Otros Documentos</string>
+    <string name="password_requirements" formatted="true">Este valor es necesario, puede contener números, letras o los siguientes caracteres (@,#,\$,%,&amp;,+,-,*), minimo 8 caracteres, maximo 20, no puede contener espacios en blanco, puede contener puntos</string>
+    <string name="username_requirements">El usuario puede contener letras, números, punto(.) o guion_bajo(_). Debe contener un mínimo de 6 caracteres y un máximo de 30 caracteres. No puede contener espacios en blanco</string>
+    <string name="number_id_requirements">El número de identificación debe ser numerico. Puede tener mínimo 6 caracteres y máximo 10 caracteres.</string>
+    <string name="names_requirements">Este campo es necesario. Solo debe contener letras, minimo 2 y maximo 60 caracteres</string>
+    <string name="lastnames_requirements">Apellidos: Este valor es necesario. Solo debe contener letras, minimo 3 y maximo 60 caracteres</string>
+    <string name="company_requirements">Empresa o Entidad debe contener entre 3 y 50 caracteres. No se aceptan caracteres especiales.</string>
+    <string name="employment_requirements">Cargo debe contener entre 5 y 50 caracteres (sin números)</string>
+    <string name="hours_worked_requirements">Máximo 6 cifras</string>
+    <string name="average_hours_requirements">Este valor debe estar entre 1 y 24</string>
+    <string name="number_identifier_requirements">Este campo puede contener letras, números y caracteres especiales (mínimo 3 y máximo 60)</string>
+    <string name="bibliographic_appointment_requirements">Este campo puede contener letras, números y caracteres especiales (mínimo 15 y máximo 300)</string>
+    <string name="help_us_to_improve_requirements">Este campo puede contener letras, comas, números, espacios y puntos(mínimo 10 y máximo 300 caracteres)</string>
+    <string name="to_define">Por definir</string>
+    <string name="graduated_">Graduado:</string>
+    <string name="date_grade_">Fecha de Terminación:</string>
+    <string name="finish_date">Fecha de Terminación:</string>
+    <string name="initial_date">Fecha de Inicio: *</string>
+    <string name="alert_detail">Detalle de la Alerta</string>
+    <string name="download">Descargar soporte</string>
+    <string name="are_you_sure_remove_favorites">¿Está seguro que desea quitar este empleo de la lista de favoritos?</string>
+    <string name="other_programm_institution">Otro (Digite la Institución y el Programa...)</string>
+    <string name="type_of_education">Tipo de Educación *:</string>
+    <string name="level_of_education">Nivel Tipo de Educación *:</string>
+    <string name="location_">Ubicación y distribución de las vacantes</string>
+    <string name="dots___">… y otros empleos más.</string>
+    <string name="select_educational_institucional">Seleccionar Institución Educativa:</string>
+    <string name="select_country">Seleccionar País:</string>
+    <string name="select_department">Seleccionar Departamento:</string>
+    <string name="select_city">Seleccionar Municipio:</string>
+    <string name="select_educational_level">Seleccionar Tipo de Formación:</string>
+    <string name="select_programm_institutional">Seleccionar Programa:</string>
+    <string name="select_entities">Seleccionar Entidad:</string>
+    <string name="select_convocatory">Escoger proceso de selección:</string>
+    <string name="select_range_salarial">Seleccionar Rango Salarial:</string>
+    <string name="select_level">Seleccionar Nivel Educativo:</string>
+    <string name="CLOSE">CERRAR</string>
+    <string name="consult_details">Ver detalle del proceso de selección</string>
+    <string name="see_jobs">Ver empleos del proceso de selección</string>
+    <string name="window_alert_text">Texto de la ventana emergente</string>
+
+    <string name="user_guide">Manual de Usuario</string>
+    <string name="the_process">El Proceso</string>
+    <string name="contact">Contacto</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="terms_of_service">Términos del servicio</string>
+    <string name="help_us_to_improve">Ayúdenos a mejorar</string>
+    <string name="rate_us">Califíquenos</string>
+    <string name="delete_search_history">Borrar historial de búsquedas</string>
+    <string name="change_pasword">Cambiar clave</string>
+    <string name="close_session">Cerrar sesión</string>
+    <string name="simo_mobile_2">SIMO Mobile v2.0</string>
+
+    <string name="all_searches_will_be_deleted">¡Se eliminarán todos los términos de búsqueda que haya ingresado!</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="historial_deleted">¡Historial de búsquedas eliminado!</string>
+    <string name="update_app">¡No olvide mantener la app actualizada (visitando la Google Play Store)!</string>
+
+    <string name="paso_1_de_2">Paso 1 de 2</string>
+    <string name="we_dont_have_jobs_at_the_moment">¡En éste momento no tenemos procesos de selección!\nRegrese en otro momento. Gracias.</string>
+    <string name="keyword_search_field">Palabra Clave:</string>
+    <string name="no_hay_resultados_para_mostrar_en_el_momento">¡Aún no hay resultados para mostrar!</string>
+    <string name="file_selected_was_deleted">No es posible acceder al archivo (fue borrado o ya no se encuentra en el dispositivo).</string>
+    <string name="disabilities">Discapacidades:</string>
+    <string name="disability">Seleccione la Discapacidad:</string>
+
+    <string name="image_no_data_available">Imagen No hay información relacionada</string>
+    <string name="employment_status">Icono que indica si usted no ha consultado el empleo, si el empleo es favorito, si es confirmado o si es inscrito)</string>
+    <string name="image_alert_checked">Imagen Alerta revisada previamente</string>
+    <string name="image_payment_status">Imagen Pago realizado</string>
+    <string name="image_logo_link_cnsc">Imagen con link al sitio de la CNSC</string>
+    <string name="image_logo_cnsc">Logo CNSC</string>
+    <string name="image_login">Imagen Login SIMO</string>
+    <string name="image_register">Imagen Registro SIMO</string>
+    <string name="image_upload_document">Imagen Cargar documento</string>
+    <string name="image_download_document">Imagen Descargar documento</string>
+    <string name="image_contact_envelopes">Imagen Información de contacto con la CNSC</string>
+    <string name="image_change_password">Imagen Cambiar clave</string>
+    <string name="image_filter_search">Imagen Filtro para búsqueda avanzada</string>
+    <string name="image_delete_field_value">Limpiar valor ingresado en el campo</string>
+    <string name="image_profile_photo">Foto de perfil</string>
+    <string name="image_edit_photo">Actualizar foto de perfil</string>
+    <string name="image_contact">Imagen Información para contacto con la CNSC</string>
+    <string name="image_forgot_your_password">Imagen ¿Olvidó su clave?</string>
+    <string name="image_generate_new_password">Imagen Nueva contraseña</string>
+    <string name="image_isotype_simo">Imagen Isotipo SIMO</string>
+    <string name="image_suitcase">Imagen Empleos</string>
+    <string name="image_key">Imagen Verificación código</string>
+    <string name="image_logo_simo">Isotipo SIMO: Cargando servicios</string>
+    <string name="text_new_on_simo">Texto descriprivo: ¿Nuevo en SIMO?</string>
+    <string name="text_do_you_have_an_account_on_simo">Texto descriprivo: ¿Ya tiene una cuenta en SIMO?</string>
+    <string name="powers_s">Powers</string>
+
+    <string name="button_upload">Botón Actualizar</string>
+    <string name="search_icon">Ícono para campo de búsqueda por palabra clave</string>
+    <string name="location_icon">Ícono para campo de búsqueda por municipio</string>
+    <string name="clean">Limpiar</string>
+
+
+    <string name="clean_all_icon">Ícono para limpiar todos los valores del formulario de búsqueda avanzada</string>
+    <string name="button_search_employment">Buscar Empleo</string>
+    <string name="textview">TextView</string>
+    <string name="find">Buscar</string>
+
+    <string name="payment_transfer_conditions_title">Transferir Pago a Otro Empleo</string>
+    <string name="payment_transfer_conditions">\nUsted podrá transferir el pago de éste empleo a otro, de acuerdo con las siguientes condiciones:\n\n
+        - Puede cambiar el pago a otro empleo solo si éste pertenece al mismo proceso de selección\n\n
+        - Puede cambiar el pago a otro empleo solo si éste tiene el mismo costo del derecho de participación\n\n
+        * Recuerde que la posibilidad de transferir el pago de un empleo a otro estará activa únicamente si no ha inscrito el empleo.\n</string>
+    <string name="actual_opec_number_title">Número OPEC del empleo actual: </string>
+    <string name="new_opec_number">Número OPEC del empleo al que se transferirá el pago: </string>
+    <string name="new_opec_number_hint">Ingrese el número OPEC</string>
+    <string name="validate_button">Validar</string>
+    <string name="negative_payment_transfer_validation_message">¡El nuevo empleo NO CUMPLE con las condiciones para realizar la transferencia del pago!</string>
+    <string name="positive_payment_transfer_validation_message">¡El nuevo empleo SÍ CUMPLE con las condiciones para realizar la transferencia del pago!</string>
+    <string name="payment_transfer_button">Transferir Pago</string>
+    <string name="opec_number_requirements">El número OPEC debe tener entre 2 y 10 cifras</string>
+    <string name="payment_transfer_dialog">¡Ésta operación transferirá el pago al nuevo empleo!</string>
+    <string name="payment_transfer_confirm_button">Confirmar Transferencia</string>
+    <string name="new_employment_resume">Resumen del Empleo</string>
+    <string name="payment_transfered_messasge_title">Pago Transferido</string>
+    <string name="payment_transfered_messasge_body">¡La operación de transferencia ha sido exitosa!\n\nHaga tap en CONTINUAR y busque el nuevo empleo con el pago transferido, dirigiéndose al menú > Mis Empleos > CONFIRMADOS >\n\nFormalice la INSCRIPCIÓN haciendo tap en el botón INSCRIBIR EMPLEO.</string>
+    <string name="salarial_asignation">Asignación Salarial: $</string>
+    <string name="prevpayment_dialog">No es posible proceder con el pago</string>
+    <string name="before_prevpayment_dialog_test_dialog">Recuerde, no es posible la inscripción de más empleos del mismo proceso de selección</string>
+    <string name="before_prevpayment2_dialog_test_dialog">ya existe un pago por aprobar(Text x definir)</string>
+    <string name="initial_date_required">Se requiere de una fecha inicial</string>
+    <string name="hourly_Intensity_Informal">Debe ingresar un valor entero entre 1 hora y siento sesenta (160) horas</string>
+    <string name="hourly_Intensity_FA">Mínimo deberá ingresar 160 horas y máximo 1800 horas. Debe ser un valor entero</string>
+    <string name="hourly_Intensity_FP">Mínimo deberá ingresar 1 hora y máximo 999999999 horas. Debe ser un valor entero</string>
+    <string name="hourly_Intensity_FL">Mínimo deberá ingresar 600 horas y máximo 1800 horas. Debe ser un valor entero</string>
+    <string name="start_download">Descarga en segundo plano</string>
+    <string name="download_text_start">Se inicia la descarga.\nEl documento estará disponible en la carpeta de descargas</string>
+    <string name="convalidated_title">¿Título convalidado?</string>
+    <string name="resolution_abroad_number">Número de Resolución de la convalidación del título de educación superior: *</string>
+    <string name="resolution_abroad_date">Fecha de la resolución: *</string>
+    <string name="equivalent_abroad_title">Título equivalente en Colombia: *</string>
+    <string name="max_reached_level">El valor máximo de periodos permitido es 12</string>
+    <string name="average_nofullt_hours_requirements">Este valor debe estar entre 1 y 8</string>
+    <string name="confirm">CONFIRMACIÓN</string>
+    <string name="mail_sended">¡su comentario y/o sugerencia se ha enviado exitosamente!</string>
+    <string name="capcontinuee">CONTINUAR</string>
+    <string name="maxValue">Ingresa un valor entre 0 y 15000000</string>
+    <string name="minValue">El valor debe ser menor al máximo del rango</string>
+    <string name="maxValueErr">El valor debe ser mayor al mmínimo del rango</string>
+    <string name="required_field">Este campo es requerido</string>
+    <string name="err_oversise">Este campo puede tener mínimo 1 caracter y máximo 3 caracteres</string>
+    <string name="RecoverType">Opciones de recuperación</string>
+    <string name="audiences">ALERTAS</string>
+    <string name="act_adress">Estimado aspirante, queremos estar en contacto permanente contigo. Te invitamos a actualizar tus datos personales: correo electrónico, teléfono y dirección de residencia,
+    siguiendo el formato del formulario de SIMO Mobile, que se ajusta al estandar internacional.</string>
+    <string name="audiences_name">Nombre de la Audiencia: </string>
+    <string name="selection_proces_name_row">Nombre del Proceso de Selección: </string>
+    <string name="date_ini">"Fecha de Inicio: "</string>
+    <string name="job_colsult">"Consultar Empleo "</string>
+    <string name="setPriority">"Ingresar Prioridad: "</string>
+    <string name="see_report">Consultar Reporte</string>
+    <string name="calendar">"Calendario   "</string>
+    <string name="alertcalendar">Alertas / Calendario</string>
+
+    <string name="material_calendar_monday">L</string>
+    <string name="material_calendar_tuesday">M</string>
+    <string name="material_calendar_wednesday">M</string>
+    <string name="material_calendar_thursday">J</string>
+    <string name="material_calendar_friday">V</string>
+    <string name="material_calendar_saturday">S</string>
+    <string name="material_calendar_sunday">D</string>
+    <string name="audience_info">Información de la Audiencia</string>
+    <string name="avalible_vacants">Buscar Vacantes Disponibles</string>
+    <string name="vacancy_single">Vacante</string>
+    <string name="vacancy_single_two">Vacantes</string>
+    <string name="vacancies_selected">Vacantes seleccionadas por el candidato</string>
+    <string name="employs_audience">"Empleos vacantes de la audiencia "</string>
+    <string name="vacancy_number">Número de vacante:</string>
+    <string name="plazas_number">Número de plazas:</string>
+    <string name="denomination">Denominación:</string>
+    <string name="code">Código:</string>
+    <string name="area">Área:</string>
+    <string name="vacancy_detail">Detalle de la Vacante</string>
+    <string name="vacancy_list">Listado de vacantes seleccionadas por el candidato</string>
+
+    <array name="material_calendar_months_array">
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </array>
+
+</resources>

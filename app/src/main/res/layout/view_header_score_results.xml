@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/containerHeaderTotal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        style="@style/CardViewBase"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowScore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:drawableIcon="@drawable/ic_twotone_insert_chart_24px"
+                android:textColor="#000000"
+                app:textLabel="@string/total_score_" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                app:textLabel="@string/status_" />
+
+            <!--<co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowLinkListadoPuntajes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:background="#92D5E6"
+                android:textColor="#000000"
+                app:textLabel="@string/see_scores_s" />-->
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

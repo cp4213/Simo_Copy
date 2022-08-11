@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.VerifyEmailActivity">
+
+    <include layout="@layout/layout_app_bar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewStep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="right"
+                android:paddingRight="8dp"
+                android:textColor="#000000"
+                android:text="@string/paso_1_de_2"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/imageScreen"
+                android:layout_width="@dimen/size_icon_screen"
+                android:layout_height="@dimen/size_icon_screen"
+                android:layout_marginTop="4dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/image_key"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_sharp_vpn_key_24px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="@string/and_email_has_been_sent"
+                android:textSize="16sp" />
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputCode"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColorHint="#000000"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageScreen">
+
+                <EditText
+                    android:id="@+id/editCode"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableStart="@drawable/icons8_key_48"
+                    android:drawableLeft="@drawable/icons8_key_48"
+                    android:hint="@string/enter_the_code_here"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <Button
+                style="@style/ButtonNormal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_normal_filled"
+                android:onClick="onVerify"
+                android:text="@string/verify"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:text="@string/did_not_you_received_the_code"
+                    android:textSize="16sp"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/textResendCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/resend_code"
+                    android:textColor="@color/red"
+                    android:textSize="16sp"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <android.support.v4.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

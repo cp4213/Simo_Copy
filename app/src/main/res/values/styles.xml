@@ -1,0 +1,236 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:configChanges">keyboardHidden|orientation|screenSize</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:fontFamily">@font/corisan_regular</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:windowBackground">@color/white_background</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
+        <item name="textInputStyle">@style/Widget.Design.TextInputLayout</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/grayTooltipMask</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:configChanges">orientation</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:textColor">@color/grayText</item>
+    </style>
+
+    <style name="AppThemeTranslucentStatus" parent="AppTheme">
+        <item name="android:configChanges">keyboardHidden|orientation|screenSize</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+    </style>
+
+    <style name="ButtonBase">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:elevation">5dp</item>
+        <item name="android:translationZ">5dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ButtonNormal" parent="ButtonBase">
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">160dp</item>
+    </style>
+
+    <style name="TextViewLink">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="EditTextTheme">
+        <item name="colorControlNormal">@color/white_background</item>
+        <item name="colorControlActivated">@color/yellow</item>
+        <item name="colorControlHighlight">@color/yellow</item>
+    </style>
+
+    <style name="EditTextBase">
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:theme">@style/EditTextTheme</item>
+        <item name="android:background">@drawable/border_edittext</item>
+        <item name="android:paddingTop">13dp</item>
+    </style>
+
+    <style name="SpinnerBase">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextInputLayoutError" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <style name="TextInputLayoutHint" parent="@android:style/TextAppearance">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@drawable/selector_text_color_label</item>
+        <item name="android:translationY">-5dp</item>
+    </style>
+
+    <style name="TextInputLayoutBase">
+        <item name="errorTextAppearance">@style/TextInputLayoutError</item>
+        <item name="hintTextAppearance">@style/TextInputLayoutHint</item>
+    </style>
+
+    <style name="TextInputSpinner">
+        <item name="android:layout_width">@dimen/width_edittext_search</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">4dp</item>
+    </style>
+
+    <style name="RowLabelValueSIMO">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+    </style>
+
+
+    <!--Customize Row Android Label Value text-->
+    <style name="RowLabelValueSIMOIcon">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+    </style>
+
+    <style name="RowLabelValueSIMOLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/label_data</item>
+    </style>
+
+    <style name="RowLabelValueSIMOValue">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:textColor">@color/value_data</item>
+    </style>
+
+    <style name="SIMOAppBarLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="elevation">5dp</item>
+    </style>
+
+    <style name="SIMOToolbar">
+        <item name="android:id">@id/toolbar</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+    </style>
+
+    <style name="SIMOTextViewToolbar">
+        <item name="android:id">@id/textTitle</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DetailWorkLabelValueLinearLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="DetailWorkLabelValueLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="DetailWorkLabelValueValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="DetailWorkLinearButtonOption">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="DetailWorkButtonOption">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="fabSize">mini</item>
+        <item name="fabCustomSize">45dp</item>
+    </style>
+
+    <style name="DetailWorkButtonDescription">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="CardViewBase" parent="CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="contentPaddingLeft">4dp</item>
+        <item name="contentPaddingRight">4dp</item>
+        <item name="contentPaddingTop">8dp</item>
+        <item name="contentPaddingBottom">8dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="cardCornerRadius">6dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+    </style>
+
+    <style name="ButtonClearEditText">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:src">@drawable/ic_close</item>
+        <item name="android:layout_marginRight">6dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="elevation">6dp</item>
+        <item name="android:layout_gravity">top|right</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+</resources>

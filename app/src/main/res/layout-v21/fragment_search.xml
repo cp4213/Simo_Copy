@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.main.SearchFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageAfferJobs"
+            android:layout_width="@dimen/size_suitcase_home"
+            android:layout_height="@dimen/size_suitcase_home"
+            android:layout_marginTop="16dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_sharp_work_24px" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imagePhotoUser"
+            android:layout_width="@dimen/size_photo_profile_home"
+            android:layout_height="@dimen/size_photo_profile_home"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/image_suitcase"
+            android:elevation="6dp"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            app:actualImageUri="https://diaspora.koehn.com/assets/user/default-2c878d1cd0171726fc490add065f342be5a959729df46a89807a4c18a8fc8d14.png"
+            app:backgroundImage="@color/blue"
+            app:elevation="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageAfferJobs"
+            app:layout_constraintLeft_toLeftOf="@+id/imageAfferJobs"
+            app:layout_constraintRight_toRightOf="@+id/imageAfferJobs"
+            app:layout_constraintTop_toTopOf="@+id/imageAfferJobs"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/yellow"
+            app:roundingBorderWidth="2dp" />
+
+        <TextView
+            android:id="@+id/textViewUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePhotoUser"
+            android:textColor="#000000"
+            tools:text="Nombre del Usuario" />
+
+        <TextView
+            android:id="@+id/textTotalJobs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewUser"
+            android:textColor="#000000"
+            tools:text="@string/we_have_number_job_offers" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@android:color/white"
+            android:minWidth="280dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="5dp"
+            app:contentPadding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textTotalJobs">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewProfessional"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_twotone_work_24px"
+                    android:drawableLeft="@drawable/ic_twotone_work_24px"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    tools:text="@string/number_professional_jobs" />
+
+                <TextView
+                    android:id="@+id/textViewAssistencial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_twotone_work_24px"
+                    android:drawableLeft="@drawable/ic_twotone_work_24px"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    tools:text="@string/number_assistencial_jobs" />
+
+                <TextView
+                    android:id="@+id/textViewTecnical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_twotone_work_24px"
+                    android:drawableLeft="@drawable/ic_twotone_work_24px"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    tools:text="@string/number_tecnical_jobs" />
+
+                <TextView
+                    android:id="@+id/textViewMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_twotone_work_24px"
+                    android:drawableLeft="@drawable/ic_twotone_work_24px"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:text="@string/dots___"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textViewNoOffers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:text="@string/we_dont_have_jobs_at_the_moment"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/cardView"
+            app:layout_constraintEnd_toEndOf="@id/cardView"
+            app:layout_constraintStart_toStartOf="@id/cardView"
+            app:layout_constraintTop_toTopOf="@id/cardView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:text="@string/search_the_job_of_carrer"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="@dimen/width_edittext_search"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/search_bar_style"
+            android:elevation="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/search_icon"
+                app:srcCompat="@drawable/ic_search_24dp"
+                app:tint="@color/yellow" />
+
+            <AutoCompleteTextView
+                android:id="@+id/editKeyWord"
+                style="@style/EditTextBase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:background="@null"
+                android:completionThreshold="0"
+                android:drawablePadding="8dp"
+                android:hint="Ingrese palabra clave..."
+                android:imeOptions="actionDone"
+                android:inputType="textNoSuggestions"
+                android:maxLines="1"
+                android:paddingTop="0dp"
+                android:paddingRight="20dp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonCloseCharge"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="6dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/image_delete_field_value"
+            android:elevation="6dp"
+            android:padding="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintRight_toRightOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutCity"
+            android:layout_width="@dimen/width_edittext_search"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/search_bar_style"
+            android:elevation="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/location_icon"
+                app:srcCompat="@drawable/ic_search_24dp"
+                app:tint="@color/yellow" />
+
+            <EditText
+                android:id="@+id/editSelectionProcess"
+                style="@style/EditTextBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:background="@null"
+                android:completionThreshold="0"
+                android:drawablePadding="8dp"
+                android:focusableInTouchMode="false"
+                android:hint="@string/convocatory"
+                android:imeOptions="actionDone"
+                android:inputType="textNoSuggestions"
+                android:maxLines="1"
+                android:paddingTop="0dp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonSelecProcess"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="6dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/image_delete_field_value"
+            android:elevation="6dp"
+            android:padding="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutCity"
+            app:layout_constraintRight_toRightOf="@+id/linearLayoutCity"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutCity" />
+
+        <Button
+            android:id="@+id/buttonSearch"
+            style="@style/ButtonNormal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_normal_filled"
+            android:contentDescription="@string/button_search_employment"
+            android:text="@string/search_job"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCity" />
+
+        <Button
+            android:id="@+id/buttonLogin"
+            style="@style/ButtonNormal"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/button_normal_bordered"
+            android:text="@string/register"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/buttonRegister"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSearch" />
+
+        <Button
+            android:id="@+id/buttonRegister"
+            style="@style/ButtonNormal"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/button_normal_filled"
+            android:text="@string/login"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonLogin"
+            app:layout_constraintTop_toTopOf="@+id/buttonLogin" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSearch" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

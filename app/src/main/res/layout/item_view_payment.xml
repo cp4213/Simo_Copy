@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        style="@style/CardViewBase"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/imageCheckPaymentStatus"
+            android:layout_width="@dimen/size_icon_alert"
+            android:layout_height="@dimen/size_icon_alert"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:contentDescription="@string/image_payment_status"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_payment_24dp"
+            app:tint="#000000" />
+
+        <LinearLayout
+            android:id="@+id/containerPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                app:textLabel="@string/payment_value_debited"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowTransactionStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E0F7FA"
+                android:textColor="#000000"
+                app:textLabel="@string/transaction_status_"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowDatePayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E0F7FA"
+                android:textColor="#000000"
+                app:textLabel="@string/date_payment_"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowTypePayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E0F7FA"
+                android:textColor="#000000"
+                app:textLabel="@string/type_payment_"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowBank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E0F7FA"
+                android:textColor="#000000"
+                app:textLabel="@string/bank_"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowReferencePayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E0F7FA"
+                android:textColor="#000000"
+                app:textLabel="@string/payment_reference_"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowTrackCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E0F7FA"
+                android:textColor="#000000"
+                app:textLabel="@string/track_code_"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowEmploy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#92D5E6"
+                android:textColor="#000000"
+                app:textLabel="@string/number_job_opec"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowConvocatory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#92D5E6"
+                android:textColor="#000000"
+                app:textLabel="@string/convocatory_"
+                app:textLabelSize="14sp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

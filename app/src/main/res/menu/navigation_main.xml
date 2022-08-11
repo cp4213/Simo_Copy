@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_home_24dp"
+        android:title="@string/home_menu_title" />
+
+    <item
+        android:id="@+id/menu_convocatories"
+        android:icon="@drawable/ic_date_range_24dp"
+        android:title="@string/convocatory_menu_title" />
+
+    <item
+        android:id="@+id/menu_my_jobs"
+        android:icon="@drawable/ic_work_24dp"
+        android:title="@string/my_employments_menu_title" />
+
+    <item
+        android:id="@+id/menu_alerts"
+        android:icon="@drawable/ic_notifications_none_24dp"
+        android:title="@string/alerts_menu_title" />
+
+    <item
+        android:id="@+id/menu_payments"
+        android:icon="@drawable/ic_payment_24dp"
+        android:title="@string/my_payments_menu_title" />
+
+</menu>

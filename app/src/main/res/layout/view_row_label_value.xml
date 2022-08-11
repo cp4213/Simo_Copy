@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/RowLabelValueSIMO"
+    tools:context=".views.RowLabelValue">
+
+    <ImageView
+        android:id="@+id/imageRowIcon"
+        style="@style/RowLabelValueSIMOIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/baseline_work_outline_black_24" />
+
+    <TextView
+        android:id="@+id/textRowLabel"
+        style="@style/RowLabelValueSIMOLabel"
+        app:layout_constraintStart_toEndOf="@+id/imageRowIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#000000"
+        tools:text="Cargo de trabajo:" />
+
+    <TextView
+        android:id="@+id/textRowValue"
+        style="@style/RowLabelValueSIMOValue"
+        android:layout_width="0dp"
+        android:layout_marginLeft="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textRowLabel"
+        app:layout_constraintTop_toTopOf="@+id/textRowLabel"
+        android:textColor="#000000"
+        tools:text="Esta es la descripción de la key que se va a manejar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

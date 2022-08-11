@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="height_viewpager_start">200dp</dimen>
+    <dimen name="radius_corner_bar_style">20dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="size_icon_screen">70dp</dimen>
+    <dimen name="height_image_logo">70dp</dimen>
+    <dimen name="width_edittext_search">280dp</dimen>
+    <dimen name="width_date_state">100dp</dimen>
+    <dimen name="size_icon_left_toolbar">30dp</dimen>
+    <dimen name="height_tab_layout">50dip</dimen>
+    <dimen name="image_size_advice">150dp</dimen>
+    <dimen name="size_photo_profile">80dp</dimen>
+    <dimen name="size_photo_profile_home">60dp</dimen>
+    <dimen name="size_suitcase_home">75dp</dimen>
+    <dimen name="size_image_empty_state">150dp</dimen>
+    <dimen name="padding_bottom_for_floatbutton">80dp</dimen>
+    <dimen name="size_add_button_item">40dp</dimen>
+    <dimen name="size_button_upload_circle">30dp</dimen>
+    <dimen name="margin_edittext_top_style">4dp</dimen>
+    <dimen name="round_corner_edittext">20dp</dimen>
+    <dimen name="margin_top_2_car_space">24dp</dimen>
+    <dimen name="size_icon_item_top_right">25dp</dimen>
+    <dimen name="padding_right_edittext_clean">28dp</dimen>
+    <dimen name="size_icon_alert">18dp</dimen>
+</resources>

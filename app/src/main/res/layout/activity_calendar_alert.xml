@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearHeader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_app_bar_layout" />
+
+    <androidx.cardview.widget.CardView
+        style="@style/CardViewBase"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.applandeo.materialcalendarview.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:headerColor="@color/blue"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        style="@style/CardViewBase">
+
+        <LinearLayout
+            android:id="@+id/calendarAlertlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowAsunto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                app:drawableIcon="@drawable/ic_event_note_black_24dp"
+                app:textLabel="@string/subject_"
+                app:textLabelSize="14sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowReception"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:drawableIcon="@drawable/ic_date_range_24dp"
+                android:textColor="#000000"
+                app:textLabel="@string/date_reception_"
+                app:textLabelSize="14sp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

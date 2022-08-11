@@ -1,0 +1,18 @@
+<resources>
+    <declare-styleable name="RowLabelValue">
+        <attr name="textLabel" format="string" />
+        <attr name="textValue" format="string" />
+        <attr name="drawableIcon" format="reference" />
+        <attr name="textLabelSize" format="dimension" />
+        <attr name="textValueSize" format="dimension" />
+        <attr name="android:orientation" />
+    </declare-styleable>
+
+    <declare-styleable name="TextInputLayout">
+        <attr name="enableBackgroundError" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SpinnerView">
+        <attr name="android:hint" format="reference" />
+    </declare-styleable>
+</resources>

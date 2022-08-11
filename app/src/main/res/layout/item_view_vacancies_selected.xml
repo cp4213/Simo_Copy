@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        style="@style/CardViewBase"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowOpec"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:drawableIcon="@drawable/ic_twotone_work_24px"
+                app:layout_constraintEnd_toStartOf="@+id/imageIconDecorative"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="#000000"
+                app:textLabel="@string/number_opec"
+                app:textLabelSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/imageIconDecorative"
+                android:layout_width="@dimen/size_icon_item_top_right"
+                android:layout_height="@dimen/size_icon_item_top_right"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/employment_status"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_favorite_border_24dp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowVacancyNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowOpec"
+                android:textColor="#000000"
+                app:textLabel="@string/vacancy_number" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowPlazasnumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowVacancyNumber"
+                android:textColor="#000000"
+                app:textLabel="@string/plazas_number" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowDependence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowPlazasnumber"
+                android:textColor="#000000"
+                app:textLabel="@string/dependency_two" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowDenomination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowDependence"
+                android:textColor="#000000"
+                app:textLabel="@string/denomination" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowDepartament"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowDenomination"
+                android:textColor="#000000"
+                app:textLabel="@string/department" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowDepartament"
+                android:textColor="#000000"
+                app:textLabel="@string/city" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowEmploy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowCity"
+                android:textColor="#000000"
+                app:textLabel="@string/employ_" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowEmployConsult"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="60dp"
+                android:background="#92D5E6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowEmploy"
+                android:textColor="#000000"
+                app:textLabel="@string/job_colsult" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowEmployConsult" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

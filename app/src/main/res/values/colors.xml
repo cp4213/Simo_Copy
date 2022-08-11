@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">#4A67AE</color>
+    <color name="blue_dark">#334f93</color>
+    <color name="yellow">#92D5E6</color>
+    <color name="red">#AE4A66</color>
+    <color name="white_background">#EDEDED</color>
+    <color name="gray_lines">#9E9FA3</color>
+    <color name="gray_drawable">#878787</color>
+    <color name="gray_background">#EFEFEF</color>
+    <color name="colorPrimary">@color/blue</color>
+    <color name="colorPrimaryDark">@color/blue_dark</color>
+    <color name="colorAccent">#92D5E6</color>
+    <color name="filter_white_start">#68ffffff</color>
+    <color name="label_data">#000000</color>
+    <color name="value_data">#1d1d1d</color>
+    <color name="black_bold_title">#212121</color>
+    <color name="grayTooltipMask">#FFFFFF</color>
+    <color name="grayText">#666666</color>
+    <color name="black">#000000</color>
+    <color name="teal_200">#000000</color>
+    <color name="purple_700">#722D8A</color>
+    <color name="purple_200">#B573CC</color>
+
+
+</resources>

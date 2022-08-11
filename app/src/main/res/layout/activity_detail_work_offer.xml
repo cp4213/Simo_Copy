@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.DetailWorkOfferActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/SIMOAppBarLayout"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <include layout="@layout/layout_content_app_bar_detail_work" />
+
+            <androidx.appcompat.widget.Toolbar
+                style="@style/SIMOToolbar"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    style="@style/SIMOTextViewToolbar"
+                    android:layout_width="match_parent" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:minHeight="500dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_lines" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tests_card_view"
+                style="@style/CardViewBase"
+                android:layout_marginTop="12dp"
+                android:visibility="visible"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:baselineAligned="false"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/rowNameTest"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:baselineAligned="true"
+                                android:gravity="top"
+                                android:paddingLeft="28dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="28dp"
+                                android:text="@string/textview"
+                                android:visibility="gone" />
+
+                            <!-- <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                                android:id="@+id/rowNameTest"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:baselineAligned="true"
+                                android:gravity="top"
+                                android:visibility="visible"
+                                app:textLabel="@string/test_name">
+
+                            </co.gov.cnsc.mobile.simo.views.RowLabelValue>-->
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <!--<Spinner
+                                android:id="@+id/spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:entries="@array/array_name"
+                                android:spinnerMode="dialog" />-->
+
+                            <co.gov.cnsc.mobile.simo.views.SpinnerView
+                                android:id="@+id/spinneDepartmentList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginRight="8dp"
+                                android:hint="Departamentos" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ListView
+                        android:id="@+id/testListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowTestPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        app:drawableIcon="@drawable/ic_twotone_location_city_24px"
+                        app:textLabel="@string/test_places_title">
+
+                    </co.gov.cnsc.mobile.simo.views.RowLabelValue>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/inscription_tests_card_view"
+                style="@style/CardViewBase"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:baselineAligned="false"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/rowInscriptionTestName"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:baselineAligned="true"
+                                android:gravity="top"
+                                android:paddingLeft="28dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="28dp"
+                                android:text="@string/textview"
+                                android:visibility="gone" />
+
+                            <!-- <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                                android:id="@+id/rowNameTest"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:baselineAligned="true"
+                                android:gravity="top"
+                                android:visibility="visible"
+                                app:textLabel="@string/test_name">
+
+                            </co.gov.cnsc.mobile.simo.views.RowLabelValue>-->
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <!--<Spinner
+                                android:id="@+id/spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:entries="@array/array_name"
+                                android:spinnerMode="dialog" />-->
+
+                            <co.gov.cnsc.mobile.simo.views.SpinnerView
+                                android:id="@+id/spinneInscriptionDepartmentList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginRight="8dp"
+                                android:hint="Departamentos" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ListView
+                        android:id="@+id/testListViewInscription"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowInscriptionTestPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:drawableIcon="@drawable/ic_twotone_location_city_24px"
+                        app:textLabel="@string/test_places_title">
+
+                    </co.gov.cnsc.mobile.simo.views.RowLabelValue>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardViewBase"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowPurpose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:drawableIcon="@drawable/ic_twotone_center_focus_strong_24px"
+                    app:textLabel="@string/purpose" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardViewBase"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowFunctions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:drawableIcon="@drawable/ic_twotone_how_to_reg_24px"
+                    app:textLabel="@string/functons" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardViewBase"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowRequirements"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:drawableIcon="@drawable/ic_twotone_assignment_24px"
+                        app:textLabel="@string/requirements" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowRequirementStudy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:textLabel="@string/study" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowRequirementExperience"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:textLabel="@string/experience" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowRequirementStudyAlternative"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:textLabel="@string/study_alternative_" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowRequirementExperienceAlternative"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:textLabel="@string/experience_alternative_" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowRequirementStudyEquivalence"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:textLabel="@string/study_equivalence_" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowRequirementExperienceEquivalence"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:textLabel="@string/experience_equivalence_" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/totalVacancies_card_view"
+                style="@style/CardViewBase"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowTotalVacancies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:drawableIcon="@drawable/ic_twotone_how_to_reg_24px"
+                        app:textLabel="@string/total_vacancies_s" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:id="@+id/rowPrep1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:textLabel="@string/total_prep1_s" />
+
+                    <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:textLabel="@string/total_prep2_s" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardViewBase"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowPowers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:drawableIcon="@drawable/ic_twotone_location_on_24px"
+                    app:textLabel="@string/location_" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/totalEnrolled_card_view"
+                style="@style/CardViewBase"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowTotalCitizensReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:drawableIcon="@drawable/ic_twotone_how_to_reg_24px"
+                    app:textLabel="@string/total_inscriptions_" />
+            </androidx.cardview.widget.CardView>
+
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowCharge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:drawableIcon="@drawable/baseline_work_outline_black_24"
+                app:textLabel="@string/charge_1"
+                app:textLabelSize="16sp" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowOPEC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:textLabel="@string/number_opec" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowConvocatory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:textLabel="@string/level" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowGrade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:textLabel="@string/grade" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowVacancy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:textLabel="@string/vacancies" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowSalary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:textLabel="@string/asignation_salarial" />
+
+            <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                android:id="@+id/rowCloseInscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:textLabel="@string/close_of_inscriptions" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.profile.MyBasicInfoFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/containerPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/imagePhotoUser"
+                    android:layout_width="@dimen/size_photo_profile"
+                    android:layout_height="@dimen/size_photo_profile"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/image_profile_photo"
+                    android:elevation="6dp"
+                    android:scaleType="centerCrop"
+                    app:actualImageScaleType="centerCrop"
+                    app:backgroundImage="@color/blue"
+                    app:elevation="6dp"
+                    app:roundAsCircle="true"
+                    app:roundingBorderColor="@color/yellow"
+                    app:roundingBorderWidth="2dp" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/circle_option_contextual"
+                    android:contentDescription="@string/image_edit_photo"
+                    android:elevation="6dp"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ic_mode_edit_24dp" />
+            </FrameLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputEmail"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputName"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editNames"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/names"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputLastNames"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editLastNames"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/surnames"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.SpinnerView
+                android:id="@+id/spinnerDocumentType"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:hint="@string/document_type" />
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputDni"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editDni"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/document_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputDateExpedition"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editDateExpedition"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/date_expedition"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/checkBornAbroad"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="#000000"
+                android:text="@string/born_abroad"
+                android:textSize="14sp"
+                app:buttonTint="@color/yellow" />
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputDepartmentBirth"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editDepartmentBirth"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="0"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/birth_department"
+                    android:imeOptions="actionNext"
+                    android:inputType="textNoSuggestions"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputCityBirth"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editCityBirth"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="0"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/birth_place"
+                    android:imeOptions="actionNext"
+                    android:inputType="textNoSuggestions"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputPostalPlace"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/editTextPostalPlace"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/postal_code_birth_place"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputCountry"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/editTextCountry"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="0"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/country_born"
+                    android:imeOptions="actionNext"
+                    android:inputType="textNoSuggestions"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputDateBirth"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editDateBirth"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/date_birth"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/checkResAbroad"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="#000000"
+                android:text="@string/resident_abroad"
+                android:textSize="14sp"
+                app:buttonTint="@color/yellow" />
+            
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputPostalPlaceRes"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/editTextPostalPlaceRes"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/postal_code_place_resient"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputCountryRes"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/editTextCountryRes"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="0"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/resident_country"
+                    android:imeOptions="actionNext"
+                    android:inputType="textNoSuggestions"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <co.gov.cnsc.mobile.simo.views.SpinnerView
+                android:id="@+id/spinnerGender"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:hint="@string/gender" />
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputAddress"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editAddress"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/address"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <Button
+                android:id="@+id/buttonEditAdress"
+                style="@style/ButtonNormal"
+                android:layout_height="36dp"
+                android:background="@drawable/button_normal_filled"
+                android:text="@string/editAdress"
+                android:textColor="@android:color/white" />
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputPhone"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editPhone"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputEducationalLevel"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editTextEducationalLevel"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="0"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/educational_level_"
+                    android:imeOptions="actionNext"
+                    android:inputType="textNoSuggestions"
+                    android:longClickable="false"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content">
+
+                <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                    android:id="@+id/textInputAttachment"
+                    style="@style/TextInputLayoutBase"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#000000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonUpload"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/editTextAttachment"
+                        style="@style/EditTextBase"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/icons8_downloading_updates_48"
+                        android:drawableLeft="@drawable/icons8_downloading_updates_48"
+                        android:hint="@string/identifier_document"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000" />
+                </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/buttonUpload"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@null"
+                    android:contentDescription="@string/image_upload_document"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icons8_upload_48" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <co.gov.cnsc.mobile.simo.views.TextInputLayout
+                android:id="@+id/textInputDisabilities"
+                style="@style/TextInputLayoutBase"
+                android:layout_width="@dimen/width_edittext_search"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000">
+
+                <EditText
+                    android:id="@+id/editTextDisabilities"
+                    style="@style/EditTextBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="0"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/disabilities"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:singleLine="false"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </co.gov.cnsc.mobile.simo.views.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/checkReceiveEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="@string/i_wish_to_give_notifications"
+                android:textSize="14sp"
+                app:buttonTint="@color/yellow" />
+
+            <Button
+                android:id="@+id/buttonUpdate"
+                style="@style/ButtonNormal"
+                android:layout_marginTop="@dimen/margin_top_2_car_space"
+                android:background="@drawable/button_normal_filled"
+                android:text="@string/update"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

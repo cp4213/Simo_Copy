@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/containerAlert"
+        style="@style/CardViewBase">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowAudienceName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    app:textLabel="@string/audiences_name" />
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowS_P_Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E0F7FA"
+                    android:textColor="#000000"
+                    app:textLabel="@string/selection_proces_name_row" />
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowDateIni"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    app:textLabel="@string/date_ini" />
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowDate_Termination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E0F7FA"
+                    android:textColor="#000000"
+                    app:textLabel="@string/date_grade_" />
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowjob_colsult"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:textColor="#000000"
+                    app:textLabel="@string/job_colsult" />
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowsetPriority"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="#E0F7FA"
+                    android:textColor="#000000"
+                    app:textLabel="@string/setPriority" />
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="#92D5E6"
+                    android:textColor="#000000"
+                    app:textLabel="@string/see_report" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
+

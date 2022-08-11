@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/SIMOAppBarLayout"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <include layout="@layout/layout_content_vacancy_job" />
+
+            <androidx.appcompat.widget.Toolbar
+                style="@style/SIMOToolbar"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    style="@style/SIMOTextViewToolbar"
+                    android:layout_width="match_parent" />
+            </androidx.appcompat.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:minHeight="500dp">
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardViewBase"
+                android:layout_marginTop="12dp">
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowPurpose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:drawableIcon="@drawable/ic_twotone_center_focus_strong_24px"
+                    app:textLabel="@string/purpose" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardViewBase"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowVacancy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:drawableIcon="@drawable/ic_work_gray_24dp"
+                    app:textLabel="@string/vacancy_single_two" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardViewBase"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowFunctions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:drawableIcon="@drawable/ic_twotone_how_to_reg_24px"
+                    app:textLabel="@string/functons" />
+            </androidx.cardview.widget.CardView>
+
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

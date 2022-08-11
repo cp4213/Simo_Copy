@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_more_vert_black_24dp"
+        android:title=""
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_search_view"
+                android:icon="@drawable/ic_search_24dp"
+                android:title="@string/search_job"
+                android:visible="false"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"
+                app:showAsAction="always" />
+
+            <group android:id="@+id/grp1"
+                android:checkableBehavior="single" >
+
+                <item
+                    android:id="@+id/menu_user_guide"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    android:title="@string/user_guide" />
+
+                <item
+                    android:id="@+id/menu_the_process"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    android:title="@string/the_process"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/menu_citizen_tutorial"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/tutorial"
+                    android:visible="false" />
+
+                <item
+                    android:id="@+id/menu_legal"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/terms_of_service" />
+
+                <item
+                    android:id="@+id/menu_help_us_improve"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/help_us_to_improve" />
+
+                <item
+                    android:id="@+id/menu_rate_simo"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/rate_us" />
+
+                <item
+                    android:id="@+id/menu_contact"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/contact" />
+
+            </group>
+
+            <group android:id="@+id/grp2"
+                android:checkableBehavior="single" >
+
+                <item
+                    android:id="@+id/menu_delete_history"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/delete_search_history" />
+
+                <item
+                    android:id="@+id/menu_change_key"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/change_pasword" />
+
+                <item
+                    android:id="@+id/menu_close_session"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/close_session" />
+
+            </group>
+
+            <group android:id="@+id/grp2_5"
+                android:checkableBehavior="single" >
+                <item
+                    android:id="@+id/menu_audiences"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/my_Audiencias_menu_title" />
+            </group>
+
+
+            <group android:id="@+id/grp3"
+                android:checkableBehavior="single" >
+
+                <item
+                    android:id="@+id/menu_version_simo"
+                    app:showAsAction="never"
+                    android:title="@string/simo_mobile_2" />
+
+            </group>
+
+        </menu>
+
+    </item>
+
+</menu>
