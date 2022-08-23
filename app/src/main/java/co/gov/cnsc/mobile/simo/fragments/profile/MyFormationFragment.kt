@@ -13,12 +13,13 @@ import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.activities.EditFormationActivity
 import co.gov.cnsc.mobile.simo.adapters.FormationAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyFormationBinding
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyIntelectualProdsBinding
 import co.gov.cnsc.mobile.simo.extensions.setOnItemClickListener
 import co.gov.cnsc.mobile.simo.fragments.CVFragment
 import co.gov.cnsc.mobile.simo.models.Credential
 import co.gov.cnsc.mobile.simo.network.RestAPI
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_my_formation.*
 
 
 /**
@@ -31,11 +32,13 @@ class MyFormationFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
      * Adapter que contiene el listado de formación académica del usuario
      */
     private var adapter: FormationAdapter? = null
+    private var _binding: FragmentMyFormationBinding? =null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_my_formation, container, false)
-
+        _binding =FragmentMyFormationBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,13 +52,13 @@ class MyFormationFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
      * la acción de swiperefresh y agregar una nueva formación académica
      */
     private fun configureUI() {
-        swipeRefresh?.setOnRefreshListener(this)
-        //listViewFormation?.emptyView = empty
-        listViewFormation?.setOnItemClickListener { position, item ->
+        binding.swipeRefresh?.setOnRefreshListener(this)
+        binding.listViewFormation?.emptyView = binding.empty
+        binding.listViewFormation?.setOnItemClickListener { position, item ->
             goToEditFormationActivity(item as Credential?, position)
         }
-        //empty?.hide()
-        buttonAddCredential?.setOnClickListener {
+        binding.empty?.hide()
+        binding.buttonAddCredential?.setOnClickListener {
             goToEditFormationActivity(null, null)
         }
     }
@@ -67,13 +70,13 @@ class MyFormationFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
      */
     @SuppressLint("RestrictedApi")
     private fun getFormations() {
-        swipeRefresh?.isRefreshing = true
+        binding.swipeRefresh?.isRefreshing = true
         request = RestAPI.getFormations({ credentials ->
-            swipeRefresh?.isRefreshing = false
-            //empty?.showEmptyState()
-            buttonAddCredential?.visibility = View.VISIBLE
+            binding.swipeRefresh?.isRefreshing = false
+            binding.empty?.showEmptyState()
+            binding.buttonAddCredential?.visibility = View.VISIBLE
             adapter = FormationAdapter(requireActivity(), credentials as ArrayList<Credential>)
-            listViewFormation?.adapter = adapter
+            binding.listViewFormation?.adapter = adapter
             adapter?.onDownloadListener = { item, position ->
                 if (item.document != null && activity != null) {
                     SIMOApplication.checkIfConnectedByData(requireActivity()) {
@@ -83,9 +86,9 @@ class MyFormationFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
                 }
             }
         }, { fuelError ->
-            swipeRefresh?.isRefreshing = false
-            buttonAddCredential?.visibility = View.INVISIBLE
-            empty?.showConectionErrorState {
+            binding.swipeRefresh?.isRefreshing = false
+            binding.buttonAddCredential?.visibility = View.INVISIBLE
+            binding.empty?.showConectionErrorState {
                 getFormations()
             }
             SIMOApplication.showFuelError(activity, fuelError)

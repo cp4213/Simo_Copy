@@ -11,34 +11,35 @@ import java.io.Reader
  * Datos de un usuario logeado en la aplicación
  */
 data class User(
-        @SerializedName("id") val id: String? = null,
-        @SerializedName("login") val username: String?,
-        @SerializedName("identificacion") val identifier: String?,
-        @SerializedName("tipoDocumento") val documentType: DocumentType?,
-        @SerializedName("nombre") var name: String? = null,
-        @SerializedName("telefono") val telephone: String? = null,
-        @SerializedName("email") val email: String?,
-        @SerializedName("docFoto") val docPhoto: Document? = null,
-        @SerializedName("apellido") var lastName: String? = null,
-        @SerializedName("direccion") val address: String? = null,
-        @SerializedName("nacidoExtranjero") val birthAbroad: Boolean? = null,
-        @SerializedName("municipioNacimiento") val cityBirth: City? = null,
-        @SerializedName("paisNacimiento") val countryBirth: Country? = null,
-        @SerializedName("zipcodenacimiento") val zipCodeBirth: String? = null,
-        @SerializedName("fechaExpedicion") val dateExpedition: String? = null,
-        @SerializedName("fechaNacimiento") val dateBirth: String? = null,
-        @SerializedName("residenteExtranjero") val residentAbroad: Boolean? = null,
-        @SerializedName("municipioResidencia") val cityResident: City? = null,
-        @SerializedName("paisResidencia") val countryResident: Country? = null,
-        @SerializedName("zipcoderesidencia") val zipCodeResident: String? = null,
-        @SerializedName("genero") val gender: String? = null,
-        @SerializedName("envioCorreo") val sendEmail: Boolean = false,
-        @SerializedName("docIdentificacion") val documentDni: Document? = null,
-        @SerializedName("rolesUsuario") val rolesString: String? = null,
-        @SerializedName("fechaCreacion") val dateCreation: String? = null,
-        var verificationCode: String? = null,
-        @SerializedName("nivelEducacionFormal") val educationalLevel: EducationalLevel? = null,
-        @SerializedName("discapacidades") var disabilities: List<Disability>? = null
+    @SerializedName("id") val id: String? = null,
+    @SerializedName("login") val username: String?,
+    @SerializedName("identificacion") val identifier: String?,
+    @SerializedName("tipoDocumento") val documentType: DocumentType?,
+    @SerializedName("nombre") var name: String? = null,
+    @SerializedName("telefono") val telephone: String? = null,
+    @SerializedName("email") val email: String?,
+    @SerializedName("docFoto") val docPhoto: Document? = null,
+    @SerializedName("apellido") var lastName: String? = null,
+    @SerializedName("direccion") val address: String? = null,
+    @SerializedName("direccionEstandar") val standarAdress: String? = null,
+    @SerializedName("nacidoExtranjero") val birthAbroad: Boolean? = null,
+    @SerializedName("municipioNacimiento") val cityBirth: City? = null,
+    @SerializedName("paisNacimiento") val countryBirth: Country? = null,
+    @SerializedName("zipcodenacimiento") val zipCodeBirth: String? = null,
+    @SerializedName("fechaExpedicion") val dateExpedition: String? = null,
+    @SerializedName("fechaNacimiento") val dateBirth: String? = null,
+    @SerializedName("residenteExtranjero") val residentAbroad: Boolean? = null,
+    @SerializedName("municipioResidencia") val cityResident: City? = null,
+    @SerializedName("paisResidencia") val countryResident: Country? = null,
+    @SerializedName("zipcoderesidencia") val zipCodeResident: String? = null,
+    @SerializedName("genero") val gender: String? = null,
+    @SerializedName("envioCorreo") val sendEmail: Boolean = false,
+    @SerializedName("docIdentificacion") val documentDni: Document? = null,
+    @SerializedName("rolesUsuario") val rolesString: String? = null,
+    @SerializedName("fechaCreacion") val dateCreation: String? = null,
+    var verificationCode: String? = null,
+    @SerializedName("nivelEducacionFormal") val educationalLevel: EducationalLevel? = null,
+    @SerializedName("discapacidades") var disabilities: List<Disability>? = null
 ) : Parcelable {
 
     val hasDisabilities: Boolean
@@ -76,53 +77,54 @@ data class User(
 
 
     constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readParcelable(DocumentType::class.java.classLoader),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readParcelable(Document::class.java.classLoader),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readValue(Boolean::class.java.classLoader) as? Boolean,
-            parcel.readParcelable(City::class.java.classLoader),
-            parcel.readParcelable(Country::class.java.classLoader),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readValue(Boolean::class.java.classLoader) as? Boolean,
-            parcel.readParcelable(City::class.java.classLoader),
-            parcel.readParcelable(Country::class.java.classLoader),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readByte() != 0.toByte(),
-            parcel.readParcelable(Document::class.java.classLoader),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readParcelable(EducationalLevel::class.java.classLoader))
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readParcelable(DocumentType::class.java.classLoader),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readParcelable(Document::class.java.classLoader),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readValue(Boolean::class.java.classLoader) as? Boolean,
+        parcel.readParcelable(City::class.java.classLoader),
+        parcel.readParcelable(Country::class.java.classLoader),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readValue(Boolean::class.java.classLoader) as? Boolean,
+        parcel.readParcelable(City::class.java.classLoader),
+        parcel.readParcelable(Country::class.java.classLoader),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readParcelable(Document::class.java.classLoader),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readParcelable(EducationalLevel::class.java.classLoader))
 
     override fun describeContents(): Int {
         return 0
     }
 
     data class Session(
-            @SerializedName("id") val idUser: String?,
-            @SerializedName("username") val username: String?,
-            @SerializedName("nombre") var name: String?,
-            @SerializedName("cookie") val cookie: String?,
-            @SerializedName("imageUrl") var imageUrl: String?
+        @SerializedName("id") val idUser: String?,
+        @SerializedName("username") val username: String?,
+        @SerializedName("nombre") var name: String?,
+        @SerializedName("cookie") val cookie: String?,
+        @SerializedName("imageUrl") var imageUrl: String?
 
     ) : Parcelable {
 
         constructor(parcel: Parcel) : this(
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readString())
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString())
 
         override fun describeContents(): Int {
             return 0
@@ -163,6 +165,7 @@ data class User(
         parcel.writeParcelable(docPhoto, flags)
         parcel.writeString(lastName)
         parcel.writeString(address)
+        parcel.writeString(standarAdress)
         parcel.writeValue(birthAbroad)
         parcel.writeParcelable(cityBirth, flags)
         parcel.writeParcelable(countryBirth, flags)

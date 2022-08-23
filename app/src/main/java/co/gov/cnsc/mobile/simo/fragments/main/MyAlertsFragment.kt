@@ -8,13 +8,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import co.gov.cnsc.mobile.simo.R
+
 import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.SIMOFragment
 import co.gov.cnsc.mobile.simo.activities.CalendarAlertActivity
 import co.gov.cnsc.mobile.simo.activities.DetailAlertActivity
 import co.gov.cnsc.mobile.simo.adapters.AlertsAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyAlertsBinding
 import co.gov.cnsc.mobile.simo.models.Alert
 import co.gov.cnsc.mobile.simo.network.RestAPI
 import com.github.kittinunf.fuel.core.Request
@@ -28,6 +29,8 @@ import kotlinx.android.synthetic.main.fragment_my_alerts.*
  */
 class MyAlertsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
 
+    private var _binding: FragmentMyAlertsBinding? =null
+    private val binding get() = _binding!!
     /**
      * Request que se realiza al servidor para traer el listado de alertas
      */
@@ -42,7 +45,8 @@ class MyAlertsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_my_alerts, container, false)
+        _binding =FragmentMyAlertsBinding.inflate(inflater,container, false)
+        return binding.root
 
     }
 
@@ -59,8 +63,8 @@ class MyAlertsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
     fun configureUI() {
         adapter = AlertsAdapter(activity, ArrayList<Alert>())
         swipeRefresh?.setOnRefreshListener(this)
-        listViewAlerts.emptyView = empty
-        empty?.hide()
+        listViewAlerts.emptyView = binding.empty
+        binding.empty?.hide()
         buttonCalendar.setOnClickListener {
             goToCalendar()
         }
@@ -91,7 +95,7 @@ class MyAlertsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
         swipeRefresh?.isRefreshing = true
         request = RestAPI.getAlerts({ alerts ->
             swipeRefresh?.isRefreshing = false
-            empty?.showEmptyState()
+            binding.empty?.showEmptyState()
             adapter?.dataSource = alerts as ArrayList<Alert>
             listViewAlerts?.adapter = adapter
             adapter?.notifyDataSetChanged()
@@ -100,7 +104,7 @@ class MyAlertsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
             }
         }, { fuelError ->
             swipeRefresh?.isRefreshing = false
-            empty?.showConectionErrorState(fuelError) {
+            binding.empty?.showConectionErrorState(fuelError) {
                 getAlerts()
             }
             //SIMOApplication.showFuelError(activity,fuelError)

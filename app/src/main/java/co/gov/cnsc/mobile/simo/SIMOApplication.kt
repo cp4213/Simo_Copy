@@ -9,10 +9,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.media.RingtoneManager
 import android.net.ConnectivityManager
-import android.os.Build
-import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
+import android.os.*
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.AbsListView
@@ -83,7 +80,7 @@ class SIMOApplication : MultiDexApplication(), Application.ActivityLifecycleCall
      * Métodos estáticos se se pueden ejecutar desde cualquier parte de la aplicación
      */
     companion object {
-        const val TAG = "SIMO"
+        const val TAG = "SIMO_COPY :)"
         const val REGEX_EMPTY_FIELD = "^(?=\\s*\\S).*$"
         const val REGEX_FOR_PASSWORD = "^[a-zA-Z0-9@%#&()/+*$,._\\-]{8,20}$"
         const val REGEX_FOR_USERNAME = "^[a-zA-Z0-9._]{6,30}$"
@@ -509,7 +506,13 @@ class SIMOApplication : MultiDexApplication(), Application.ActivityLifecycleCall
          * @param urlFile url del archivo a descargar
          * @param nameFile nombre del archivo cuando se decargue
          */
+
+
+
         private fun downloadFile(context: Context, urlFile: String, nameFile: String) {
+
+
+
 
             val channelId = context.getString(R.string.download_notification_channel_id)
             val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -531,7 +534,7 @@ class SIMOApplication : MultiDexApplication(), Application.ActivityLifecycleCall
             notificationManager.notify(10, notificationBuilder.build())
 
             val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nameFile)
-            Fuel.download(urlFile).destination { response, url ->
+            Fuel.download(urlFile).fileDestination { response, url ->
                 file
             }.progress { readBytes, totalBytes ->
 
@@ -547,7 +550,7 @@ class SIMOApplication : MultiDexApplication(), Application.ActivityLifecycleCall
                 notificationManager.notify(10, notificationBuilder.build())
             }.response { req, res, result ->
                 Log.d(TAG, "Download complete")
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     val myMime = MimeTypeMap.getSingleton()
                     val intent = Intent(Intent.ACTION_VIEW)
                     val mimeType = myMime.getMimeTypeFromExtension(file.absolutePath?.getExtensionPathFile()?.substring(1))

@@ -8,8 +8,8 @@ import androidx.viewpager.widget.PagerAdapter
 import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.SIMOFragment
 import co.gov.cnsc.mobile.simo.adapters.MyJobsPagerAdapter
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyEmploysBinding
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_my_employs.*
 
 
 /**
@@ -18,10 +18,14 @@ import kotlinx.android.synthetic.main.fragment_my_employs.*
  */
 class MyEmploysFragment : SIMOFragment() {
 
+    private var _binding: FragmentMyEmploysBinding? =null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_my_employs, container, false)
+        _binding=FragmentMyEmploysBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
@@ -32,8 +36,8 @@ class MyEmploysFragment : SIMOFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val jobsAdapter = MyJobsPagerAdapter(context, fragmentManager)
-        viewPagerJobs.adapter = jobsAdapter as PagerAdapter
-        tabLayoutJobs.setupWithViewPager(viewPagerJobs)
+        binding.viewPagerJobs.adapter = jobsAdapter as PagerAdapter
+        binding.tabLayoutJobs.setupWithViewPager(binding.viewPagerJobs)
     }
 
     /**

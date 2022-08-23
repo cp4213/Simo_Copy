@@ -169,7 +169,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
      */
     @SuppressLint("RestrictedApi")
     fun configureUI() {
-        buttonLeft.visibility = View.VISIBLE //AAA
+        //buttonLeft.visibility = View.VISIBLE //AAA
         buttonLeft?.setOnClickListener {
             setOrRemoveFromFavorites()
         }
@@ -203,16 +203,16 @@ class DetailWorkOfferActivity : SIMOActivity() {
     private fun setOrRemoveFromFavorites() {
         ProgressBarDialog.startProgressDialog(this)
         RestAPI.setOrRemoveAsFavorite(workOffer?.id, workOffer?.inscriptionId, !workOffer?.favorite!!,
-                { workOffer ->
-                    ProgressBarDialog.stopProgressDialog()
-                    this.workOffer?.favorite = workOffer.favorite
-                    this.workOffer?.inscriptionId = workOffer.inscriptionId
-                    paint()
-                }, { fuelError ->
-            ProgressBarDialog.stopProgressDialog()
-            showFuelError(fuelError)
-            finish()
-        })
+            { workOffer ->
+                ProgressBarDialog.stopProgressDialog()
+                this.workOffer?.favorite = workOffer.favorite
+                this.workOffer?.inscriptionId = workOffer.inscriptionId
+                paint()
+            }, { fuelError ->
+                ProgressBarDialog.stopProgressDialog()
+                showFuelError(fuelError)
+                finish()
+            })
     }
 
     /**
@@ -257,17 +257,17 @@ class DetailWorkOfferActivity : SIMOActivity() {
      */
     private fun confirmedEmploymentDialog() {
         showConfirmDialog(this, R.string.success_op_dialog,
-                R.string.the_employment_has_been_confirmed_dialog, R.string.update_cv_button_dialog, { dialogInterface, which ->
-            val intent = Intent(this, MyCVActivity::class.java)
-            //Toast.makeText(this, R.string.historial_deleted, Toast.LENGTH_SHORT).show()
-            reloadTestData(idEmployment)
-            //accessButtonAction()
-            startActivity(intent)
+            R.string.the_employment_has_been_confirmed_dialog, R.string.update_cv_button_dialog, { dialogInterface, which ->
+                val intent = Intent(this, MyCVActivity::class.java)
+                //Toast.makeText(this, R.string.historial_deleted, Toast.LENGTH_SHORT).show()
+                reloadTestData(idEmployment)
+                //accessButtonAction()
+                startActivity(intent)
 
-        }, R.string.continue_button_dialog, { dialogInterface, which ->
+            }, R.string.continue_button_dialog, { dialogInterface, which ->
 
-            reloadTestData(idEmployment)
-        })
+                reloadTestData(idEmployment)
+            })
     }
 
 
@@ -312,15 +312,15 @@ class DetailWorkOfferActivity : SIMOActivity() {
      */
     private fun updatedDocumentsDialog() {
         showConfirmDialog(this, R.string.success_op_dialog,
-                R.string.updated_documents,
-                R.string.update_cv_button_dialog, { dialogInterface, which ->
-            val intent = Intent(this, MyCVActivity::class.java)
-            startActivity(intent)
-        },
-                R.string.accept_button_dialog, { dialogInterface, which ->
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        })
+            R.string.updated_documents,
+            R.string.update_cv_button_dialog, { dialogInterface, which ->
+                val intent = Intent(this, MyCVActivity::class.java)
+                startActivity(intent)
+            },
+            R.string.accept_button_dialog, { dialogInterface, which ->
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            })
     }
 
     /**
@@ -412,11 +412,11 @@ class DetailWorkOfferActivity : SIMOActivity() {
                 var mcipioJson = JSONObject(objJson.get("municipio").toString())
                 var deptoJson  = JSONObject(mcipioJson.get("departamento").toString())
                 var user       = Tests( pruebaJson.get("id").toString(),
-                        pruebaJson.get("descripcion").toString(),
-                        mcipioJson.getInt("id"),
-                        mcipioJson.getString("nombre"),
-                        deptoJson.getInt("id"),
-                        deptoJson.getString("nombre")
+                    pruebaJson.get("descripcion").toString(),
+                    mcipioJson.getInt("id"),
+                    mcipioJson.getString("nombre"),
+                    deptoJson.getInt("id"),
+                    deptoJson.getString("nombre")
                 )
                 result.add(user)
             }
@@ -531,12 +531,11 @@ class DetailWorkOfferActivity : SIMOActivity() {
 
         val experienceAlternatives = this.workOffer?.job?.allRequirementsExperienceAlternatives
 
-        if (experienceAlternatives != null && experienceAlternatives.isNotBlank()) {
+        if (experienceAlternatives != null && experienceAlternatives.isNotBlank() && !experienceAlternatives.toString().equals("null")) {
             rowRequirementExperienceAlternative.visibility = View.VISIBLE
             rowRequirementExperienceAlternative.value = experienceAlternatives
         }
 
-        //26092019
         val studyEquivalences = this.workOffer?.job?.allRequirementsStudyEquivalences
 
         if (studyEquivalences != null && studyEquivalences.isNotBlank()) {
@@ -560,8 +559,9 @@ class DetailWorkOfferActivity : SIMOActivity() {
             vacancy?.quantity
             rowPowers.value = this.workOffer?.job?.allVacancies
         }
-        //Fin Prepensionados
         accessButtonAction()
+        //Fin Prepensionados
+
     }
 
     /**
@@ -589,30 +589,30 @@ class DetailWorkOfferActivity : SIMOActivity() {
             RestAPI.getInscriptionStatus(idEmployment, { json ->
                 Log.i("DEV","--->IN getInscriptionStatus")
                 //ProgressBarDialog.stopProgressDialog()
-                var obj = JSONObject(json)
-                var existeInscripcion = obj.getBoolean("existeInscripcion")
-                var reporteInscripcion = obj.getString("reporteInscripcion")
+                val obj = JSONObject(json)
+                val existeInscripcion = obj.getBoolean("existeInscripcion")
+                val reporteInscripcion = obj.getString("reporteInscripcion")
 
-                var access = obj.getJSONObject("access")
-                var pagar = access.getBoolean("pagar")
-                var pago_pendiente  = access.getBoolean("pago_pendiente")
-                var cambiarEmpleo = access.getBoolean("cambiarEmpleo")
-                var ver_pago = access.getBoolean("ver_pago")
-                var pagarPSE = access.getBoolean("pagarPSE")
-                var actualizar = access.getBoolean("actualizar")
-                var lugarPresentacion = access.getBoolean("lugarPresentacion")
-                var inscribir = access.getBoolean("inscribir")
-                var preinscribir = access.getBoolean("preinscribir")
-               // val tipoProceso = this?.workOffer?.job?.convocatory?.procesType
+                val access = obj.getJSONObject("access")
+                //var pagar = access.getBoolean("pagar")
+                val pago_pendiente  = access.getBoolean("pago_pendiente")
+                val cambiarEmpleo = access.getBoolean("cambiarEmpleo")
+                // var ver_pago = access.getBoolean("ver_pago")
+                val pagarPSE = access.getBoolean("pagarPSE")
+                val actualizar = access.getBoolean("actualizar")
+                val lugarPresentacion = access.getBoolean("lugarPresentacion")
+                val inscribir = access.getBoolean("inscribir")
+                val preinscribir = access.getBoolean("preinscribir")
+                // val tipoProceso = this?.workOffer?.job?.convocatory?.procesType
                 //  NOTA verParticipantesAscensos	true
 
                 Log.d("DEV", ">>>> existeInscripción: " + existeInscripcion + " >>>> reporteInscripcion " + reporteInscripcion + " >>>>>>>> Access node details: " + access.toString())
                 /**
-                 * Funcionalidad preinscribir = true
+                 * Funcionalidad preinscribir = true, inscribir= false (ya que si está inscrito, debe omitirse este if)
                  * Agregar o Quitar de Favoritos y Confirmar Empleo
                  * */
 
-                if(preinscribir){
+                if(preinscribir && !inscribir){
                     Log.d("DEV", ">>>>>>>> Entró a confirmar")
                     STEP_TAG = "confirmar"
                     Log.d("DEV", "STEP TAG: " + STEP_TAG)
@@ -744,10 +744,10 @@ class DetailWorkOfferActivity : SIMOActivity() {
                 }
 
                 /**
-             * Funcionalidad inscribir = true
-             * Empleo Pagado, Transferir Pago a Otro Empleo e ¿Inscribir?
-             * Se ha inscrito el empleo y permite actualizar información de H.V y docs
-             * */
+                 * Funcionalidad inscribir = true
+                 * Empleo Pagado, Transferir Pago a Otro Empleo e ¿Inscribir?
+                 * Se ha inscrito el empleo y permite actualizar información de H.V y docs
+                 * */
                 if(inscribir) {
                     Log.d("DEV", ">>>>>>>> Entró a inscribir")
                     STEP_TAG = "inscribir_empleo"
@@ -918,7 +918,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
                         buttonLeft.visibility  = View.GONE
                         labelButtonLeft.visibility = View.GONE
                         if(intent?.extras?.getString("status_inscription")!="F"){
-                        prevAprobPaymentDialog()
+                            prevAprobPaymentDialog()
                         }
                     }
                 }
@@ -1006,102 +1006,48 @@ class DetailWorkOfferActivity : SIMOActivity() {
                     buttonRight.visibility = View.GONE
                     labelButtonRight.visibility = View.GONE
 
-                    //show TestName & TestPlace
-                    /*tests_card_view.visibility = View.VISIBLE
-                    rowTestPlace.visibility = View.VISIBLE
-                    rowNameTest.visibility = View.VISIBLE*/
-
-                    /*inscription_tests_card_view.visibility = View.VISIBLE
-                    testListViewInscription.visibility = View.VISIBLE
-                    rowInscriptionTestPlace.visibility = View.VISIBLE
-                    rowInscriptionTestName.visibility = View.VISIBLE*/
-
                 }
 
             }, {fuelError ->
-                //to-do
-                /*ProgressBarDialog.stopProgressDialog()
-                showFuelError(fuelError)
-                finish()*/
-                RestAPI.getMyJobs("F", { json ->
-                   // var obj = JSONObject(json)
-                    var enabler: Boolean =false
 
-                   /*  for (indice in json.indices){
-                         if (json[indice]?.jobId ==idEmployment){
-                             enabler=true
-                         }
-                         json.get(0)
-                     }*/
-                /*    if (enabler){// var obj = JSONObject(json)
-                        //var access = obj.getJSONObject("access")
-                        //var preinscribir = access.getBoolean("preinscribir")
-                        /*if(preinscribir){
-                            Log.d("DEV", ">>>>>>>> Entró a confirmar")
-                            STEP_TAG = "confirmar"
-                            Log.d("DEV", "STEP TAG: " + STEP_TAG)
-
-                            //LEFT
-                            //show button and label
-                            buttonLeft.visibility  = View.VISIBLE
+                RestAPI.getPreAvalible(idEmployment, { json ->
+                    // La solicitud obtiene un objeto tipo Json, de la cual, requerimos sacar el valor de la llave
+                    // Preinsc. que se encuentra dentro de la llave access
+                    // ((json.array()[0] as JSONObject).get("access") as JSONObject).get("preinscribir")
+                    if(json.content !="[]") {
+                        if (((json.array()[0] as JSONObject).get("access") as JSONObject).get("preinscribir") as Boolean) {
+                            buttonLeft.visibility = View.VISIBLE
                             buttonLeft.setImageResource(R.drawable.ic_favorite_border_24dp)
                             labelButtonLeft.visibility = View.VISIBLE
                             labelButtonLeft.setText(R.string.add_favorites)
-
-                            //hide imageView
-                            imageViewLeft.visibility = View.GONE
-                            imageViewLeft.setImageResource(R.drawable.baseline_event_note_white_24)
-
-                            //CENTER
-                            //hide button and label
-                            /*buttonCenter.visibility = View.GONE
-                            labelButtonCenter.visibility = View.GONE*/
-
-                            //RIGHT
-                            //show button and label
                             buttonRight.visibility = View.VISIBLE
                             buttonRight.setImageResource(R.drawable.baseline_calendar_today_white_24)
                             labelButtonRight.visibility = View.VISIBLE
                             labelButtonRight.setText(R.string.confirm_employment_ask)
-
-
                             /**
                              * Funcionalidad de agregar o quitar favorito
                              * */
                             if (this.workOffer?.isFavoriteEnable == true) {
-                                Log.d("DEV", ">>>>>>>> Favoritos")
-                                buttonLeft.visibility  = View.VISIBLE
+                                buttonLeft.visibility = View.VISIBLE
                                 buttonRight.visibility = View.VISIBLE
-
-                                //buttonCenter.visibility = View.GONE
-                                //labelButtonCenter.visibility = View.GONE
-
                                 if (this.workOffer?.favorite == true) {
                                     buttonLeft.setImageResource(R.drawable.ic_favorite_24dp)
                                     labelButtonLeft.setText(R.string.remove_favorites)
-                                    //Toast.makeText(this, R.string.employment_deleted_from_favorites, Toast.LENGTH_SHORT).show()
-                                }
-
-                                else {
+                                } else {
                                     buttonLeft.setImageResource(R.drawable.ic_favorite_border_24dp)
                                     labelButtonLeft.setText(R.string.add_favorites)
-                                    //Toast.makeText(this, R.string.employment_added_to_favorites, Toast.LENGTH_SHORT).show()
                                 }
                             }
 
                             buttonRight?.setOnClickListener {
                                 rightButtonAction(STEP_TAG)
                             }
-                        }*/
-                        //obj.getBoolean("desmarcarFavorito")}else{
-                        }else{
-                            Log.i("DEV","Error getInscriptionStatus : -->"+fuelError.toString())
-                            showFuelError(fuelError)
-                        }*/
-                }, {fuelErrorgetMyJobs ->
+                        }
+                    }
+                }, {fuelError ->
 
-                })
-
+                }
+                )
             })
 
             //ProgressBarDialog.startProgressDialog(this)
@@ -1123,7 +1069,6 @@ class DetailWorkOfferActivity : SIMOActivity() {
                     imageViewLeft.setImageResource(R.drawable.baseline_event_note_white_24)
 
 
-
                     buttonRight.visibility = View.VISIBLE
                     buttonRight.setImageResource(R.drawable.baseline_calendar_today_white_24)
 
@@ -1132,8 +1077,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
 
                     //botón derecho visible pero deshabilitado
                     buttonRight.isEnabled = false
-                    buttonRight?.background?.colorFilter =ContextCompat.getColor(this, android.R.color.darker_gray) as ColorFilter?
-                   // buttonRight?.background?.setColorFilter(ContextCompat.getColor(this, android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY)
+                    buttonRight.background.setColorFilter(ContextCompat.getColor(this, android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY)
 
                     Toast.makeText(this, R.string.convocatory_date_undefined, Toast.LENGTH_LONG).show()
 
@@ -1154,8 +1098,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
 
                         //botón derecho visible pero deshabilitado
                         buttonRight.isEnabled = false
-                        buttonRight.background.colorFilter = ContextCompat.getColor(this, android.R.color.darker_gray) as ColorFilter?
-                        //setColorFilter(ContextCompat.getColor(this, android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY)
+                        buttonRight.background.setColorFilter(ContextCompat.getColor(this, android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY)
 
                         if (this.workOffer?.favorite == true) {
 
@@ -1194,8 +1137,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
                         // Fecha de Cierre para el Detalle del Empleo en etapa de inscripciones (desde Mis Empleos, pestaña Favoritos)
                         textCloseInscriptions.text = this.jobDueDate
 
-                        buttonRight.background.colorFilter=ContextCompat.getColor(this, R.color.colorAccent) as ColorFilter
-                        //setColorFilter(ContextCompat.getColor(this, R.color.colorAccent), PorterDuff.Mode.MULTIPLY)
+                        buttonRight.background.setColorFilter(ContextCompat.getColor(this, R.color.colorAccent), PorterDuff.Mode.MULTIPLY)
                         buttonRight.isEnabled = true
 
 
@@ -1222,55 +1164,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
                         //Toast.makeText(this, R.string.convocatory_date_ended_message, Toast.LENGTH_LONG).show()
                     }
 
-                    /*else if (!isDateClosed && !isDateOpened) {
-                        //Si la fecha de cierre de la convocatoria no se ha cumplido y la fecha de inicio tampoco
 
-                        buttonRight.visibility = View.VISIBLE
-                        buttonRight.isEnabled = false
-                        buttonRight.background.setColorFilter(ContextCompat.getColor(this, android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY)
-
-                        Toast.makeText(this, R.string.convocatory_date_almost_opened_message, Toast.LENGTH_LONG).show()
-
-                        *//**
-                         * Funcionalidad de agregar o quitar favorito
-                         * *//*
-                        if (this.workOffer?.isFavoriteEnable == true) {
-                            Log.d("DEV", ">>>>>>>> Favoritos")
-
-                            // Fecha de Cierre para el Detalle del Empleo en etapa de divulgación (fecha de inscripción Por Definir consultada desde Mis Empleos)
-                            textCloseInscriptions.text = this.jobDueDate
-
-                            //LEFT AND RIGHT
-                            //show buttons
-                            buttonLeft.visibility  = View.VISIBLE
-                            buttonRight.visibility = View.VISIBLE
-
-                            //botón derecho visible pero deshabilitado
-                            buttonRight.isEnabled = false
-                            buttonRight.background.setColorFilter(ContextCompat.getColor(this, android.R.color.darker_gray), PorterDuff.Mode.MULTIPLY)
-
-                            if (this.workOffer?.favorite == true) {
-
-
-                                //LEFT
-                                //show button and label Quitar
-                                buttonLeft.setImageResource(R.drawable.ic_favorite_24dp)
-                                labelButtonLeft.setText(R.string.remove_favorites)
-                                //Toast.makeText(this, R.string.employment_deleted_from_favorites, Toast.LENGTH_SHORT).show()
-                            }
-
-                            else {
-
-
-                                //LEFT
-                                //show button and label Agregar
-                                buttonLeft.setImageResource(R.drawable.ic_favorite_border_24dp)
-                                labelButtonLeft.setText(R.string.add_favorites)
-                                //Toast.makeText(this, R.string.employment_added_to_favorites, Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                    }*/
                 }
             }, {fuelError ->
                 //to-do
@@ -1300,13 +1194,13 @@ class DetailWorkOfferActivity : SIMOActivity() {
      */
     private fun payEmploymentDialog() {
         showConfirmDialog(this,
-                R.string.select_city_for_test_dialog,
-                R.string.before_pay_select_city_for_test_dialog,
-                R.string.continue_button_dialog, { dialogInterface, which ->
-        },
-                R.string.cancel_button_dialog, { dialogInterface, which ->
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)}
+            R.string.select_city_for_test_dialog,
+            R.string.before_pay_select_city_for_test_dialog,
+            R.string.continue_button_dialog, { dialogInterface, which ->
+            },
+            R.string.cancel_button_dialog, { dialogInterface, which ->
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)}
         )
     }
 
@@ -1322,15 +1216,15 @@ class DetailWorkOfferActivity : SIMOActivity() {
         )
     }
 
-  /*  private fun prevPendientePaymentDialog() {
-        SIMOApplication.showAlertDialog(this,
-            R.string.prevpayment_dialog,
-            R.string.before_prevpayment2_dialog_test_dialog,
-            R.string.accept_button_dialog, { dialogInterface, which ->
-            }
-        )
-    }
-*/
+    /*  private fun prevPendientePaymentDialog() {
+          SIMOApplication.showAlertDialog(this,
+              R.string.prevpayment_dialog,
+              R.string.before_prevpayment2_dialog_test_dialog,
+              R.string.accept_button_dialog, { dialogInterface, which ->
+              }
+          )
+      }
+  */
 
     /**
      * Muestra el CustomDialog
@@ -1351,8 +1245,8 @@ class DetailWorkOfferActivity : SIMOActivity() {
         adapter.notifyDataSetChanged()
 
         val dialogBuilder = AlertDialog.Builder(Context)
-                .setView(customDialog)
-                .setTitle("Selección del lugar de pruebas")
+            .setView(customDialog)
+            .setTitle("Selección del lugar de pruebas")
         val alertDialog = dialogBuilder.show()
 
         deptoSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -1454,20 +1348,20 @@ class DetailWorkOfferActivity : SIMOActivity() {
      */
     private fun startPaymentTransferDialog() {
         showConfirmDialog(this, R.string.payment_transfer_conditions_title,
-                R.string.payment_transfer_conditions, R.string.continue_button_dialog, { dialogInterface, which ->
+            R.string.payment_transfer_conditions, R.string.continue_button_dialog, { dialogInterface, which ->
 
-            //intent
-            val intent = Intent(Context, TransferPaymentActivity::class.java)
-            intent.putExtra("idInscripcion", idInscripcionAux)
-            intent.putExtra("idEmpleo", idEmployment)
-            startActivity(intent)
+                //intent
+                val intent = Intent(Context, TransferPaymentActivity::class.java)
+                intent.putExtra("idInscripcion", idInscripcionAux)
+                intent.putExtra("idEmpleo", idEmployment)
+                startActivity(intent)
 
-        }, R.string.cancel_button_dialog, { dialogInterface, which ->
+            }, R.string.cancel_button_dialog, { dialogInterface, which ->
 
-            //reloadTestData(idEmployment)
+                //reloadTestData(idEmployment)
 
 
-        })
+            })
     }
 
     private fun rightButtonAction(action : String){
@@ -1505,7 +1399,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
         // Si el valor retornado el null, quiere decir que el usuario ha inscrito las pruebas necesarias y podrá continuar
         // de lo contrario, debe seguir inscribiendo las pruebas hasta que el backend indique lo contrario.
 
-    //confirmprevInscriptions()
+        //confirmprevInscriptions()
         RestAPI.validateDefinedTestPlace(idInscripcionAux, { json ->
             validateExistTestPlace(json)
         }, { fuelError ->
@@ -1519,7 +1413,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
     }
 
     /**Función que comprueba si existe un proceso de pago anterior aprobado o pendiente para evitar duplicidad en pagos
-     * 
+     *
      */
     /*
     private fun confirmprevInscriptions(){
@@ -1643,10 +1537,10 @@ class DetailWorkOfferActivity : SIMOActivity() {
         when (item?.itemId) {
             R.id.menu_share -> {
                 this.intentShareTextLink(title = workOffer?.job?.denomination?.name,
-                        titleChooser = getString(R.string.share),
-                        errorShare = getString(R.string.error_to_share),
-                        description = getMessageToShare(),
-                        urlLink = "")
+                    titleChooser = getString(R.string.share),
+                    errorShare = getString(R.string.error_to_share),
+                    description = getMessageToShare(),
+                    urlLink = "")
             }
             else -> return super.onOptionsItemSelected(item)
 
@@ -1659,13 +1553,13 @@ class DetailWorkOfferActivity : SIMOActivity() {
      */
     private fun getMessageToShare(): String {
         return getString(R.string.message_to_share,
-                this.workOffer?.job?.denomination?.name,
-                this.workOffer?.job?.convocatory?.name,
-                this.workOffer?.job?.id,
-                this.workOffer?.job?.gradeLevel?.levelName,
-                this.workOffer?.job?.totalVancancies,
-                this.workOffer?.job?.salary?.toDouble()?.toFormatCurrency(),
-                this.jobDueDate)
+            this.workOffer?.job?.denomination?.name,
+            this.workOffer?.job?.convocatory?.name,
+            this.workOffer?.job?.id,
+            this.workOffer?.job?.gradeLevel?.levelName,
+            this.workOffer?.job?.totalVancancies,
+            this.workOffer?.job?.salary?.toDouble()?.toFormatCurrency(),
+            this.jobDueDate)
     }
 
     /**

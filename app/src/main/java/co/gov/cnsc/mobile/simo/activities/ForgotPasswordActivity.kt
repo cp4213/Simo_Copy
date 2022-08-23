@@ -4,13 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.SIMOActivity
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.models.IdDescription
 import co.gov.cnsc.mobile.simo.network.RestAPI
+import co.gov.cnsc.mobile.simo.storage.SIMOResources
 import co.gov.cnsc.mobile.simo.util.ProgressBarDialog
 import kotlinx.android.synthetic.main.activity_forgot_password.*
-
 /**
  * Esta clase contiene la funcionalidad para recuperar la contraseña '¿Olvidó su clave?'
  * En caso de que el usuario la haya olvidado
@@ -22,13 +24,22 @@ class ForgotPasswordActivity : SIMOActivity() {
         setContentView(R.layout.activity_forgot_password)
         showToolbarBack()
         setTextTitleToolbar(R.string.did_you_forget_your_password)
+        ConfigureUI()
+    }
+
+    private fun ConfigureUI() {
+        //Añade el spinner de opciones de recuperación de contraseña
+        var adapter= ArrayAdapter<IdDescription>(this, android.R.layout.simple_spinner_dropdown_item)
+        adapter.addAll(SIMOResources.options)
+        TipoSolicitud.adapter =adapter
     }
 
     /**
      * Cuando se da tap sobre el botón recuperar contraseña
      */
     fun onRemmember(button: View) {
-        validateForm()
+        if (TipoSolicitud.selectedItemPosition !=0)
+            validateForm()
     }
 
     /**
@@ -50,7 +61,7 @@ class ForgotPasswordActivity : SIMOActivity() {
     private fun sendVerifyCode() {
         val username = editTextEmail?.text.toString()
         ProgressBarDialog.startProgressDialog(this)
-        RestAPI.forgotPassword(username, { json ->
+        RestAPI.forgotPassword((TipoSolicitud.selectedItem as IdDescription).id!!,username, { json ->
             ProgressBarDialog.stopProgressDialog()
             goToVerifyEmail(username)
         }, { fuelError ->

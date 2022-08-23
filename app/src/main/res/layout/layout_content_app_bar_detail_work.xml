@@ -213,13 +213,15 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/buttonLeft"
                 style="@style/DetailWorkButtonOption"
-                app:srcCompat="@drawable/ic_favorite_border_24dp" />
+                app:srcCompat="@drawable/ic_favorite_border_24dp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/labelButtonLeft"
                 style="@style/DetailWorkButtonDescription"
                 android:gravity="center"
-                android:text="@string/add_favorites" />
+                android:text="@string/add_favorites"
+                android:visibility="gone" />
 
         </LinearLayout>
 

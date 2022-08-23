@@ -13,12 +13,14 @@ import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.activities.EditExperienceActivity
 import co.gov.cnsc.mobile.simo.adapters.ExperienceAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyExperienceBinding
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyFormationBinding
 import co.gov.cnsc.mobile.simo.extensions.setOnItemClickListener
 import co.gov.cnsc.mobile.simo.fragments.CVFragment
 import co.gov.cnsc.mobile.simo.models.Credential
 import co.gov.cnsc.mobile.simo.network.RestAPI
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_my_experience.*
+
 
 /**
  * Esta clase contiene la funcionalidad de la pantalla de 'Experiencia Laboral' en el CV del usuario
@@ -30,11 +32,13 @@ class MyExperienceFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener 
      * Adapter que contiene el listado de experiencia laboral del usuario
      */
     var adapter: ExperienceAdapter? = null
+    private var _binding: FragmentMyExperienceBinding? =null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_my_experience, container, false)
-
+        _binding =FragmentMyExperienceBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,13 +52,13 @@ class MyExperienceFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener 
      * y la acción de swiperefresh y agregar una nueva experiencia laboral
      */
     private fun configureUI() {
-        swipeRefresh?.setOnRefreshListener(this)
-        //listViewExperience?.emptyView = empty
-        listViewExperience?.setOnItemClickListener { position, item ->
+        binding.swipeRefresh?.setOnRefreshListener(this)
+        binding.listViewExperience?.emptyView = binding.empty
+        binding.listViewExperience?.setOnItemClickListener { position, item ->
             goToEditExperienceActivity(item as Credential?, position)
         }
-        //empty?.hide()
-        buttonAddCredential?.setOnClickListener {
+        binding.empty?.hide()
+        binding.buttonAddCredential?.setOnClickListener {
             goToEditExperienceActivity(null, null)
         }
     }
@@ -72,13 +76,13 @@ class MyExperienceFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener 
      */
     @SuppressLint("RestrictedApi")
     private fun getExperience() {
-        swipeRefresh?.isRefreshing = true
-        listViewExperience?.visibility = View.INVISIBLE
+        binding.swipeRefresh?.isRefreshing = true
+        binding.listViewExperience?.visibility = View.INVISIBLE
         request = RestAPI.getExperiences({ credentials ->
             if (activity != null) {
-                swipeRefresh?.isRefreshing = false
+                binding.swipeRefresh?.isRefreshing = false
                 //empty?.showEmptyState()
-                buttonAddCredential?.visibility = View.VISIBLE
+                binding.buttonAddCredential?.visibility = View.VISIBLE
                 adapter = ExperienceAdapter(requireActivity(), credentials as ArrayList<Credential>)
                 adapter?.onDownloadListener = { item, position ->
                     if (item.document != null && activity != null) {
@@ -88,16 +92,16 @@ class MyExperienceFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener 
                         }
                     }
                 }
-                listViewExperience?.visibility = View.VISIBLE
-                listViewExperience?.adapter = adapter
+                binding.listViewExperience?.visibility = View.VISIBLE
+                binding.listViewExperience?.adapter = adapter
             }
         }, { fuelError ->
-            swipeRefresh?.isRefreshing = false
-            empty?.showConectionErrorState(fuelError) {
+            binding.swipeRefresh?.isRefreshing = false
+            binding.empty?.showConectionErrorState(fuelError) {
                 getExperience()
             }
-            listViewExperience?.visibility = View.VISIBLE
-            buttonAddCredential?.visibility = View.INVISIBLE
+            binding.listViewExperience?.visibility = View.VISIBLE
+            binding.buttonAddCredential?.visibility = View.INVISIBLE
         })
     }
 

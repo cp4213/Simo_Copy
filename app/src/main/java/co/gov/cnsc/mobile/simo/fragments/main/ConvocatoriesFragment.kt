@@ -5,16 +5,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.SIMOFragment
 import co.gov.cnsc.mobile.simo.adapters.ConvocatoriesAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentConvocatoriesBinding
 import co.gov.cnsc.mobile.simo.models.Convocatory
 import co.gov.cnsc.mobile.simo.network.RestAPI
 import com.github.kittinunf.fuel.core.Request
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_convocatories.*
 
 
@@ -23,6 +21,9 @@ import kotlinx.android.synthetic.main.fragment_convocatories.*
  * de la aplicación
  */
 class ConvocatoriesFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
+
+    private var _binding: FragmentConvocatoriesBinding? =null
+    private val binding get() = _binding!!
 
     /**
      * Request que se realiza al servidor para traer el listado de convocatorias
@@ -36,7 +37,8 @@ class ConvocatoriesFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListen
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_convocatories, container, false)
+        _binding =FragmentConvocatoriesBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
@@ -58,8 +60,8 @@ class ConvocatoriesFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListen
                 SIMOApplication.goToWorkOffers(context = requireContext(), convocatory = item)
         }
         swipeRefresh?.setOnRefreshListener(this)
-        listViewConvocatories.emptyView = empty
-        empty?.hide()
+        binding.listViewConvocatories.emptyView = binding.empty
+        binding.empty?.hide()
         listViewConvocatories.setOnItemClickListener { parent, view, position, id ->
             val item = adapter?.getItem(position)
             goToDetailConvocatory(item)
@@ -81,13 +83,13 @@ class ConvocatoriesFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListen
         swipeRefresh?.isRefreshing = true
         request = RestAPI.getConvocatoriesLogged({ convocatories ->
             swipeRefresh?.isRefreshing = false
-            empty?.showEmptyState()
+            binding.empty?.showEmptyState()
             adapter?.dataSource = convocatories as ArrayList<Convocatory>
             listViewConvocatories?.adapter = adapter
             adapter?.notifyDataSetChanged()
         }, { fuelError ->
             swipeRefresh?.isRefreshing = false
-            empty?.showConectionErrorState(fuelError) {
+            binding.empty?.showConectionErrorState(fuelError) {
                 getConvocatories()
             }
         })
@@ -114,7 +116,7 @@ class ConvocatoriesFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListen
      */
     override fun onDestroyView() {
         super.onDestroyView()
-        clearFindViewByIdCache()
+        //clearFindViewByIdCache()
     }
 
     /**

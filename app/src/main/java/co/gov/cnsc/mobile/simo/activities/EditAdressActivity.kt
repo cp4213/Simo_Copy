@@ -20,7 +20,6 @@ import com.github.kittinunf.fuel.core.Request
 import kotlinx.android.synthetic.main.activity_edit_adress.*
 import kotlinx.android.synthetic.main.activity_edit_adress.buttonUpdate
 
-
 class EditAdressActivity : SIMOActivity(), RadioGroup.OnCheckedChangeListener,
     AdapterView.OnItemSelectedListener{
     /**
@@ -475,7 +474,7 @@ class EditAdressActivity : SIMOActivity(), RadioGroup.OnCheckedChangeListener,
             idDocumentUser = user?.identifier, documentDni = user?.documentDni, stageIdDni = user?.documentDni?.documentOriginId, idPerson = null,
             expeditionDate = user!!.dateExpedition.toString(), names = user?.name, lastNames = user?.lastName, dateBirth = user!!.dateBirth.toString(),
             idCity = user?.cityBirth?.id, idDepartment = user?.cityBirth?.department?.id, postalCodeBirth = user?.zipCodeBirth,
-            idCountryBirth = user?.countryBirth?.id, gender = user?.gender, address = adress,
+            idCountryBirth = user?.countryBirth?.id, gender = user?.gender, address = adress, standarAdress="true",
             postalCodeRes = user?.zipCodeResident,
             idCountryRes = user?.countryResident?.id, email = user?.email, telephone = user?.telephone,
             idLevelEducation = user?.educationalLevel?.id, dateCreation = user?.dateCreation,

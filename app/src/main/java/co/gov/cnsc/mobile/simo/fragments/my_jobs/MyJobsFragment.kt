@@ -13,6 +13,7 @@ import co.gov.cnsc.mobile.simo.SIMOFragment
 import co.gov.cnsc.mobile.simo.activities.InscriptionResultsActivity
 import co.gov.cnsc.mobile.simo.adapters.MyInscriptionsAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyJobsBinding
 import co.gov.cnsc.mobile.simo.models.Inscription
 import co.gov.cnsc.mobile.simo.network.RestAPI
 import co.gov.cnsc.mobile.simo.util.ProgressBarDialog
@@ -25,6 +26,9 @@ import kotlinx.android.synthetic.main.fragment_my_jobs.*
  */
 class MyJobsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
 
+
+    private var _binding: FragmentMyJobsBinding? =null
+    private val binding get() = _binding!!
     /**
      * Pestaña a mostrar dependiendo del empleo Favorito, Confirmado, Inscrito
      */
@@ -45,7 +49,8 @@ class MyJobsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_my_jobs, container, false)
+        _binding= FragmentMyJobsBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     /**
@@ -93,9 +98,9 @@ class MyJobsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
             }
         }
 
-        listViewJobs?.emptyView = empty
+        listViewJobs?.emptyView = binding.empty
         listViewJobs?.adapter = adapter
-        empty?.hide()
+        binding.empty?.hide()
         listViewJobs?.setOnItemClickListener { parent, view, position, id ->
             val item = adapter?.getItem(position)
             val intent = SIMOApplication.getIntentForWorkDetail(context, item?.jobId!!, null, item.isFavorite, item.id, item.statusInscription)
@@ -153,13 +158,13 @@ class MyJobsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
         swipeRefresh?.isRefreshing = true
         RestAPI.getMyJobs(status!!, { jobs ->
             swipeRefresh?.isRefreshing = false
-            empty?.showEmptyState()
+            binding.empty?.showEmptyState()
             adapter?.dataSource = jobs as ArrayList<Inscription>
             adapter?.notifyDataSetChanged()
         }) { fuelError ->
             swipeRefresh?.isRefreshing = false
             SIMOApplication.showFuelError(context, fuelError)
-            empty?.showConectionErrorState(fuelError) {
+            binding.empty?.showConectionErrorState(fuelError) {
                 getMyJobs()
             }
         }

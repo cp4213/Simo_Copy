@@ -21,6 +21,7 @@ import co.gov.cnsc.mobile.simo.util.ProgressBarDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_popup_window_validations.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import com.github.kittinunf.fuel.core.Request
 
 
 /**
@@ -34,6 +35,7 @@ class MainActivity : SIMOActivity(), SIMOFragment.OnFragmentInteractionListener 
     private var searchItemMenu: MenuItem? = null
     private var searchView: SearchView? = null
     private var formateAdress: Boolean= false
+    private var request: Request? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,37 +102,21 @@ class MainActivity : SIMOActivity(), SIMOFragment.OnFragmentInteractionListener 
 // Valida si existe la dirección en el nuevo formato, en caso negativo, envía a actualizar la dirección
     private fun validationAdress(){
         if(!formateAdress && SIMO.instance.isLogged){
-            val builder = AlertDialog.Builder(this)
-            val view = layoutInflater.inflate(R.layout.layout_popup_window_validations,null)
-            builder.setView(view)
-            val dialog =builder.create()
-            dialog.show()
-            view.cerrar_val_btn.setText(R.string.act_adress)
-            view.cerrar_btn.setText(R.string.accept_button_dialog)
-
-            view.cerrar_btn.setOnClickListener{
-                goToEditAdress()
-            }
-            //
-
-            //builder.setTitle(R.string.act_adress_title)
-            //builder.setMessage(R.string.act_adress)
-//builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
-/*
-            builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                Toast.makeText(applicationContext,
-                    android.R.string.yes, Toast.LENGTH_SHORT).show()
-            }*/
-           /* builder.setNegativeButton(android.R.string.no) { dialog, which ->
-                Toast.makeText(applicationContext,
-                    android.R.string.no, Toast.LENGTH_SHORT).show()
-            }
-
-            builder.setNeutralButton("Maybe") { dialog, which ->
-                Toast.makeText(applicationContext,
-                    "Maybe", Toast.LENGTH_SHORT).show()
-            }*/
-            //builder.show()
+            request = RestAPI.getUser( SIMO.instance.session?.username!!, { user ->
+                if(user.standarAdress!!.equals("false")){
+                    val builder = AlertDialog.Builder(this)
+                    val view = layoutInflater.inflate(R.layout.layout_popup_window_validations,null)
+                    builder.setView(view)
+                    val dialog =builder.create()
+                    dialog.show()
+                    view.cerrar_val_btn.setText(R.string.act_adress)
+                    view.cerrar_btn.setText(R.string.accept_button_dialog)
+                    view.cerrar_btn.setOnClickListener{
+                        goToEditAdress()
+                    }
+                }
+            }, { fuelError ->
+            })
         }
     }
 
@@ -235,32 +221,32 @@ class MainActivity : SIMOActivity(), SIMOFragment.OnFragmentInteractionListener 
      */
     private fun closeSession() {
         SIMOApplication.showConfirmDialog(this, R.string.close_session,
-                R.string.are_you_sure_exit, R.string.yes, { dialogInterface, which ->
-            logout()
-        }, R.string.no, { dialogInterface, which ->
+            R.string.are_you_sure_exit, R.string.yes, { dialogInterface, which ->
+                logout()
+            }, R.string.no, { dialogInterface, which ->
 
-        })
+            })
     }
 
     /**
      * Coloca el menú en la parte superior derecha de la pantalla
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-       if (SIMO.instance.isLogged) {
-           searchView = onCreateOptionsSearchView(R.menu.main_menu, menu)
-       }else{
-           searchView = onCreateOptionsSearchView(R.menu.main_menu_visitor, menu)
-       }
-            searchView?.setOnCloseListener {
-                imageLeft?.visibility = View.VISIBLE
-                return@setOnCloseListener false
-            }
-            searchView?.setOnSearchClickListener {
-                imageLeft?.visibility = View.INVISIBLE
-            }
-            searchItemMenu = menu?.findItem(R.id.menu_search_view)
+        if (SIMO.instance.isLogged) {
+            searchView = onCreateOptionsSearchView(R.menu.main_menu, menu)
+        }else{
+            searchView = onCreateOptionsSearchView(R.menu.main_menu_visitor, menu)
+        }
+        searchView?.setOnCloseListener {
+            imageLeft?.visibility = View.VISIBLE
+            return@setOnCloseListener false
+        }
+        searchView?.setOnSearchClickListener {
+            imageLeft?.visibility = View.INVISIBLE
+        }
+        searchItemMenu = menu?.findItem(R.id.menu_search_view)
 
-       // }
+        // }
         return true
     }
 
@@ -324,8 +310,8 @@ class MainActivity : SIMOActivity(), SIMOFragment.OnFragmentInteractionListener 
                     setAudiences()
                 }
 
-                else -> return super.onOptionsItemSelected(item)
-            }
+            else -> return super.onOptionsItemSelected(item)
+        }
         return true
     }
 
@@ -359,12 +345,12 @@ class MainActivity : SIMOActivity(), SIMOFragment.OnFragmentInteractionListener 
      */
     private fun deleteSearchHistory() {
         SIMOApplication.showConfirmDialog(this, R.string.delete_search_history,
-                R.string.all_searches_will_be_deleted, R.string.delete, { dialogInterface, which ->
-            SIMOResources.removeKeyWords(this)
-            Toast.makeText(this, R.string.historial_deleted, Toast.LENGTH_SHORT).show()
-        }, R.string.cancel, { dialogInterface, which ->
+            R.string.all_searches_will_be_deleted, R.string.delete, { dialogInterface, which ->
+                SIMOResources.removeKeyWords(this)
+                Toast.makeText(this, R.string.historial_deleted, Toast.LENGTH_SHORT).show()
+            }, R.string.cancel, { dialogInterface, which ->
 
-        })
+            })
     }
 
     /**
@@ -391,7 +377,7 @@ class MainActivity : SIMOActivity(), SIMOFragment.OnFragmentInteractionListener 
     private fun userGuide() {
         this.intentOpenUrl("https://www.cnsc.gov.co/convocatorias/tutoriales-y-videos/guias-manuales")
         //SIMOApplication.checkPermissionsAndDownloadFile(this, "https://www.cnsc.gov.co/sites/default/files/2021-08/guia_para_el_manejo_de_la_aplicacion_movil_simo_v2.pdf#page=1&zoom=auto,-99,792", "guia_para_el_manejo_de_la_aplicacion_movil_simo_v2.pdf")
-      //  Toast.makeText(this, R.string.download_text_start, Toast.LENGTH_LONG).show()
+        //  Toast.makeText(this, R.string.download_text_start, Toast.LENGTH_LONG).show()
     }
 
     override fun onFragmentInteraction(uri: Uri) {

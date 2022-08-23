@@ -13,12 +13,13 @@ import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.activities.EditProdIntelectualActivity
 import co.gov.cnsc.mobile.simo.adapters.IntelectualProdAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyIntelectualProdsBinding
 import co.gov.cnsc.mobile.simo.extensions.setOnItemClickListener
 import co.gov.cnsc.mobile.simo.fragments.CVFragment
 import co.gov.cnsc.mobile.simo.models.Credential
 import co.gov.cnsc.mobile.simo.network.RestAPI
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_my_intelectual_prods.*
+
 
 
 /**
@@ -26,11 +27,13 @@ import kotlinx.android.synthetic.main.fragment_my_intelectual_prods.*
  * de la aplicación
  */
 class MyIntelectualProdFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
+    private var _binding:FragmentMyIntelectualProdsBinding? =null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_my_intelectual_prods, container, false)
-
+        _binding =FragmentMyIntelectualProdsBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,13 +47,13 @@ class MyIntelectualProdFragment : CVFragment(), SwipeRefreshLayout.OnRefreshList
      * la acción de swiperefresh y agregar una nueva producción intelectual
      */
     private fun configureUI() {
-        swipeRefresh?.setOnRefreshListener(this)
-        listViewProd?.emptyView = empty
-        listViewProd?.setOnItemClickListener { position, item ->
+        binding.swipeRefresh?.setOnRefreshListener(this)
+        binding.listViewProd?.emptyView = binding.empty
+        binding.listViewProd?.setOnItemClickListener { position, item ->
             goToEditIntelectualProdActivity(item as Credential?, position)
         }
-        empty?.hide()
-        buttonAddCredential?.setOnClickListener {
+        binding.empty?.hide()
+        binding.buttonAddCredential?.setOnClickListener {
             goToEditIntelectualProdActivity(null, null)
         }
     }
@@ -68,11 +71,11 @@ class MyIntelectualProdFragment : CVFragment(), SwipeRefreshLayout.OnRefreshList
      */
     @SuppressLint("RestrictedApi")
     private fun getIntelectualProducts() {
-        swipeRefresh?.isRefreshing = true
+        binding.swipeRefresh?.isRefreshing = true
         request = RestAPI.getProductsIntelectual({ credentials ->
-            swipeRefresh?.isRefreshing = false
+            binding.swipeRefresh?.isRefreshing = false
            // empty?.showEmptyState()
-            buttonAddCredential?.visibility = View.VISIBLE
+            binding.buttonAddCredential?.visibility = View.VISIBLE
             val adapter = IntelectualProdAdapter(requireActivity(), credentials as ArrayList<Credential>)
             adapter.onDownloadListener = { item, position ->
                 if (item.document != null && activity != null) {
@@ -82,11 +85,11 @@ class MyIntelectualProdFragment : CVFragment(), SwipeRefreshLayout.OnRefreshList
                     }
                 }
             }
-            listViewProd?.adapter = adapter
+            binding.listViewProd?.adapter = adapter
         }, { fuelError ->
-            swipeRefresh?.isRefreshing = false
-            buttonAddCredential?.visibility = View.INVISIBLE
-            empty?.showConectionErrorState {
+            binding.swipeRefresh?.isRefreshing = false
+            binding.buttonAddCredential?.visibility = View.INVISIBLE
+            binding.empty?.showConectionErrorState {
                 getIntelectualProducts()
             }
             SIMOApplication.showFuelError(activity, fuelError)

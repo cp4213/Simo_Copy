@@ -3,6 +3,7 @@ package co.gov.cnsc.mobile.simo.activities
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -11,6 +12,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.SIMOActivity
 import co.gov.cnsc.mobile.simo.SIMOApplication
@@ -123,7 +125,7 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
         adapter = ArrayAdapter<EducationalLevel>(this, android.R.layout.simple_spinner_dropdown_item)
         adapterB = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item)
         adapterC = ArrayAdapter<EducationalClass>(this, android.R.layout.simple_spinner_dropdown_item)
-        ed = listOf(EducationalClass("1",true,"EDUCACION FORMAL"),EducationalClass("2",true,"EDUCACION PARA EL TRABAJO Y DESARROLLO HUMANO"),EducationalClass("3",true,"EDUCACION INFORMAL"))
+        ed = listOf(EducationalClass("1",true,"EDUCACION FORMAL"),EducationalClass("2",true,"EDUCACION INFORMAL"),EducationalClass("3",true,"EDUCACION PARA EL TRABAJO Y DESARROLLO HUMANO"))
         adapterC.addAll(ed)
         adapter.clear()
         adapter.addAll(levs)
@@ -177,6 +179,7 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
         checkAbroadTitle?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 if (checkMarkIsGraduated.isChecked){
+                    if(spinnerEducationalType.selectedItem==1)
                     checkMarkConvalidatedTitle.visibility = View.VISIBLE
                 }
                 editTextInstitution.setText("")
@@ -739,7 +742,7 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
             if (data != null && resultCode == Activity.RESULT_OK) {
                 val files = data.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
                 if (files!!.size > 0) {
-                    val realFilePath = files[0].path
+                    val realFilePath = files[0].uri.path
                     if (realFilePath != null) {
                         val pickedFile = File(realFilePath)
                         if (SIMOApplication.checkMaxFileSize(this, pickedFile)) {

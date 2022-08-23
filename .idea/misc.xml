@@ -9,8 +9,9 @@
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout-v26/activity_register.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout-v26/activity_searchable_list_view.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_advance_search.xml" value="0.25" />
-        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_audience_jobs_vacancy.xml" value="0.2125" />
+        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_audience_jobs_vacancy.xml" value="0.25" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_calendar_alert.xml" value="0.2125" />
+        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_change_password.xml" value="0.33" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_complaints_and_tutelage.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_contact.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_detail_alert.xml" value="0.2125" />
@@ -18,7 +19,7 @@
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_detail_work_offer.xml" value="0.21" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_edit_adress.xml" value="0.10729166666666666" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_edit_experience.xml" value="0.2125" />
-        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_edit_formation.xml" value="0.10729166666666666" />
+        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_edit_formation.xml" value="0.22" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_edit_other_document.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_edit_prod_intelectual.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_enroll_employment.xml" value="0.25" />
@@ -36,8 +37,11 @@
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_start.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_transfer_payment.xml" value="0.2125" />
+        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_vacancy_detail.xml" value="0.25" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/activity_work_offers.xml" value="0.25" />
+        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/fragment_audiences.xml" value="0.1" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/fragment_my_alerts.xml" value="0.25" />
+        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/fragment_my_basic_info.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/fragment_my_employs.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/fragment_my_experience.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/fragment_my_formation.xml" value="0.2125" />
@@ -67,7 +71,7 @@
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/layout_app_bar_layout.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/layout_app_bar_layout_tabs.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/layout_avalible_vacancy_search.xml" value="0.25" />
-        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/layout_content_app_bar_detail_work.xml" value="0.2125" />
+        <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/layout_content_app_bar_detail_work.xml" value="0.33" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/layout_content_vacancy_job.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/layout_departmens_popup.xml" value="0.2125" />
         <entry key="..\:/CursoAndroid/Worspace/Simo_Copy/app/src/main/res/layout/layout_popup_window_validations.xml" value="0.2125" />

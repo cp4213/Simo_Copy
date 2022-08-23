@@ -21,6 +21,8 @@ import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.activities.EditAdressActivity
 import co.gov.cnsc.mobile.simo.adapters.SIMOAutoCompleteTextAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyBasicInfoBinding
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyExperienceBinding
 import co.gov.cnsc.mobile.simo.extensions.isEmailSyntax
 import co.gov.cnsc.mobile.simo.fragments.CVFragment
 import co.gov.cnsc.mobile.simo.fragments.main.SearchFragment
@@ -211,14 +213,14 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
             textInputDepartmentBirth?.visibility = visibilityLocal
         }
         checkResAbroad?.setOnCheckedChangeListener { buttonView, isChecked ->
-             if (isChecked) {
+            if (isChecked) {
                 textInputCountryRes?.visibility =View.VISIBLE
                 textInputPostalPlaceRes?.visibility =View.VISIBLE
-                 textInputAddress?.visibility =View.GONE
+                textInputAddress?.visibility =View.GONE
                 buttonEditAdress.visibility=View.GONE
             } else {
                 buttonEditAdress.visibility=View.VISIBLE
-                 textInputAddress?.visibility =View.VISIBLE
+                textInputAddress?.visibility =View.VISIBLE
                 textInputCountryRes?.visibility =View.GONE
                 textInputPostalPlaceRes?.visibility =View.GONE
 
@@ -226,39 +228,34 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
         }
 
         editTextCountry?.setOnClickListener {
-            SIMOApplication.goToSpinnerListView(
-                fragment = this,
-                    typeResource = SIMOAutoCompleteTextAdapter.TYPE_COUNTRIES,
-                    query = editTextCountry.text.toString(),
-                    requestCode = REQUEST_CODE_COUNTRY)
+            SIMOApplication.goToSpinnerListView(fragment = this,
+                typeResource = SIMOAutoCompleteTextAdapter.TYPE_COUNTRIES,
+                query = editTextCountry.text.toString(),
+                requestCode = REQUEST_CODE_COUNTRY)
         }
 
         editTextCountryRes?.setOnClickListener {
-            SIMOApplication.goToSpinnerListView(
-                fragment = this,
-                    typeResource = SIMOAutoCompleteTextAdapter.TYPE_COUNTRIES,
-                    query = editTextCountryRes.text.toString(),
-                    requestCode = REQUEST_CODE_COUNTRY_RES)
+            SIMOApplication.goToSpinnerListView(fragment = this,
+                typeResource = SIMOAutoCompleteTextAdapter.TYPE_COUNTRIES,
+                query = editTextCountryRes.text.toString(),
+                requestCode = REQUEST_CODE_COUNTRY_RES)
         }
 
         editDepartmentBirth.setOnClickListener {
-            SIMOApplication.goToSpinnerListView(
-                fragment = this, typeResource = SIMOAutoCompleteTextAdapter.TYPE_DEPARTMENTS,
-                    query = editDepartmentBirth.text.toString(), requestCode = REQUEST_CODE_DEPARTMENT)
+            SIMOApplication.goToSpinnerListView(fragment = this, typeResource = SIMOAutoCompleteTextAdapter.TYPE_DEPARTMENTS,
+                query = editDepartmentBirth.text.toString(), requestCode = REQUEST_CODE_DEPARTMENT)
         }
 
         editCityBirth?.setOnClickListener {
             if (department != null) {
-                SIMOApplication.goToSpinnerListView(
-                    fragment = this, typeResource = SIMOAutoCompleteTextAdapter.TYPE_CITIES,
-                        query = editCityBirth.text.toString(), requestCode = REQUEST_CODE_CITY, idFilter = department?.id)
+                SIMOApplication.goToSpinnerListView(fragment = this, typeResource = SIMOAutoCompleteTextAdapter.TYPE_CITIES,
+                    query = editCityBirth.text.toString(), requestCode = REQUEST_CODE_CITY, idFilter = department?.id)
             }
         }
 
         editTextEducationalLevel?.setOnClickListener {
-            SIMOApplication.goToSpinnerListView(
-                fragment = this, typeResource = SIMOAutoCompleteTextAdapter.TYPE_EDUCATIONAL_LEVELS,
-                    query = editTextEducationalLevel?.text.toString(), requestCode = REQUEST_CODE_EDUCATIONAL_LEVEL)
+            SIMOApplication.goToSpinnerListView(fragment = this, typeResource = SIMOAutoCompleteTextAdapter.TYPE_EDUCATIONAL_LEVELS,
+                query = editTextEducationalLevel?.text.toString(), requestCode = REQUEST_CODE_EDUCATIONAL_LEVEL)
         }
 
         editTextDisabilities?.setOnClickListener {
@@ -357,11 +354,11 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
             }
         }
 
-/*
-        if (editAddress?.text?.matches(SIMOApplication.REGEX_FOR_RESIDENTIAL_ADDRESS.toRegex()) == false) {
+
+        if (editAddress?.text.isNullOrBlank()) {
             textInputAddress?.error = getString(R.string.residential_address_requirements)
             validate = false
-        }*/
+        }
 
         if (editPhone?.text?.matches(SIMOApplication.REGEX_FOR_PHONE_NUMBER.toRegex()) == false) {
             textInputPhone?.error = getString(R.string.phone_number_requirements)
@@ -492,10 +489,10 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
             editTextCountryRes?.setText(user?.countryResident?.name)
             editTextPostalPlaceRes?.setText(user?.zipCodeResident)
         } else {
-           // departmentRes = user?.cityResident?.department
-           // cityRes = user?.cityResident
-           // editCityRes?.setText(cityRes?.toString())
-          //  editDepartmentRes?.setText(departmentRes?.realName)
+            // departmentRes = user?.cityResident?.department
+            // cityRes = user?.cityResident
+            // editCityRes?.setText(cityRes?.toString())
+            //  editDepartmentRes?.setText(departmentRes?.realName)
         }
 
         //
@@ -575,8 +572,8 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
         } else {
             //departmentRes = user?.cityResident?.department
             //cityRes = user?.cityResident
-           // editCityRes?.setText(cityRes?.toString())
-           // editDepartmentRes?.setText(departmentRes?.realName)
+            // editCityRes?.setText(cityRes?.toString())
+            // editDepartmentRes?.setText(departmentRes?.realName)
         }
         if(activity?.intent?.getStringExtra("generatedAdress").isNullOrBlank()){
             editAddress?.setText(user?.address)
@@ -737,29 +734,30 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
                         ProgressBarDialog.startProgressDialog(activity as Activity)
 
                         RestAPI.updateUser(idUser = idUser, username = username, idTypeDocument = idTypeDocument,
-                                idDocumentUser = idDocumentForm, documentDni = docIdentification, stageIdDni = stageIdIdentification, idPerson = idPersonaRNEC,
-                                expeditionDate = documentExpeditionDateForm, names = primerNombreRNEC + " " + segundoNombreRNEC,
-                                lastNames = primerApellidoRNEC + " " + segundoApellidoRNEC, dateBirth = fechaNacimientoRNEC,
-                                idCity = idCityBirth, idDepartment = idDepartmentBirth, postalCodeBirth = postalCodeBirth,
-                                idCountryBirth = idCountryBirth, gender = gender, address = address, postalCodeRes = postalCodeRes,
-                                idCountryRes = idCountryRes, email = email, telephone = telephone,
-                                idLevelEducation = idEducationalLevel, dateCreation = dateCreation,
-                                documentPhoto = docPhoto, stageIdPhoto = stageIdPhoto, sendEmail = sendEmail,
-                                disabilities = user?.disabilities,
-                                success = { user ->
-                                    ProgressBarDialog.stopProgressDialog()
-                                    this.user = user
-                                    SIMO.instance.session?.imageUrl = user.urlPhoto
-                                    SIMO.instance.session?.name = user.name
-                                    paintRNEC()
-                                    Toast.makeText(context, R.string.updated_data, Toast.LENGTH_LONG).show()
-                                    activity?.window?.decorView?.clearFocus()
-                                },
-                                error = { fuelError ->
-                                    ProgressBarDialog.stopProgressDialog()
-                                    SIMOApplication.showFuelError(activity, fuelError)
-                                    activity?.window?.decorView?.clearFocus()
-                                }
+                            idDocumentUser = idDocumentForm, documentDni = docIdentification, stageIdDni = stageIdIdentification, idPerson = idPersonaRNEC,
+                            expeditionDate = documentExpeditionDateForm, names = primerNombreRNEC + " " + segundoNombreRNEC,
+                            lastNames = primerApellidoRNEC + " " + segundoApellidoRNEC, dateBirth = fechaNacimientoRNEC,
+                            idCity = idCityBirth, idDepartment = idDepartmentBirth, postalCodeBirth = postalCodeBirth,
+                            idCountryBirth = idCountryBirth, gender = gender, address = address, standarAdress="true",
+                            postalCodeRes = postalCodeRes,
+                            idCountryRes = idCountryRes, email = email, telephone = telephone,
+                            idLevelEducation = idEducationalLevel, dateCreation = dateCreation,
+                            documentPhoto = docPhoto, stageIdPhoto = stageIdPhoto, sendEmail = sendEmail,
+                            disabilities = user?.disabilities,
+                            success = { user ->
+                                ProgressBarDialog.stopProgressDialog()
+                                this.user = user
+                                SIMO.instance.session?.imageUrl = user.urlPhoto
+                                SIMO.instance.session?.name = user.name
+                                paintRNEC()
+                                Toast.makeText(context, R.string.updated_data, Toast.LENGTH_LONG).show()
+                                activity?.window?.decorView?.clearFocus()
+                            },
+                            error = { fuelError ->
+                                ProgressBarDialog.stopProgressDialog()
+                                SIMOApplication.showFuelError(activity, fuelError)
+                                activity?.window?.decorView?.clearFocus()
+                            }
                         )
                         // end RestAPI
                         //..
@@ -779,29 +777,29 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
                         ProgressBarDialog.startProgressDialog(activity as Activity)
 
                         RestAPI.updateUser(idUser = idUser, username = username, idTypeDocument = idTypeDocument,
-                                idDocumentUser = idDocumentForm, documentDni = docIdentification, stageIdDni = stageIdIdentification, idPerson = idPersonaRNEC,
-                                expeditionDate = documentExpeditionDateForm, names = names, lastNames = lastNames, dateBirth = documentBirthDateForm,
-                                idCity = idCityBirth, idDepartment = idDepartmentBirth, postalCodeBirth = postalCodeBirth,
-                                idCountryBirth = idCountryBirth, gender = gender, address = address,
-                                postalCodeRes = postalCodeRes,
-                                idCountryRes = idCountryRes, email = email, telephone = telephone,
-                                idLevelEducation = idEducationalLevel, dateCreation = dateCreation,
-                                documentPhoto = docPhoto, stageIdPhoto = stageIdPhoto, sendEmail = sendEmail,
-                                disabilities = user?.disabilities,
-                                success = { user ->
-                                    ProgressBarDialog.stopProgressDialog()
-                                    this.user = user
-                                    SIMO.instance.session?.imageUrl = user.urlPhoto
-                                    SIMO.instance.session?.name = user.name
-                                    paintRNEC()
-                                    Toast.makeText(context, R.string.updated_data, Toast.LENGTH_LONG).show()
-                                    activity?.window?.decorView?.clearFocus()
-                                },
-                                error = { fuelError ->
-                                    ProgressBarDialog.stopProgressDialog()
-                                    SIMOApplication.showFuelError(activity, fuelError)
-                                    activity?.window?.decorView?.clearFocus()
-                                }
+                            idDocumentUser = idDocumentForm, documentDni = docIdentification, stageIdDni = stageIdIdentification, idPerson = idPersonaRNEC,
+                            expeditionDate = documentExpeditionDateForm, names = names, lastNames = lastNames, dateBirth = documentBirthDateForm,
+                            idCity = idCityBirth, idDepartment = idDepartmentBirth, postalCodeBirth = postalCodeBirth,
+                            idCountryBirth = idCountryBirth, gender = gender, address = address,standarAdress="true",
+                            postalCodeRes = postalCodeRes,
+                            idCountryRes = idCountryRes, email = email, telephone = telephone,
+                            idLevelEducation = idEducationalLevel, dateCreation = dateCreation,
+                            documentPhoto = docPhoto, stageIdPhoto = stageIdPhoto, sendEmail = sendEmail,
+                            disabilities = user?.disabilities,
+                            success = { user ->
+                                ProgressBarDialog.stopProgressDialog()
+                                this.user = user
+                                SIMO.instance.session?.imageUrl = user.urlPhoto
+                                SIMO.instance.session?.name = user.name
+                                paintRNEC()
+                                Toast.makeText(context, R.string.updated_data, Toast.LENGTH_LONG).show()
+                                activity?.window?.decorView?.clearFocus()
+                            },
+                            error = { fuelError ->
+                                ProgressBarDialog.stopProgressDialog()
+                                SIMOApplication.showFuelError(activity, fuelError)
+                                activity?.window?.decorView?.clearFocus()
+                            }
                         )
                         // end RestAPI
 
@@ -831,29 +829,29 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
             ProgressBarDialog.startProgressDialog(activity as Activity)
 
             RestAPI.updateUser(idUser = idUser, username = username, idTypeDocument = idTypeDocument,
-                    idDocumentUser = idDocumentForm, documentDni = docIdentification, stageIdDni = stageIdIdentification, idPerson = null,
-                    expeditionDate = documentExpeditionDateForm, names = names, lastNames = lastNames, dateBirth = documentBirthDateForm,
-                    idCity = idCityBirth, idDepartment = idDepartmentBirth, postalCodeBirth = postalCodeBirth,
-                    idCountryBirth = idCountryBirth, gender = gender, address = address,
-                    postalCodeRes = postalCodeRes,
-                    idCountryRes = idCountryRes, email = email, telephone = telephone,
-                    idLevelEducation = idEducationalLevel, dateCreation = dateCreation,
-                    documentPhoto = docPhoto, stageIdPhoto = stageIdPhoto, sendEmail = sendEmail,
-                    disabilities = user?.disabilities,
-                    success = { user ->
-                        ProgressBarDialog.stopProgressDialog()
-                        this.user = user
-                        SIMO.instance.session?.imageUrl = user.urlPhoto
-                        SIMO.instance.session?.name = user.name
-                        paint()
-                        Toast.makeText(context, R.string.updated_data, Toast.LENGTH_LONG).show()
-                        activity?.window?.decorView?.clearFocus()
-                    },
-                    error = { fuelError ->
-                        ProgressBarDialog.stopProgressDialog()
-                        SIMOApplication.showFuelError(activity, fuelError)
-                        activity?.window?.decorView?.clearFocus()
-                    }
+                idDocumentUser = idDocumentForm, documentDni = docIdentification, stageIdDni = stageIdIdentification, idPerson = null,
+                expeditionDate = documentExpeditionDateForm, names = names, lastNames = lastNames, dateBirth = documentBirthDateForm,
+                idCity = idCityBirth, idDepartment = idDepartmentBirth, postalCodeBirth = postalCodeBirth,
+                idCountryBirth = idCountryBirth, gender = gender, address = address,standarAdress="true",
+                postalCodeRes = postalCodeRes,
+                idCountryRes = idCountryRes, email = email, telephone = telephone,
+                idLevelEducation = idEducationalLevel, dateCreation = dateCreation,
+                documentPhoto = docPhoto, stageIdPhoto = stageIdPhoto, sendEmail = sendEmail,
+                disabilities = user?.disabilities,
+                success = { user ->
+                    ProgressBarDialog.stopProgressDialog()
+                    this.user = user
+                    SIMO.instance.session?.imageUrl = user.urlPhoto
+                    SIMO.instance.session?.name = user.name
+                    paint()
+                    Toast.makeText(context, R.string.updated_data, Toast.LENGTH_LONG).show()
+                    activity?.window?.decorView?.clearFocus()
+                },
+                error = { fuelError ->
+                    ProgressBarDialog.stopProgressDialog()
+                    SIMOApplication.showFuelError(activity, fuelError)
+                    activity?.window?.decorView?.clearFocus()
+                }
             )
             // end RestAPI
 
@@ -892,37 +890,37 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
      */
     private fun onPhotoClick() {
         Dexter.withActivity(activity)
-                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withListener(object : PermissionListener, MultiplePermissionsListener {
-                    override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) {
-                        Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
-                        token?.continuePermissionRequest()
-                    }
+            .withPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .withListener(object : PermissionListener, MultiplePermissionsListener {
+                override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) {
+                    Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
+                    token?.continuePermissionRequest()
+                }
 
-                    override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                        Log.d(SIMOApplication.TAG, "onPermissionsChecked")
-                        if (report?.areAllPermissionsGranted() == true) {
-                            EasyImage.openChooserWithGallery(this@MyBasicInfoFragment, getString(R.string.select_origin_image), REQUEST_CODE_PHOTO)
-                        } else {
-                            Log.d(SIMOApplication.TAG, "onPermissionDenied")
-                        }
-                    }
-
-                    override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                        Log.d(SIMOApplication.TAG, "onPermissionGranted")
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                    Log.d(SIMOApplication.TAG, "onPermissionsChecked")
+                    if (report?.areAllPermissionsGranted() == true) {
                         EasyImage.openChooserWithGallery(this@MyBasicInfoFragment, getString(R.string.select_origin_image), REQUEST_CODE_PHOTO)
-                    }
-
-                    override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
-                        Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
-                    }
-
-                    override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                    } else {
                         Log.d(SIMOApplication.TAG, "onPermissionDenied")
                     }
+                }
 
-                })
-                .check()
+                override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                    Log.d(SIMOApplication.TAG, "onPermissionGranted")
+                    EasyImage.openChooserWithGallery(this@MyBasicInfoFragment, getString(R.string.select_origin_image), REQUEST_CODE_PHOTO)
+                }
+
+                override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
+                    Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
+                }
+
+                override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                    Log.d(SIMOApplication.TAG, "onPermissionDenied")
+                }
+
+            })
+            .check()
     }
 
     /**
@@ -933,37 +931,37 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
         activity?.let {
             SIMOApplication.checkIfConnectedByData(requireActivity()) {
                 Dexter.withActivity(activity)
-                        .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        .withListener(object : PermissionListener, MultiplePermissionsListener {
-                            override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) {
-                                Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
-                                token?.continuePermissionRequest()
-                            }
+                    .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .withListener(object : PermissionListener, MultiplePermissionsListener {
+                        override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) {
+                            Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
+                            token?.continuePermissionRequest()
+                        }
 
-                            override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                                Log.d(SIMOApplication.TAG, "onPermissionsChecked")
-                                if (report?.areAllPermissionsGranted() == true) {
-                                    SIMOApplication.openChooserDocuments(this@MyBasicInfoFragment as Fragment, "application/pdf", REQUEST_CODE_ID)
-                                } else {
-                                    Log.d(SIMOApplication.TAG, "onPermissionDenied")
-                                }
-                            }
-
-                            override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                                Log.d(SIMOApplication.TAG, "onPermissionGranted")
-                                SIMOApplication.openChooserDocuments(this@MyBasicInfoFragment as Fragment, "application/pdf", REQUEST_CODE_ID)
-                            }
-
-                            override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
-                                Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
-                            }
-
-                            override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                        override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                            Log.d(SIMOApplication.TAG, "onPermissionsChecked")
+                            if (report?.areAllPermissionsGranted() == true) {
+                                SIMOApplication.openChooserDocuments(this@MyBasicInfoFragment, "application/pdf", REQUEST_CODE_ID)
+                            } else {
                                 Log.d(SIMOApplication.TAG, "onPermissionDenied")
                             }
+                        }
 
-                        })
-                        .check()
+                        override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                            Log.d(SIMOApplication.TAG, "onPermissionGranted")
+                            SIMOApplication.openChooserDocuments(this@MyBasicInfoFragment, "application/pdf", REQUEST_CODE_ID)
+                        }
+
+                        override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
+                            Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
+                        }
+
+                        override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                            Log.d(SIMOApplication.TAG, "onPermissionDenied")
+                        }
+
+                    })
+                    .check()
             }
         }
 
@@ -1128,10 +1126,10 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
          */
         @JvmStatic
         fun newInstance() =
-                MyBasicInfoFragment().apply {
-                    arguments = Bundle().apply {
+            MyBasicInfoFragment().apply {
+                arguments = Bundle().apply {
 
-                    }
                 }
+            }
     }
 }

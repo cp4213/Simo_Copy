@@ -13,12 +13,12 @@ import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.activities.EditOtherDocumentActivity
 import co.gov.cnsc.mobile.simo.adapters.OtherDocumentsAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentMyOtherDocumentsBinding
 import co.gov.cnsc.mobile.simo.extensions.setOnItemClickListener
 import co.gov.cnsc.mobile.simo.fragments.CVFragment
 import co.gov.cnsc.mobile.simo.models.Credential
 import co.gov.cnsc.mobile.simo.network.RestAPI
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_my_other_documents.*
 
 
 /**
@@ -26,11 +26,13 @@ import kotlinx.android.synthetic.main.fragment_my_other_documents.*
  * de la aplicación
  */
 class MyOtherDocumentsFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
-
+    private var _binding: FragmentMyOtherDocumentsBinding? =null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_my_other_documents, container, false)
+        _binding =FragmentMyOtherDocumentsBinding.inflate(inflater,container,false)
+        return binding.root
 
     }
 
@@ -45,13 +47,13 @@ class MyOtherDocumentsFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListe
      * la acción de swiperefresh y agregar una nuevo documento
      */
     private fun configureUI() {
-        swipeRefresh?.setOnRefreshListener(this)
-        listViewDocuments?.emptyView = empty
-        listViewDocuments?.setOnItemClickListener { position, item ->
+        binding.swipeRefresh?.setOnRefreshListener(this)
+        binding.listViewDocuments?.emptyView = binding.empty
+        binding.listViewDocuments?.setOnItemClickListener { position, item ->
             goToEditOtherDocumentActivity(item as Credential?, position)
         }
-        empty?.hide()
-        buttonAddCredential?.setOnClickListener {
+        binding.empty?.hide()
+        binding.buttonAddCredential?.setOnClickListener {
             goToEditOtherDocumentActivity(null, null)
         }
     }
@@ -69,11 +71,11 @@ class MyOtherDocumentsFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListe
      */
     @SuppressLint("RestrictedApi")
     private fun getOtherProducts() {
-        swipeRefresh?.isRefreshing = true
+        binding.swipeRefresh?.isRefreshing = true
         request = RestAPI.getOtherDocuments({ credentials ->
-            swipeRefresh?.isRefreshing = false
-            empty?.showEmptyState()
-            buttonAddCredential?.visibility = View.VISIBLE
+            binding.swipeRefresh?.isRefreshing = false
+            binding.empty?.showEmptyState()
+            binding.buttonAddCredential?.visibility = View.VISIBLE
             val adapter = OtherDocumentsAdapter(requireContext(), credentials as ArrayList<Credential>)
             adapter.onDownloadListener = { item, position ->
                 if (item.document != null && activity != null) {
@@ -83,11 +85,11 @@ class MyOtherDocumentsFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListe
                     }
                 }
             }
-            listViewDocuments?.adapter = adapter
+            binding.listViewDocuments?.adapter = adapter
         }, { fuelError ->
-            swipeRefresh?.isRefreshing = false
-            buttonAddCredential?.visibility = View.INVISIBLE
-            empty?.showConectionErrorState {
+            binding.swipeRefresh?.isRefreshing = false
+            binding.buttonAddCredential?.visibility = View.INVISIBLE
+            binding.empty?.showConectionErrorState {
                 getOtherProducts()
             }
             SIMOApplication.showFuelError(activity, fuelError)
@@ -136,7 +138,6 @@ class MyOtherDocumentsFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListe
          * this fragment using the provided parameters.
          * @return A new instance of fragment SearchFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
                 MyOtherDocumentsFragment().apply {

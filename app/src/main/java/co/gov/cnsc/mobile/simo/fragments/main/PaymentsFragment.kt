@@ -2,7 +2,6 @@ package co.gov.cnsc.mobile.simo.fragments.main
 
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.SIMOFragment
 import co.gov.cnsc.mobile.simo.adapters.PaymentsAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.FragmentPaymentsBinding
 import co.gov.cnsc.mobile.simo.models.Payment
 import co.gov.cnsc.mobile.simo.models.SIMO
 import co.gov.cnsc.mobile.simo.network.RestAPI
@@ -19,7 +19,6 @@ import co.gov.cnsc.mobile.simo.views.FooterLisView
 import com.github.kittinunf.fuel.core.Request
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_payments.*
-import kotlinx.android.synthetic.main.view_empty_state.view.*
 
 
 /**
@@ -28,6 +27,8 @@ import kotlinx.android.synthetic.main.view_empty_state.view.*
  */
 class PaymentsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
 
+    private var _binding: FragmentPaymentsBinding? =null
+    private val binding get() = _binding!!
     /**
      * Request que se realiza al servidor para traer el listado de pagos
      */
@@ -46,7 +47,8 @@ class PaymentsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_payments, container, false)
+        _binding= FragmentPaymentsBinding.inflate(inflater,container,false)
+        return binding.root
 
     }
 
@@ -63,9 +65,8 @@ class PaymentsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
     private fun configureUI() {
         adapter = PaymentsAdapter(activity, ArrayList())
         swipeRefresh?.setOnRefreshListener(this)
-        listViewPayments.emptyView = empty
-        //empty.visibility = View.INVISIBLE
-        empty?.hide()
+        listViewPayments.emptyView = binding.empty
+        binding.empty?.hide()
     }
 
     /**
@@ -84,14 +85,14 @@ class PaymentsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
         val idUser = SIMO.instance.session?.idUser
         request = RestAPI.getPayments(idUser, { convocatories ->
             swipeRefresh?.isRefreshing = false
-            empty?.showEmptyState()
+            binding.empty?.showEmptyState()
             adapter?.dataSource = convocatories as ArrayList<Payment>
             listViewPayments?.adapter = adapter
             adapter?.notifyDataSetChanged()
             //Log.i("DEV","-------------  "+adapter?.getItem(0))
         }, { fuelError ->
             swipeRefresh?.isRefreshing = false
-            empty?.showConectionErrorState(fuelError) {
+            binding.empty?.showConectionErrorState(fuelError) {
                 getPayments()
             }
             //SIMOApplication.showFuelError(activity,fuelError)

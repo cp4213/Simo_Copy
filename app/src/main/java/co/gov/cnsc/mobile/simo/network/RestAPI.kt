@@ -83,6 +83,51 @@ class RestAPI {
         }
 
         /**
+         * LLama al servicio de obtener las audiencias
+         * @param success evento en el caso de que el llamado sea exitoso
+         * @param error evento en el caso de que el llamado responsa con un mensaje de error
+         */
+        fun getAudiences(success: (List<Audience>) -> Unit, error: (FuelError) -> Unit): Request {
+            val url = "${HOST}audiencias?page=0&size=10&sort=id"
+            return Fuel.get(url).responseObject(Audience.ListDeserializer()) { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+
+        fun getVacancyAudiences(vacancy: String?, success: (List<AudienceVacancy>) -> Unit, error: (FuelError) -> Unit): Request {
+            val url = "${HOST}audiencias/$vacancy/$vacancy/vacantes?readonly=true&page=0&size=10000"
+            return Fuel.get(url).responseObject(AudienceVacancy.ListDeserializer()) { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+
+        fun getVacancyDependencies(vacancy: String?, success: (List<IdName>) -> Unit, error: (FuelError) -> Unit): Request {
+            val url = "${HOST}audiencias/$vacancy/$vacancy/vacantes/dependencias"
+            return Fuel.get(url).responseObject(IdName.ListDeserializer()) { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+        fun getVacancyCities(vacancy: String?, success: (List<IdName>) -> Unit, error: (FuelError) -> Unit): Request {
+            val url = "${HOST}audiencias/$vacancy/$vacancy/vacantes/municipios?nombre=*"
+            return Fuel.get(url).responseObject(IdName.ListDeserializer()) { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+        fun getVacancySearch(vacancyId: String?,depId: String?, cityId: String?,vacNum: String?, success: (List<AudienceVacancy>) -> Unit, error: (FuelError) -> Unit): Request {
+            val url = "${HOST}audiencias/$vacancyId/$vacancyId/vacantes?dependencia=$depId&municipio=$cityId&vacante=$vacNum&readonly=true&page=0&size=10000"
+            return Fuel.get(url).responseObject(AudienceVacancy.ListDeserializer()) { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+        fun getVacancySearch(vacancyId: String?,depId: String?, cityId: String?, success: (List<AudienceVacancy>) -> Unit, error: (FuelError) -> Unit): Request {
+            val url = "${HOST}audiencias/$vacancyId/$vacancyId/vacantes?dependencia=$depId&municipio=$cityId&readonly=true&page=0&size=10000"
+            return Fuel.get(url).responseObject(AudienceVacancy.ListDeserializer()) { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+
+
+        /**
          * Facilita el cambio de contraseña para ingreso a SIMO
          * @param username nombre de usuario
          * @param oldPassword contraseña anterior
@@ -212,8 +257,8 @@ class RestAPI {
          * @param success evento en el caso de que el llamado sea exitoso
          * @param error evento en el caso de que el llamado responsa con un mensaje de error
          */
-        fun forgotPassword(username: String?, success: (FuelJson) -> Unit, error: (FuelError) -> Unit) {
-            val url = "${HOST}usuarios/US/$username/MOVIL/olvidarcontrasena"
+        fun forgotPassword(type:String, username: String?, success: (FuelJson) -> Unit, error: (FuelError) -> Unit) {
+            val url = "${HOST}usuarios/$type/$username/MOVIL/olvidarcontrasena"
             Fuel.post(url).responseJson { request, response, result ->
                 result.fold(success, error)
             }
@@ -332,6 +377,7 @@ class RestAPI {
                        idCountryBirth: String?,
                        gender: String?,
                        address: String?,
+                       standarAdress:String?,
                        postalCodeRes: String?,
                        idCountryRes: String?,
                        email: String?,
@@ -385,6 +431,7 @@ class RestAPI {
             jsonMain.add("paisNacimiento", jsonCountryBirth)
             jsonMain.addProperty("genero", gender)
             jsonMain.addProperty("direccion", address)
+            jsonMain.addProperty("direccionEstandar", standarAdress)
             //var jsonCityRes: JsonObject? = null
             //var jsonCountryRes: JsonObject? = null
             /*if (idCityRes != null && idDepartmentRes != null) {
@@ -488,9 +535,9 @@ class RestAPI {
             jsonMain.add("nivelEducacionFormal", jsonLevelEducational)
 
             var jsonCountry: JsonObject? = null
-              if (idCountry != null) {
-                    jsonCountry = JsonObject()
-                    jsonCountry.addProperty("id", idCountry)
+            if (idCountry != null) {
+                jsonCountry = JsonObject()
+                jsonCountry.addProperty("id", idCountry)
             }
             jsonMain.add("pais", jsonCountry)
             jsonMain.addProperty("entidadEducativaExt", institutionExt)
@@ -1077,23 +1124,23 @@ class RestAPI {
             //val url = "${HOST}empleos/ofertaPublica/?search_palabraClave=&amp;search_nivel=&amp;search_convocatoria=127808834&amp;search_departamento=&amp;search_municipio=&amp;search_salario=&amp;search_entidad=&amp;search_numeroOPEC=&amp;search_limiteInferior=4000000&amp;search_limiteSuperior=7000000&amp;page=0&amp;size=10"
             val url = "${HOST}empleos/ofertaPublica"
             val params = listOf(
-                    "search_palabraClave" to filter?.keyWord,
-                    "search_nivel" to filter?.level?.id,
-                    "search_convocatoria" to filter?.convocatory?.id,
-                    "search_departamento" to filter?.department?.id,
-                    "search_municipio" to filter?.city?.id,
-                    "search_salario" to filter?.salarialRange?.id,
-                    "search_entidad" to filter?.entity?.id,
-                    "search_numeroOPEC" to filter?.numberOPEC,
-                    "search_limiteInferior" to filter?.lowerLimitSR,
-                    //"search_limiteInferior" to 4500001,
-                    "search_limiteSuperior" to filter?.upperLimitSR,
-                    //"search_limiteSuperior" to 5000000,
-                    "page" to page,
-                    "size" to RESULTS_PER_PAGE
+                "search_palabraClave" to filter?.keyWord,
+                "search_nivel" to filter?.level?.id,
+                "search_convocatoria" to filter?.convocatory?.id,
+                "search_departamento" to filter?.department?.id,
+                "search_municipio" to filter?.city?.id,
+                "search_salario" to filter?.salarialRange?.id,
+                "search_entidad" to filter?.entity?.id,
+                "search_numeroOPEC" to filter?.numberOPEC,
+                "search_limiteInferior" to filter?.lowerLimitSR,
+                // "search_limiteInferior" to 4500001,
+                "search_limiteSuperior" to filter?.upperLimitSR,
+                // "search_limiteSuperior" to 5000000,
+                "page" to page,
+                "size" to RESULTS_PER_PAGE
             )
             Fuel.get(url, params).responseObject(WorkOffer.ListDeserializer()) { request, response, result ->
-                val contentRanges= response.headers["Content-Range"] as List<String>
+                val contentRanges = response.headers["Content-Range"] as List<String>
                 val contentRange = contentRanges[0]
                 val splitRange = contentRange?.split("/")
                 val totalRegister = splitRange?.get(1)?.toInt()
@@ -1115,12 +1162,6 @@ class RestAPI {
             }
         }
 
-        fun getJob_json (id: String, success: (String) -> Unit, error: (FuelError) -> Unit) {
-            val url = "${HOST}empleos/${id}"
-            Fuel.get(url).responseString { request, response, result ->
-                result.fold(success, error)
-            }
-        }
 
 
         /**
@@ -1499,6 +1540,19 @@ class RestAPI {
         }
 
         /**
+         * Muestra los diferentes estados de inscripcion que tiene un empleo, orientando el comportamiento de los botones a mostrar
+         * @param idEmpleo id del Empleo
+         * @param success evento en el caso de que el llamado sea exitoso
+         * @param error evento en el caso de que el llamado responsa con un mensaje de error
+         */
+        fun getPreAvalible(idEmpleo: String?, success: (FuelJson) -> Unit, error: (FuelError) -> Unit) {
+            val url = "${HOST}/empleos/ofertaPublica/?search_palabraClave=&search_nivel=&search_convocatoria=&search_departamento=&search_municipio=&search_salario=&search_entidad=&search_numeroOPEC=$idEmpleo&page=0&size=10"
+            Fuel.get(url).responseJson() { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+
+        /**
          * Servicio sincronizados para filtros de información
          *
          */
@@ -1570,14 +1624,6 @@ class RestAPI {
                 result.fold(success, error)
             }
         }
-
-        /*fun confirmPaymentTransfer(idEmpleoActual: String?, idEmpleoNuevo: String?, idDeInscripcion: String?, success: (Json) -> Unit, error: (FuelError) -> Unit) {
-            val url = "${HOST}inscripcion/cambiarempleo/"
-            val params = listOf("id_empleo_old" to idEmpleoActual, "id_empleo_new" to idEmpleoNuevo, "id_inscripcion" to idDeInscripcion)
-            Fuel.post(url, params).responseJson { request, response, result ->
-                result.fold(success, error)
-            }
-        }*/
 
         /**
          * Facilita el cambio de contraseña para ingreso a SIMO

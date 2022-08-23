@@ -21,11 +21,23 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <co.gov.cnsc.mobile.simo.views.RowLabelValue
-                    android:id="@+id/rowAudienceName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     app:textLabel="@string/audiences_name" />
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:id="@+id/rowAudienceName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000" />
+
+                <co.gov.cnsc.mobile.simo.views.RowLabelValue
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E0F7FA"
+                    android:textColor="#000000"
+                    app:textLabel="@string/selection_proces_name_row" />
 
                 <co.gov.cnsc.mobile.simo.views.RowLabelValue
                     android:id="@+id/rowS_P_Name"
@@ -33,8 +45,7 @@
                     android:layout_height="wrap_content"
                     android:background="#E0F7FA"
                     android:textColor="#000000"
-                    app:textLabel="@string/selection_proces_name_row" />
-
+                    />
                 <co.gov.cnsc.mobile.simo.views.RowLabelValue
                     android:id="@+id/rowDateIni"
                     android:layout_width="match_parent"

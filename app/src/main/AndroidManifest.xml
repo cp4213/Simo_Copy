@@ -16,9 +16,6 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".activities.EditAdressActivity"
-            android:exported="true" />
-        <activity
             android:name=".activities.SplashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeTranslucentStatus"
@@ -29,6 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.EditAdressActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".activities.ResumePaymentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
@@ -71,6 +71,9 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".activities.ChangePasswordActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name=".activities.VacancyJobDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".activities.DetailWorkOfferActivity"
@@ -195,6 +198,5 @@
         android:maxSdkVersion="22" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

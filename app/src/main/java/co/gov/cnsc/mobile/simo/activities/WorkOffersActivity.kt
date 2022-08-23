@@ -13,6 +13,7 @@ import co.gov.cnsc.mobile.simo.SIMOActivity
 import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.adapters.WorkOfferAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
+import co.gov.cnsc.mobile.simo.databinding.ActivityWorkOffersBinding
 import co.gov.cnsc.mobile.simo.models.Filter
 import co.gov.cnsc.mobile.simo.models.SIMO
 import co.gov.cnsc.mobile.simo.models.WorkOffer
@@ -32,10 +33,12 @@ class WorkOffersActivity : SIMOActivity(), SwipeRefreshLayout.OnRefreshListener 
     var adapter: WorkOfferAdapter? = null
     var footerLisView: FooterLisView? = null
     var page: Int = 0
+    private lateinit var binding: ActivityWorkOffersBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_work_offers)
+        binding = ActivityWorkOffersBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         showToolbarBack()
         setTextTitleToolbar(R.string.list_opec)
         filter = intent?.extras?.getParcelable("filter")
@@ -77,9 +80,9 @@ class WorkOffersActivity : SIMOActivity(), SwipeRefreshLayout.OnRefreshListener 
             }
         }
 
-        listView.emptyView = empty
-        //.emptyView =empty
-        empty.visibility = View.INVISIBLE
+        listView.emptyView = binding.empty
+         //binding.emptyView =empty
+        binding.empty.visibility = View.INVISIBLE
         footerLisView = FooterLisView(this)
         listView.addFooterView(footerLisView)
         val endScrollListener = SIMOApplication.endScrollListener {
@@ -101,7 +104,7 @@ class WorkOffersActivity : SIMOActivity(), SwipeRefreshLayout.OnRefreshListener 
         }
         RestAPI.getWorkOffers(page, filter, { workOffers ->
             swipeRefresh?.isRefreshing = false
-            empty?.showEmptyState()
+            binding.empty?.showEmptyState()
             footerLisView?.hideLoading()
             if (page == 0) {
                 adapter?.clear()
@@ -112,7 +115,7 @@ class WorkOffersActivity : SIMOActivity(), SwipeRefreshLayout.OnRefreshListener 
             }
         }, { error ->
             footerLisView?.hideLoading()
-            empty?.showConectionErrorState(error) {
+            binding.empty?.showConectionErrorState(error) {
                 getWorkOffers()
             }
             swipeRefresh?.isRefreshing = false

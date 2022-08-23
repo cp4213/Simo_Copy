@@ -78,6 +78,13 @@ class SIMOResources {
             IdDescription("Z","Z")
         )
 
+        val options = listOf<IdDescription>(IdDescription("-1","Seleccione opción Aquí"),
+            IdDescription("US","Usuario"),
+            IdDescription("CO","Correo"),
+            IdDescription("CE","Cédula")
+        )
+
+
         /**
          * Guarda un listado de items de cualquier tipo
          * @param context Contexto de la aplicación

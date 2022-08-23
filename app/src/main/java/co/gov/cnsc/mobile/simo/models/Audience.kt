@@ -9,15 +9,18 @@ import com.google.gson.reflect.TypeToken
 import java.io.Reader
 
 data class Audience (
-    @SerializedName("id") val id: String?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("convocatory") val selectionProces: String?,
-    @SerializedName("dateIni") val dateIni: String?,
-    @SerializedName("dateEnd") val dateEnd: String?,
-    @SerializedName("empleo") val job: Job? = null
+    @SerializedName("idAudiencia") val id: String?,
+    @SerializedName("nombreAudiencia") val name: String?,
+    @SerializedName("nombreConvocatoria") val selectionProces: String?,
+    @SerializedName("fechaIngreso") val dateIni: String?,
+    @SerializedName("fechaSalida") val dateEnd: String?,
+    @SerializedName("idDocumento") val idDocumento: String?,
+    //@SerializedName("empleo") val job: Job? = null,
+    @SerializedName("aprobado") val aprove: String?
+
 
     //Nuevas cosas
-        ): Parcelable {
+): Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -25,7 +28,10 @@ data class Audience (
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readParcelable<Job>(Job::class.java.classLoader))
+        parcel.readString(),
+        // parcel.readParcelable<Job>(Job::class.java.classLoader),
+        parcel.readString()
+    )
 
     class ListDeserializer : ResponseDeserializable<List<Audience>> {
         override fun deserialize(reader: Reader): List<Audience> {
@@ -40,7 +46,9 @@ data class Audience (
         parcel.writeString(selectionProces)
         parcel.writeString(dateIni)
         parcel.writeString(dateEnd)
-        parcel.readParcelable<Job>(Job::class.java.classLoader)
+        parcel.writeString(idDocumento)
+        // parcel.readParcelable<Job>(Job::class.java.classLoader)
+        parcel.writeString(aprove)
     }
 
     override fun describeContents(): Int {

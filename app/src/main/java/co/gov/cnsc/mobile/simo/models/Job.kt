@@ -23,13 +23,15 @@ data class Job(
         @SerializedName("requisitosMinimos") val minimalRequirements: List<Requirement>?,
         @SerializedName("vacantes") val vacancies: List<Vacancy>?,
         @SerializedName("documento") val document: Document?,
-        @SerializedName("vigenciaSalarial") val salarialVigency: String?
+        @SerializedName("vigenciaSalarial") val salarialVigency: String?,
+        @SerializedName("area") val area: String?
+
 ) : Parcelable {
     val allFunctions: String?
         get() {
             val string = StringBuilder()
             functions?.forEach { function ->
-                string.append(function.description + "\n")
+                string.append("• " + function.description + "\n")
             }
             return string.toString()
         }
@@ -145,6 +147,7 @@ data class Job(
             source.createTypedArrayList(Requirement.CREATOR),
             source.createTypedArrayList(Vacancy.CREATOR),
             source.readParcelable<Document>(Document::class.java.classLoader),
+            source.readString(),
             source.readString()
     )
 
@@ -164,6 +167,7 @@ data class Job(
         writeTypedList(vacancies)
         writeParcelable(document, 0)
         writeString(salarialVigency)
+        writeString(area)
     }
 
     companion object {
