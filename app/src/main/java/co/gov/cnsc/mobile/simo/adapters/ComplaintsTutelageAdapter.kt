@@ -1,13 +1,20 @@
 package co.gov.cnsc.mobile.simo.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
+import android.text.Html
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.extensions.inflate
+import co.gov.cnsc.mobile.simo.models.Alert
 import co.gov.cnsc.mobile.simo.models.ComplaintTutelage
+import kotlinx.android.synthetic.main.item_view_alert.view.*
 import kotlinx.android.synthetic.main.item_view_complaint_tutelage.view.*
+import kotlinx.android.synthetic.main.item_view_complaint_tutelage.view.rowSubject
 
 /**
  * Esta clase contiene la funcionalidad para administrar un listado de quejas y reclamos en un recyclerview
@@ -18,8 +25,9 @@ class ComplaintsTutelageAdapter(private val context: Context?) : RecyclerView.Ad
     /**
      * Listener cuando un item de la lista es seleccionado
      */
-    var listenerItemSelected: ((ComplaintTutelage) -> Unit)? = null
+    //var listenerItemSelected: ((ComplaintTutelage) -> Unit)? = null
 
+    lateinit var onAnswer: (item: ComplaintTutelage) -> Unit?
     /**
      * Listado de quejas y/o reclamos
      */
@@ -46,6 +54,9 @@ class ComplaintsTutelageAdapter(private val context: Context?) : RecyclerView.Ad
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val headerHolder = holder as ViewHolder
         headerHolder.bind(dataSource[position])
+        headerHolder.itemView. rowAnswer.setOnClickListener {
+            onAnswer(dataSource[position])
+        }
     }
 
     /**
@@ -77,7 +88,6 @@ class ComplaintsTutelageAdapter(private val context: Context?) : RecyclerView.Ad
             rowSubject?.value = item.subject
             rowDetailComplaint?.value = item.detail
             rowStatus?.value = item.status?.status
-            //rowAttachment?.value = item.attachments?.toString()
         }
     }
 

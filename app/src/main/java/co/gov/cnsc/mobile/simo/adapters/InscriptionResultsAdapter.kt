@@ -123,11 +123,11 @@ class InscriptionResultsAdapter(private val context: Context?) : RecyclerView.Ad
     /**
      * Agrega el header de la sección, en este caso el listado de puntajes que continúan en concurso
      */
-    /*fun addItemsScoresList(items: List<Any>) {
+    fun addItemsScoresList(items: List<Any>) {
 
         dataSource.addAll(items)
         notifyDataSetChanged()
-    }*/
+    }
 
     /**
      * Limpia el listado de elementos

@@ -15,6 +15,8 @@ import android.webkit.MimeTypeMap
 import android.widget.AbsListView
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationCompat
@@ -443,60 +445,19 @@ class SIMOApplication : MultiDexApplication(), Application.ActivityLifecycleCall
                             Environment.DIRECTORY_PICTURES).absolutePath).compressToFile(fileToReduce)
         }
 
-        /**
-         * Abre una ventana con los archivos pdf disponibles en el dispositivo
-         * @param activity activity desde la cuál se abre la pantalla
-         * @param fragment fragment desde el cuál se abre la pantalla
-         * @param typeFiles tipo de archivo a filtrarse
-         * @param code request code para abrir la ventana de archivos
+        /** Nueva función que trae de los archivos del teléfono el PDF a cargar
+         * @mimeTypes = indica que traerá de las aplicaciones con filtro pdf
+         * @ACTION_PICK Indica que se tomará un archivo
+         * @resultLauncher es la función que se encarga de recibir lo proviniente del intent ;)
          */
-        private fun openChooserDocuments(activity: AppCompatActivity? = null,
-                                         fragment: androidx.fragment.app.Fragment? = null, typeFiles: String, code: Int) {
-            val intent = if (activity != null) {
-                Intent(activity, FilePickerActivity::class.java)
-            } else {
-                Intent(fragment?.context, FilePickerActivity::class.java)
-            }
 
-            intent.putExtra(FilePickerActivity.CONFIGS, Configurations.Builder()
-                    .setCheckPermission(true)
-                    .setShowImages(false)
-                    .setShowAudios(false)
-                    .setShowVideos(false)
-                    .setShowFiles(true)
-                    .setSuffixes("pdf")
-                    .setSingleClickSelection(true)
-                    .enableImageCapture(false)
-                    .setMaxSelection(1)
-                    .enableVideoCapture(false)
-                    .setSkipZeroSizeFiles(true)
-                    .build())
-            if (activity != null) {
-                activity.startActivityForResult(intent, code)
-            } else {
-                fragment?.startActivityForResult(intent, code)
-            }
-
-        }
-
-        /**
-         * Abre una ventana con los archivos pdf disponibles en el dispositivo
-         * @param fragment fragment desde el cuál se abre la pantalla
-         * @param typeFiles tipo de archivo a filtrarse
-         * @param code request code para abrir la ventana de archivos
-         */
-        fun openChooserDocuments(fragment: Fragment?, typeFiles: String, code: Int) {
-            openChooserDocuments(null, fragment, typeFiles, code)
-        }
-
-        /**
-         * Abre una ventana con los archivos pdf disponibles en el dispositivo
-         * @param activity activity desde la cuál se abre la pantalla
-         * @param typeFiles tipo de archivo a filtrarse
-         * @param code request code para abrir la ventana de archivos
-         */
-        fun openChooserDocuments(activity: AppCompatActivity?, typeFiles: String, code: Int) {
-            openChooserDocuments(activity, null, typeFiles, code)
+        fun FilePickerNew(resultLauncher:ActivityResultLauncher<Intent>){
+            val mimeTypes = arrayOf("application/pdf")
+            var intent = Intent(Intent.ACTION_PICK)
+                .putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+                .putExtra(Intent.EXTRA_ALLOW_MULTIPLE, 1)
+            intent = Intent.createChooser(intent, "Seleccionar un archivo")
+            resultLauncher.launch(intent)
         }
 
         /**
@@ -518,7 +479,7 @@ class SIMOApplication : MultiDexApplication(), Application.ActivityLifecycleCall
             val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
             val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val notificationBuilder = NotificationCompat.Builder(context, channelId)
-            notificationBuilder.priority = Notification.PRIORITY_MAX
+            notificationBuilder.priority =NotificationManager.IMPORTANCE_HIGH
             notificationBuilder.setProgress(100, 0, false)
             notificationBuilder.setContentTitle(context.getString(R.string.downloading_file))
             notificationBuilder.setSmallIcon(R.drawable.ic_stat_ic_notification)

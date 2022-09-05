@@ -69,10 +69,11 @@
     <string name="home_menu_title"><u>Inicio</u></string>
     <string name="convocatory_menu_title"><u>Procesos de Selección</u></string>
     <string name="my_employments_menu_title"><u>Mis Empleos</u></string>
-    <string name="my_Audiencias_menu_title"><u>Audiencias</u></string>
+
     <string name="alerts_menu_title"><u>Alertas</u></string>
     <string name="my_payments_menu_title"><u>Pagos Realizados</u></string>
 
+    <string name="my_Audiencias_menu_title">Audiencias</string>
     <string name="an_error_has_ocurred">Un error ha ocurrido</string>
     <string name="number_vacancy">Vacantes: %d</string>
     <string name="close_inscription">Cierre de Inscripciones: %s</string>
@@ -663,6 +664,15 @@
     <string name="area">Área:</string>
     <string name="vacancy_detail">Detalle de la Vacante</string>
     <string name="vacancy_list">Listado de vacantes seleccionadas por el candidato</string>
+    <string name="delete_alert">Archivar Alerta</string>
+    <string name="archive_alert">Su alerta desaparecerá de esta vista pero se mantendrá en los históricos</string>
+    <string name="alert_archived">La alerta fue archivada correctamente</string>
+    <string name="answer">Respuestas</string>
+    <string name="answer_resume">Resumen de su respuesta:</string>
+    <string name="anexos">Listado de anexos de respuestas:</string>
+    <string name="document_consult">Consultar documento</string>
+    <string name="answer_name">Nombre del anexo respuesta: </string>
+    <string name="no_answer">Aún no se registran respuestas</string>
 
     <array name="material_calendar_months_array">
         <item>Enero</item>

@@ -78,22 +78,17 @@
                     android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
                     app:showAsAction="never"
                     android:title="@string/change_pasword" />
-
+                <item
+                    android:id="@+id/menu_audiences"
+                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
+                    app:showAsAction="never"
+                    android:title="@string/my_Audiencias_menu_title" />
                 <item
                     android:id="@+id/menu_close_session"
                     android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
                     app:showAsAction="never"
                     android:title="@string/close_session" />
 
-            </group>
-
-            <group android:id="@+id/grp2_5"
-                android:checkableBehavior="single" >
-                <item
-                    android:id="@+id/menu_audiences"
-                    android:icon="@drawable/ic_baseline_keyboard_arrow_right_24px"
-                    app:showAsAction="never"
-                    android:title="@string/my_Audiencias_menu_title" />
             </group>
 
 

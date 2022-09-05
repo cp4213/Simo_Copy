@@ -3,7 +3,7 @@ package co.gov.cnsc.mobile.simo.activities
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -12,7 +12,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+import androidx.activity.result.contract.ActivityResultContracts
 import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.SIMOActivity
 import co.gov.cnsc.mobile.simo.SIMOApplication
@@ -33,9 +33,10 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
-import kotlinx.android.synthetic.main.activity_advance_search.*
 import kotlinx.android.synthetic.main.activity_edit_formation.*
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.util.*
 
 /**
@@ -684,6 +685,28 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
     }
 
 
+
+    private var filedoc: Uri?=null
+
+    /**
+     * Maneja la respuesta al seleccionar un archivo pdf del dispositivo
+     */
+    private var resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),{ result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null ) {
+                filedoc =result.data!!.data
+                val parcelFileDescriptor =contentResolver.openFileDescriptor(filedoc!!, "r", null)
+                val inputStream = FileInputStream(parcelFileDescriptor!!.fileDescriptor)
+                fileFormation = File(cacheDir, contentResolver.getFileName(filedoc!!))
+                val outputStream = FileOutputStream(fileFormation)
+                inputStream.copyTo(outputStream)
+                if (SIMOApplication.checkMaxFileSize(this, fileFormation)) {
+
+                    uploadDocumentFormation()
+                }
+            }
+        })
+
     /**
      * Pide confirmación en caso de que el usuario esté usando datos,
      * solicita permiso de acceso a los archivos,
@@ -691,7 +714,7 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
      */
     fun onUploadFile(button: View) {
         SIMOApplication.checkIfConnectedByData(this) {
-            Dexter.withActivity(this)
+            Dexter.withContext(this)
                     .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .withListener(object : PermissionListener, MultiplePermissionsListener {
                         override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) {
@@ -702,7 +725,7 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             Log.d(SIMOApplication.TAG, "onPermissionsChecked")
                             if (report?.areAllPermissionsGranted() == true) {
-                                SIMOApplication.openChooserDocuments(this@EditFormationActivity, "application/pdf", REQUEST_CODE_ATTACHMENT)
+                                SIMOApplication.FilePickerNew(resultLauncher)
                             } else {
                                 Log.d(SIMOApplication.TAG, "onPermissionDenied")
                             }
@@ -710,7 +733,7 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
 
                         override fun onPermissionGranted(response: PermissionGrantedResponse?) {
                             Log.d(SIMOApplication.TAG, "onPermissionGranted")
-                            SIMOApplication.openChooserDocuments(this@EditFormationActivity, "application/pdf", REQUEST_CODE_ATTACHMENT)
+                            SIMOApplication.FilePickerNew(resultLauncher)
                         }
 
                         override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
@@ -729,30 +752,8 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        onActivityResultDocuments(requestCode, resultCode, data)
+        //onActivityResultDocuments(requestCode, resultCode, data)
         onActivityResultSIMOResources(requestCode, resultCode, data)
-    }
-
-
-    /**
-     * Maneja la respuesta al seleccionar un archivo pdf del dispositivo
-     */
-    private fun onActivityResultDocuments(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_CODE_ATTACHMENT) {
-            if (data != null && resultCode == Activity.RESULT_OK) {
-                val files = data.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
-                if (files!!.size > 0) {
-                    val realFilePath = files[0].uri.path
-                    if (realFilePath != null) {
-                        val pickedFile = File(realFilePath)
-                        if (SIMOApplication.checkMaxFileSize(this, pickedFile)) {
-                            fileFormation = pickedFile
-                            uploadDocumentFormation()
-                        }
-                    }
-                }
-            }
-        }
     }
 
 
@@ -789,22 +790,22 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
      */
     private fun uploadDocumentFormation() {
         editTextAttachment?.error = null
-        fileFormation?.let {
-            ProgressBarDialog.startProgressDialog(this)
-            RestAPI.uploadFilePDF(fileFormation!!, { file ->
-                ProgressBarDialog.stopProgressDialog()
-                fileFormationUploaded = file
-                editTextAttachment?.setText(fileFormation?.nameWithoutExtension)
-                fileFormation = null
-            }, { fuelError ->
-                ProgressBarDialog.stopProgressDialog()
-                if (fuelError.exception.message != null) {
-                    Toast.makeText(this, fuelError.exception.message, Toast.LENGTH_LONG).show()
-                } else {
-                    SIMOApplication.showFuelError(this, fuelError)
-                }
-            })
-        }
+        //fileFormationUploaded = fileFormation as co.gov.cnsc.mobile.simo.models.File
+        ProgressBarDialog.startProgressDialog(this)
+        RestAPI.uploadFilePDF(fileFormation!!, { file ->
+            ProgressBarDialog.stopProgressDialog()
+            fileFormationUploaded = file
+            editTextAttachment?.setText(contentResolver.getFileName(filedoc!!))
+            fileFormation = null
+        }, { fuelError ->
+            ProgressBarDialog.stopProgressDialog()
+            if (fuelError.exception.message != null) {
+                Toast.makeText(this, fuelError.exception.message, Toast.LENGTH_LONG).show()
+            } else {
+                SIMOApplication.showFuelError(this, fuelError)
+            }
+        })
+
     }
 
 
@@ -925,7 +926,12 @@ class EditFormationActivity : SIMOActivity(), AdapterView.OnItemSelectedListener
                     textInputLevelReached?.error = getString(R.string.reached_level_requirements)
                     validate = false
                 }
+                if(!editLevelReached?.text.toString().isNullOrBlank()){
                 if(Integer.parseInt(editLevelReached?.text.toString())>12||Integer.parseInt(editLevelReached?.text.toString())==0){
+                    textInputLevelReached?.error = getString(R.string.max_reached_level)
+                    validate = false
+                }
+                }else{
                     textInputLevelReached?.error = getString(R.string.max_reached_level)
                     validate = false
                 }

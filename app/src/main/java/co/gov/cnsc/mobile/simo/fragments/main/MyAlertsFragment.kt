@@ -2,12 +2,15 @@ package co.gov.cnsc.mobile.simo.fragments.main
 
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import co.gov.cnsc.mobile.simo.R
 
 import co.gov.cnsc.mobile.simo.SIMOApplication
 import co.gov.cnsc.mobile.simo.SIMOFragment
@@ -17,6 +20,7 @@ import co.gov.cnsc.mobile.simo.adapters.AlertsAdapter
 import co.gov.cnsc.mobile.simo.analitycs.AnalyticsReporter
 import co.gov.cnsc.mobile.simo.databinding.FragmentMyAlertsBinding
 import co.gov.cnsc.mobile.simo.models.Alert
+import co.gov.cnsc.mobile.simo.models.Audience
 import co.gov.cnsc.mobile.simo.network.RestAPI
 import com.github.kittinunf.fuel.core.Request
 import kotlinx.android.synthetic.*
@@ -68,10 +72,37 @@ class MyAlertsFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener {
         buttonCalendar.setOnClickListener {
             goToCalendar()
         }
+        adapter?.onArchive={ item: Alert, position: Int -> //Listener de archivar una alerta
+            Archive(item)
+        }
         listViewAlerts.setOnItemClickListener { parent, view, position, id ->
             val item = adapter?.getItem(position)
             goToDetailAlert(position, item)
         }
+    }
+
+    private fun Archive(alert: Alert) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setMessage(R.string.archive_alert)
+            .setCancelable(false)
+            .setPositiveButton(R.string.accept_button_dialog) { _, _ ->
+                swipeRefresh?.isRefreshing = true
+                RestAPI.deleteAlert(alert.id,{ response ->
+                    getAlerts()
+                    Toast.makeText(activity,R.string.alert_archived,Toast.LENGTH_SHORT)
+                }, { fuelError ->
+                    swipeRefresh?.isRefreshing = false
+                    binding.empty?.showConectionErrorState(fuelError) {
+                    }
+                    SIMOApplication.showFuelError(activity,fuelError)
+                })
+            }
+            .setNegativeButton(R.string.cancel) { dialog, id ->
+                // Dismiss the dialog
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun goToCalendar() {

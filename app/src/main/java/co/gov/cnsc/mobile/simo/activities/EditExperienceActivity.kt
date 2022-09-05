@@ -3,12 +3,14 @@ package co.gov.cnsc.mobile.simo.activities
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.SIMOActivity
 import co.gov.cnsc.mobile.simo.SIMOApplication
@@ -30,7 +32,14 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_edit_experience.*
+import kotlinx.android.synthetic.main.activity_edit_experience.buttonUpload
+import kotlinx.android.synthetic.main.activity_edit_experience.editTextAttachment
+import kotlinx.android.synthetic.main.activity_edit_experience.linearForm
+import kotlinx.android.synthetic.main.activity_edit_experience.textInputAttachment
+import kotlinx.android.synthetic.main.activity_edit_formation.*
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.util.*
 
 
@@ -185,8 +194,7 @@ class EditExperienceActivity : SIMOActivity() {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             Log.d(SIMOApplication.TAG, "onPermissionsChecked")
                             if (report?.areAllPermissionsGranted() == true) {
-                                SIMOApplication.openChooserDocuments(this@EditExperienceActivity, "application/pdf", REQUEST_CODE_ATTACHMENT)
-
+                                SIMOApplication.FilePickerNew(resultLauncher)
                             } else {
                                 Log.d(SIMOApplication.TAG, "onPermissionDenied")
                             }
@@ -194,7 +202,7 @@ class EditExperienceActivity : SIMOActivity() {
 
                         override fun onPermissionGranted(response: PermissionGrantedResponse?) {
                             Log.d(SIMOApplication.TAG, "onPermissionGranted")
-                            SIMOApplication.openChooserDocuments(this@EditExperienceActivity, "application/pdf", REQUEST_CODE_ATTACHMENT)
+                            SIMOApplication.FilePickerNew(resultLauncher)
                         }
 
                         override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
@@ -211,55 +219,46 @@ class EditExperienceActivity : SIMOActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        onActivityResultDocuments(requestCode, resultCode, data)
-    }
-
+    private var filedoc: Uri?=null
     /**
      * Maneja la respuesta al seleccionar un archivo pdf del dispositivo
      */
-    private fun onActivityResultDocuments(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_CODE_ATTACHMENT) {
-            if (data != null && resultCode == Activity.RESULT_OK) {
-                val files = data.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
-                if (files != null) {
-                    if (files!!.size > 0) {
-                        val realFilePath = files[0].path
-                        if (realFilePath != null) {
-                            val pickedFile = File(realFilePath)
-                            if (SIMOApplication.checkMaxFileSize(this, pickedFile)) {
-                                fileExperience = pickedFile
-                                uploadDocumentExperience()
-                            }
-                        }
-                    }
+    private var resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),{ result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null ) {
+                filedoc =result.data!!.data
+                val parcelFileDescriptor =contentResolver.openFileDescriptor(filedoc!!, "r", null)
+                val inputStream = FileInputStream(parcelFileDescriptor!!.fileDescriptor)
+                fileExperience = File(cacheDir, contentResolver.getFileName(filedoc!!))
+                val outputStream = FileOutputStream(fileExperience)
+                inputStream.copyTo(outputStream)
+                if (SIMOApplication.checkMaxFileSize(this, fileExperience)) {
+
+                    uploadDocumentExperience()
                 }
             }
-        }
-    }
+        })
+
 
     /**
      * Sube un archivo seleccionado al servidor
      */
     private fun uploadDocumentExperience() {
         editTextAttachment?.error = null
-        fileExperience?.let {
-            ProgressBarDialog.startProgressDialog(this)
-            RestAPI.uploadFilePDF(fileExperience!!, { file ->
-                ProgressBarDialog.stopProgressDialog()
-                fileExperienceUploaded = file
-                editTextAttachment?.setText(fileExperience?.nameWithoutExtension)
-                fileExperience = null
-            }, { fuelError ->
-                ProgressBarDialog.stopProgressDialog()
-                if (fuelError.exception.message != null) {
-                    Toast.makeText(this, fuelError.exception.message, Toast.LENGTH_LONG).show()
-                } else {
-                    SIMOApplication.showFuelError(this, fuelError)
-                }
-            })
-        }
+        ProgressBarDialog.startProgressDialog(this)
+        RestAPI.uploadFilePDF(fileExperience!!, { file ->
+            ProgressBarDialog.stopProgressDialog()
+            fileExperienceUploaded = file
+            editTextAttachment?.setText(contentResolver.getFileName(filedoc!!))
+            fileExperience = null
+        }, { fuelError ->
+            ProgressBarDialog.stopProgressDialog()
+            if (fuelError.exception.message != null) {
+                Toast.makeText(this, fuelError.exception.message, Toast.LENGTH_LONG).show()
+            } else {
+                SIMOApplication.showFuelError(this, fuelError)
+            }
+        })
     }
 
     /**

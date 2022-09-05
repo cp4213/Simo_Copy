@@ -3,11 +3,8 @@ package co.gov.cnsc.mobile.simo.network
 import co.gov.cnsc.mobile.simo.BuildConfig
 import co.gov.cnsc.mobile.simo.models.*
 import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.core.*
 import com.github.kittinunf.fuel.json.responseJson
-import com.github.kittinunf.fuel.core.FuelError
-import com.github.kittinunf.fuel.core.FuelManager
-import com.github.kittinunf.fuel.core.Method
-import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.json.FuelJson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -62,6 +59,18 @@ class RestAPI {
         fun getAlerts(success: (List<Alert>) -> Unit, error: (FuelError) -> Unit): Request {
             val url = "${HOST}notificacionesciudadano/notificaciones/?page=0&size=100&sort=notificacion.fechaAgenda,DESC&sortDojo=-notificacion.fechaAgenda"
             return Fuel.get(url).responseObject(Alert.ListDeserializer()) { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+        /**
+         * Archiva una alerta
+         * @param idAlert id del item a eliminar
+         * @param success evento en el caso de que el llamado sea exitoso
+         * @param error evento en el caso de que el llamado responsa con un mensaje de error
+         */
+        fun deleteAlert(idAlert: String?, success: (String) -> Unit, error: (FuelError) -> Unit): Request {
+            val url = "${HOST}notificacionesciudadano/notificaciones/${idAlert}"
+            return Fuel.delete(url).responseString { request, response, result ->
                 result.fold(success, error)
             }
         }
@@ -769,11 +778,10 @@ class RestAPI {
             val url = "${HOST}documents/upload"
             val formData = listOf("restriction" to restriction)
             return Fuel.upload(url, Method.POST, formData)
-                /*.source { request, url ->
-                file
-            }.name { "file" }.responseObject(co.gov.cnsc.mobile.simo.models.File.Deserializer()) { request, response, result ->
-                result.fold(success, error)
-            }*/
+                .add { FileDataPart(file, name = "file") }
+                .responseObject(co.gov.cnsc.mobile.simo.models.File.Deserializer()) { request, response, result ->
+                    result.fold(success, error)
+                } //Advertencia! no se si funciona :/
         }
 
         /**
@@ -1494,6 +1502,19 @@ class RestAPI {
          */
         fun getComplaintsInscription(idInscription: String?, idTest: String?, success: (List<ComplaintTutelage>) -> Unit, error: (FuelError) -> Unit) {
             val url = "${HOST}reclamaciones?idPrueba=$idTest&idInscripcion=$idInscription&page=0&size=10"
+            Fuel.get(url).responseObject(ComplaintTutelage.ListDeserializer()) { request, response, result ->
+                result.fold(success, error)
+            }
+        }
+
+        /**
+         * Obtiene el listado de resupestas (VER RECLAMACIONES)
+         * @param idInscription id de la inscripción
+         * @param success evento en el caso de que el llamado sea exitoso
+         * @param error evento en el caso de que el llamado responsa con un mensaje de error
+         */
+        fun getComplaintsResponses(idInscription: String?, success: (List<ComplaintTutelage>) -> Unit, error: (FuelError) -> Unit) {
+            val url = "${HOST}reclamaciones/${idInscription}/respuesta"
             Fuel.get(url).responseObject(ComplaintTutelage.ListDeserializer()) { request, response, result ->
                 result.fold(success, error)
             }

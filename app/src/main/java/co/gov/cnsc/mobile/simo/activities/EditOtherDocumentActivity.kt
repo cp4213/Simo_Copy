@@ -3,12 +3,14 @@ package co.gov.cnsc.mobile.simo.activities
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import co.gov.cnsc.mobile.simo.R
 import co.gov.cnsc.mobile.simo.SIMOActivity
 import co.gov.cnsc.mobile.simo.SIMOApplication
@@ -29,8 +31,15 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import kotlinx.android.synthetic.main.activity_edit_formation.*
 import kotlinx.android.synthetic.main.activity_edit_other_document.*
+import kotlinx.android.synthetic.main.activity_edit_other_document.buttonUpload
+import kotlinx.android.synthetic.main.activity_edit_other_document.editTextAttachment
+import kotlinx.android.synthetic.main.activity_edit_other_document.linearForm
+import kotlinx.android.synthetic.main.activity_edit_other_document.textInputAttachment
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 /**
  * Esta clase contiene la funcionalidad para la pantalla de editar o agregar 'Otro Documento'
@@ -118,6 +127,26 @@ class EditOtherDocumentActivity : SIMOActivity() {
         window?.decorView?.clearFocus()
     }
 
+    private var filedoc: Uri?=null
+    /**
+     * Maneja la respuesta al seleccionar un archivo pdf del dispositivo
+     */
+    private var resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),{ result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null ) {
+                filedoc =result.data!!.data
+                val parcelFileDescriptor =contentResolver.openFileDescriptor(filedoc!!, "r", null)
+                val inputStream = FileInputStream(parcelFileDescriptor!!.fileDescriptor)
+                fileOtherDocument = File(cacheDir, contentResolver.getFileName(filedoc!!))
+                val outputStream = FileOutputStream(fileOtherDocument)
+                inputStream.copyTo(outputStream)
+                if (SIMOApplication.checkMaxFileSize(this, fileOtherDocument)) {
+
+                    uploadDocumentOther()
+                }
+            }
+        })
+
     /**
      * Pide confirmación en caso de que el usuario esté usando datos,
      * solicita permiso de acceso a los archivos,
@@ -125,7 +154,7 @@ class EditOtherDocumentActivity : SIMOActivity() {
      */
     fun onUploadFile(button: View) {
         SIMOApplication.checkIfConnectedByData(this) {
-            Dexter.withActivity(this)
+            Dexter.withContext(this)
                     .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .withListener(object : PermissionListener, MultiplePermissionsListener {
                         override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) {
@@ -136,7 +165,7 @@ class EditOtherDocumentActivity : SIMOActivity() {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             Log.d(SIMOApplication.TAG, "onPermissionsChecked")
                             if (report?.areAllPermissionsGranted() == true) {
-                                SIMOApplication.openChooserDocuments(this@EditOtherDocumentActivity, "application/pdf", REQUEST_CODE_ATTACHMENT)
+                                SIMOApplication.FilePickerNew(resultLauncher)
                             } else {
                                 Log.d(SIMOApplication.TAG, "onPermissionDenied")
                             }
@@ -144,7 +173,7 @@ class EditOtherDocumentActivity : SIMOActivity() {
 
                         override fun onPermissionGranted(response: PermissionGrantedResponse?) {
                             Log.d(SIMOApplication.TAG, "onPermissionGranted")
-                            SIMOApplication.openChooserDocuments(this@EditOtherDocumentActivity, "application/pdf", REQUEST_CODE_ATTACHMENT)
+                            SIMOApplication.FilePickerNew(resultLauncher)
                         }
 
                         override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
@@ -160,49 +189,26 @@ class EditOtherDocumentActivity : SIMOActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        onActivityResultDocuments(requestCode, resultCode, data)
-    }
-
-    /**
-     * Maneja la respuesta al seleccionar un archivo pdf del dispositivo
-     */
-    private fun onActivityResultDocuments(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_CODE_ATTACHMENT) {
-            if (data != null && resultCode == Activity.RESULT_OK) {
-                val files = data.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
-                if (files!!.size > 0) {
-                    val realFilePath = files[0].path
-                    if (realFilePath != null) {
-                        val pickedFile = File(realFilePath)
-                        if (SIMOApplication.checkMaxFileSize(this, pickedFile)) {
-                            fileOtherDocument = pickedFile
-                            uploadDocumentOther()
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * Sube un archivo seleccionado al servidor
      */
     private fun uploadDocumentOther() {
         editTextAttachment?.error = null
-        fileOtherDocument?.let {
-            ProgressBarDialog.startProgressDialog(this)
-            RestAPI.uploadFilePDF(fileOtherDocument!!, { file ->
-                ProgressBarDialog.stopProgressDialog()
-                fileOtherDocumentUploaded = file
-                editTextAttachment?.setText(fileOtherDocument?.nameWithoutExtension)
-                fileOtherDocument = null
-            }, { fuelError ->
-                ProgressBarDialog.stopProgressDialog()
+        ProgressBarDialog.startProgressDialog(this)
+        RestAPI.uploadFilePDF(fileOtherDocument!!, { file ->
+            ProgressBarDialog.stopProgressDialog()
+            fileOtherDocumentUploaded = file
+            editTextAttachment?.setText(contentResolver.getFileName(filedoc!!))
+            fileOtherDocument = null
+        }, { fuelError ->
+            ProgressBarDialog.stopProgressDialog()
+            if (fuelError.exception.message != null) {
+                Toast.makeText(this, fuelError.exception.message, Toast.LENGTH_LONG).show()
+            } else {
                 SIMOApplication.showFuelError(this, fuelError)
-            })
-        }
+            }
+        })
     }
 
     /**

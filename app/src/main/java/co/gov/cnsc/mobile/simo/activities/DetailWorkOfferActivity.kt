@@ -1045,7 +1045,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
                         }
                     }
                 }, {fuelError ->
-
+                    Log.i("DEV","Error_PreAvalible")
                 }
                 )
             })
@@ -1136,8 +1136,7 @@ class DetailWorkOfferActivity : SIMOActivity() {
 
                         // Fecha de Cierre para el Detalle del Empleo en etapa de inscripciones (desde Mis Empleos, pestaña Favoritos)
                         textCloseInscriptions.text = this.jobDueDate
-
-                        buttonRight.background.setColorFilter(ContextCompat.getColor(this, R.color.colorAccent), PorterDuff.Mode.MULTIPLY)
+                        buttonRight.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
                         buttonRight.isEnabled = true
 
 

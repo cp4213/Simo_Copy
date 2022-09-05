@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -48,6 +49,8 @@ import org.json.JSONObject
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
 
@@ -889,34 +892,34 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
      * y abre la galería o la cámara del dispositivo para obtener una imagen y subirla al servidor
      */
     private fun onPhotoClick() {
-        Dexter.withActivity(activity)
+        Dexter.withContext(activity)
             .withPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : PermissionListener, MultiplePermissionsListener {
                 override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) {
-                    Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
+                    Log.d("DEV", "onPermissionRationaleShouldBeShown")
                     token?.continuePermissionRequest()
                 }
 
                 override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                    Log.d(SIMOApplication.TAG, "onPermissionsChecked")
+                    Log.d("DEV", "onPermissionsChecked")
                     if (report?.areAllPermissionsGranted() == true) {
                         EasyImage.openChooserWithGallery(this@MyBasicInfoFragment, getString(R.string.select_origin_image), REQUEST_CODE_PHOTO)
                     } else {
-                        Log.d(SIMOApplication.TAG, "onPermissionDenied")
+                        Log.d("DEV", "onPermissionDenied")
                     }
                 }
 
                 override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                    Log.d(SIMOApplication.TAG, "onPermissionGranted")
+                    Log.d("DEV", "onPermissionGranted")
                     EasyImage.openChooserWithGallery(this@MyBasicInfoFragment, getString(R.string.select_origin_image), REQUEST_CODE_PHOTO)
                 }
 
                 override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
-                    Log.d(SIMOApplication.TAG, "onPermissionRationaleShouldBeShown")
+                    Log.d("DEV", "onPermissionRationaleShouldBeShown")
                 }
 
                 override fun onPermissionDenied(response: PermissionDeniedResponse?) {
-                    Log.d(SIMOApplication.TAG, "onPermissionDenied")
+                    Log.d("DEV", "onPermissionDenied")
                 }
 
             })
@@ -930,7 +933,7 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
     private fun onUploadIdentification() {
         activity?.let {
             SIMOApplication.checkIfConnectedByData(requireActivity()) {
-                Dexter.withActivity(activity)
+                Dexter.withContext(activity)
                     .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .withListener(object : PermissionListener, MultiplePermissionsListener {
                         override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) {
@@ -941,7 +944,7 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             Log.d(SIMOApplication.TAG, "onPermissionsChecked")
                             if (report?.areAllPermissionsGranted() == true) {
-                                SIMOApplication.openChooserDocuments(this@MyBasicInfoFragment, "application/pdf", REQUEST_CODE_ID)
+                                SIMOApplication.FilePickerNew(resultLauncher)
                             } else {
                                 Log.d(SIMOApplication.TAG, "onPermissionDenied")
                             }
@@ -949,7 +952,7 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
 
                         override fun onPermissionGranted(response: PermissionGrantedResponse?) {
                             Log.d(SIMOApplication.TAG, "onPermissionGranted")
-                            SIMOApplication.openChooserDocuments(this@MyBasicInfoFragment, "application/pdf", REQUEST_CODE_ID)
+                            SIMOApplication.FilePickerNew(resultLauncher)
                         }
 
                         override fun onPermissionRationaleShouldBeShown(permission: PermissionRequest?, token: PermissionToken?) {
@@ -967,10 +970,28 @@ class MyBasicInfoFragment : CVFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     }
 
+    private var filedoc: Uri?=null
+    /**
+     * Maneja la respuesta al seleccionar un archivo pdf del dispositivo
+     */
+    private var resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),{ result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null ) {
+                filedoc =result.data!!.data
+                val parcelFileDescriptor =activity?.contentResolver?.openFileDescriptor(filedoc!!, "r", null)
+                val inputStream = FileInputStream(parcelFileDescriptor!!.fileDescriptor)
+                fileIdentification = File(activity?.cacheDir, activity?.contentResolver?.getFileName(filedoc!!))
+                val outputStream = FileOutputStream(fileIdentification)
+                inputStream.copyTo(outputStream)
+                if (SIMOApplication.checkMaxFileSize(activity as AppCompatActivity, fileIdentification)) {
+                    uploadDocumentDni()
+                }
+            }
+        })
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         onActivityResultEasyImage(requestCode, resultCode, data)
-        onActivityResultDocuments(requestCode, resultCode, data)
         onActivityResultSIMOResources(requestCode, resultCode, data)
     }
 

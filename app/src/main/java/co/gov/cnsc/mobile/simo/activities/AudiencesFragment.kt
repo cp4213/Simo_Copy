@@ -73,7 +73,7 @@ class AudiencesFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener{
     private fun configureUI() {
         adapter = AudiencesAdapter(activity, ArrayList<Audience>())
 
-        adapter?.onConsultJob = { item: Audience, position: Int ->
+        adapter?.onConsultJob = { item: Audience, _ ->
 
            // Toast.makeText(activity,"onConsultJob", Toast.LENGTH_SHORT).show()
             goToVacancyJobs(item)
@@ -86,19 +86,25 @@ class AudiencesFragment : SIMOFragment(), SwipeRefreshLayout.OnRefreshListener{
             //SIMOApplication.goToWorkOffers(context = context!!, convocatory = item)
 
         }
-        adapter?.reportConsult = { item: Audience, position: Int ->
+        adapter?.reportConsult = { item: Audience, _ ->
 
             // Toast.makeText(activity,"reportConsult", Toast.LENGTH_SHORT).show()
 
-            if (item.idDocumento != null && activity != null) {
-                SIMOApplication.checkIfConnectedByData(requireActivity()) {
-                    SIMOApplication.checkPermissionsAndDownloadFile(requireActivity(), "${RestAPI.HOST}/documents/get-document?docId=${item.idDocumento}",
-                        "${item.idDocumento}.pdf")
+                if (item.idDocumento != null && activity != null) {
+                    SIMOApplication.checkIfConnectedByData(requireActivity()) {
+                        SIMOApplication.checkPermissionsAndDownloadFile(requireActivity(), "${RestAPI.HOST}/documents/get-document?docId=${item.idDocumento}",
+                            "${item.idDocumento}.pdf")
+                    }
+                }else{
+                    if(item.idDocumento == null)
+                        Toast.makeText(context,"No existe documento del reporte",Toast.LENGTH_SHORT).show()
                 }
+
             }
+
             //SIMOApplication.goToWorkOffers(context = context!!, convocatory = item)
 
-        }
+
 
 
         swipeRefreshAudiences?.setOnRefreshListener(this)

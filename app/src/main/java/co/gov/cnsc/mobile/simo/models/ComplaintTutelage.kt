@@ -64,4 +64,10 @@ data class ComplaintTutelage(
             return Gson().fromJson(reader, type)
         }
     }
+    class Deserializer : ResponseDeserializable<ComplaintTutelage> {
+        override fun deserialize(reader: Reader): ComplaintTutelage {
+            val type = object : TypeToken<ComplaintTutelage>() {}.type
+            return Gson().fromJson(reader, type)
+        }
+    }
 }

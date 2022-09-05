@@ -1,6 +1,9 @@
 package co.gov.cnsc.mobile.simo.util
 
 import android.app.Application
+import android.content.ContentResolver
+import android.net.Uri
+import android.provider.OpenableColumns
 import co.gov.cnsc.mobile.simo.models.Deptos
 import co.gov.cnsc.mobile.simo.models.Mncipios
 import org.joda.time.format.DateTimeFormat
@@ -108,4 +111,6 @@ class ExtrasUtils : Application() {
     fun isAuthenticated (cookie :  String): Boolean {
         return cookie != "null"
     }
+
+
 }

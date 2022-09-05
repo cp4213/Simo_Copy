@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.github.kittinunf.fuel.core.ResponseDeserializable
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
 import java.io.Reader
@@ -15,7 +16,8 @@ data class Alert(
         @SerializedName("id") val id: String?,
         @SerializedName("notificacion") val notification: Notification?,
         @SerializedName("estadoNotificacion") var status: String?,
-        @SerializedName("fechaNotificacion") val date: String?
+        @SerializedName("fechaNotificacion") val date: String?,
+        @SerializedName("access") val access: AlertAccess?
 ) : Parcelable {
 
     var isRead: Boolean
@@ -34,7 +36,9 @@ data class Alert(
             parcel.readString(),
             parcel.readParcelable(Notification::class.java.classLoader),
             parcel.readString(),
-            parcel.readString())
+            parcel.readString(),
+            parcel.readParcelable(AlertAccess::class.java.classLoader))
+
 
     class ListDeserializer : ResponseDeserializable<List<Alert>> {
         override fun deserialize(reader: Reader): List<Alert> {
@@ -48,6 +52,7 @@ data class Alert(
         parcel.writeParcelable(notification, flags)
         parcel.writeString(status)
         parcel.writeString(date)
+        parcel.writeParcelable(access, flags)
     }
 
     override fun describeContents(): Int {
